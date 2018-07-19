@@ -28,6 +28,7 @@ import com.hsk.hxqh.agp_eam.api.HttpManager;
 import com.hsk.hxqh.agp_eam.api.HttpRequestHandler;
 import com.hsk.hxqh.agp_eam.api.JsonUtils;
 import com.hsk.hxqh.agp_eam.bean.Results;
+import com.hsk.hxqh.agp_eam.model.PROCESSNAME;
 import com.hsk.hxqh.agp_eam.model.WFASSIGNMENT;
 import com.hsk.hxqh.agp_eam.ui.activity.Wfm_Details_Activity;
 import com.hsk.hxqh.agp_eam.ui.widget.SwipeRefreshLayout;
@@ -203,7 +204,9 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                             initAdapter(items);
                         }
                         for (int i = 0; i < item.size(); i++) {
-                            items.add(item.get(i));
+                            if (item.get(i).getPROCESSNAME().indexOf(PROCESSNAME.PROCESSNAME)>= 0){
+                                items.add(item.get(i));
+                            }
                         }
                         addData(item);
                     }
