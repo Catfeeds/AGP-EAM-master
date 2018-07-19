@@ -208,7 +208,7 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                                 items.add(item.get(i));
                             }
                         }
-                        addData(item);
+                        addData(items);
                     }
                     nodatalayout.setVisibility(View.GONE);
 
