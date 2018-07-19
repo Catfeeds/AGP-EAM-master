@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/inbox_line1"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/item_bg"
+    android:orientation="horizontal">
+
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/icon_backlog" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingBottom="8dp"
+        android:paddingRight="5dp"
+        android:paddingTop="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/task_number_text"
+                    style="@style/list_inbox_text_list_first"
+                    android:layout_weight="1"
+                    android:text="100118" />
+
+                <TextView
+                    android:id="@+id/task_date_text"
+                    style="@style/item_time"
+                    android:text="1月6日"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/describle_task"
+                    style="@style/list_inbox_text_list"
+                    android:layout_height="wrap_content"
+                    android:text="描述:" />
+
+                <TextView
+                    android:id="@+id/task_description_text"
+                    style="@style/list_inbox_text_list"
+                    android:text="暂无描述" />
+
+            </LinearLayout>
+
+    </LinearLayout>
+
+    <!--<ImageView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:src="@drawable/icon_detial"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="right"
+        />-->
+
+
+</LinearLayout>

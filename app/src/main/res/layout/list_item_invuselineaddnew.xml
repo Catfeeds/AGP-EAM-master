@@ -1,0 +1,69 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="2dp"
+    android:layout_marginTop="2dp"
+    android:background="#fff"
+    android:foreground="?android:selectableItemBackground"
+    android:orientation="vertical"
+    card_view:cardCornerRadius="2dp">
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/invuseline_descsam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        >
+        <TextView
+            android:id="@+id/invuseline_itemnum_id"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:hint="物资编码"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+             />
+
+            <TextView
+                android:id="@+id/item_desc_title"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="@string/inventory_itemnum_dec"
+                android:layout_toRightOf="@+id/invuseline_itemnum_id"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/invuseline_desc_id"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_toLeftOf="@+id/drop-down"
+                android:layout_toRightOf="@+id/item_desc_title"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:background="@color/sb__transparent"/>
+            <ImageButton
+                android:id="@+id/drop-down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_pack_up" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/invuseline_descsam">
+       <include layout="@layout/activity_invuseline_addnew"></include>
+    </RelativeLayout>
+</RelativeLayout>
+</android.support.v7.widget.CardView>

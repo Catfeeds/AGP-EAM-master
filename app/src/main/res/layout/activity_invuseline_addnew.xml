@@ -1,0 +1,435 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray"
+    android:orientation="vertical"
+    android:id="@+id/invuseline_detail_linearlayout"
+    android:visibility="visible"
+    >
+    <include
+        android:id="@+id/title_id"
+        layout="@layout/title_main"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="visible"></include>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:background="@drawable/shape_corner_bottom"
+            android:paddingLeft="@dimen/dimen_10"
+            android:paddingRight="@dimen/dimen_10">
+               <LinearLayout
+                   android:id="@+id/the_hidend_id"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+                   android:visibility="visible">
+                   <LinearLayout
+                       android:id="@+id/invuseline_numLayout_id"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:gravity="center_vertical"
+                       android:orientation="horizontal"
+                       android:padding="@dimen/dimen_10"
+                       >
+
+                       <TextView
+                           android:layout_width="@dimen/dimens_80dp"
+                           android:layout_height="wrap_content"
+                           android:text="@string/item_itemnum"
+                           android:textColor="@color/light_black"
+                           android:textSize="@dimen/dimens_16sp" />
+
+                       <TextView
+                           android:id="@+id/invuseline_itemnum_id"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="3"
+                           android:background="@drawable/editsharp"
+                           android:gravity="right"
+                           android:textColor="@color/light_black"
+                           android:textSize="@dimen/dimens_16sp"
+                           android:drawableRight="@mipmap/ic_more"
+                           />
+                   </LinearLayout>
+                   <LinearLayout
+                       android:id="@+id/invuseline_descLayout_id"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:gravity="center_vertical"
+                       android:orientation="horizontal"
+                       android:padding="@dimen/dimen_10"
+                       >
+
+                       <TextView
+                           android:layout_width="@dimen/dimens_80dp"
+                           android:layout_height="wrap_content"
+                           android:text="@string/item_description"
+                           android:textColor="@color/light_black"
+                           android:textSize="@dimen/dimens_16sp" />
+
+                       <EditText
+                           android:id="@+id/invuseline_desc_id"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="3"
+                           android:background="@drawable/editsharp"
+                           android:gravity="right"
+                           android:textColor="@color/light_black"
+                           android:textSize="@dimen/dimens_16sp"
+                           />
+                   </LinearLayout>
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:gravity="center_vertical"
+                       android:orientation="horizontal"
+                       android:padding="@dimen/dimen_10">
+
+                       <TextView
+                           android:layout_width="@dimen/dimens_80dp"
+                           android:layout_height="wrap_content"
+                           android:text="@string/usetype"
+                           android:textColor="@color/light_black"
+                           android:textSize="@dimen/dimens_16sp" />
+
+                       <TextView
+                           android:id="@+id/invuseline_usetype_id"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="3"
+                           android:gravity="right"
+                           android:background="@drawable/editsharp"
+                           android:textColor="@color/light_black"
+                           android:textSize="@dimen/dimens_16sp" />
+                   </LinearLayout>
+               </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dimen_10">
+
+                    <TextView
+                        android:layout_width="@dimen/dimens_80dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/FROMSTORELOC"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/dimens_16sp" />
+
+                    <TextView
+                        android:id="@+id/invuseline_frombin_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:background="@drawable/editsharp"
+                        android:gravity="right"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/dimens_16sp"
+                        android:drawableRight="@mipmap/ic_more"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dimen_10">
+
+                    <TextView
+                        android:layout_width="@dimen/dimens_80dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/INVUSELINE_FROMLOT"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/dimens_16sp" />
+
+                    <TextView
+                        android:id="@+id/invuseline_fromloc_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:background="@drawable/editsharp"
+                        android:gravity="right"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/dimens_16sp"
+                        android:drawableRight="@mipmap/ic_more"
+                        />
+                </LinearLayout>
+            <LinearLayout
+                android:id="@+id/invuseline_tobin_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dimen_10">
+
+                    <TextView
+                        android:layout_width="@dimen/dimens_80dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/toBin"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/dimens_16sp" />
+
+                    <EditText
+                        android:id="@+id/invuseline_tobin_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:background="@drawable/editsharp"
+                        android:gravity="right"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/dimens_16sp"
+                        android:hint="@string/necessary"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dimen_10">
+
+                    <TextView
+                        android:layout_width="@dimen/dimens_80dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/toLoc"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/dimens_16sp" />
+
+                    <EditText
+                        android:id="@+id/invuseline_toloc_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:background="@drawable/editsharp"
+                        android:hint="@string/necessary"
+                        android:gravity="right"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/dimens_16sp"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/loc_layout_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dimen_10">
+
+                    <TextView
+                        android:layout_width="@dimen/dimens_80dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/wplabor_quantity"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/dimens_16sp" />
+
+                    <EditText
+                        android:id="@+id/invuseline_quantity_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:background="@drawable/editsharp"
+                        android:gravity="right"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/dimens_16sp" />
+
+                </LinearLayout>
+            <LinearLayout
+                android:id="@+id/conversion_layout_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:visibility="gone"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen_10">
+
+                <TextView
+                    android:layout_width="@dimen/dimens_80dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/conversion"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/dimens_16sp" />
+
+                <EditText
+                    android:id="@+id/invuseline_conversion_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:background="@drawable/editsharp"
+                    android:gravity="right"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/dimens_16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/tagid_layout_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dimen_10">
+
+                    <TextView
+                        android:layout_width="@dimen/dimens_80dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/wonum_text"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/dimens_16sp" />
+
+                    <TextView
+                        android:id="@+id/invuseline_wonum_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_weight="3"
+                        android:background="@drawable/editsharp"
+                        android:gravity="right"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/dimens_16sp"
+                        android:drawableRight="@mipmap/ic_more"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dimen_10">
+
+                    <TextView
+                        android:layout_width="@dimen/dimens_80dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/asset_assetnum"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/dimens_16sp" />
+
+                    <TextView
+                        android:id="@+id/invuseline_assetnum_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:background="@drawable/editsharp"
+                        android:gravity="right"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/dimens_16sp"
+                        android:drawableRight="@mipmap/ic_more"
+                        />
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/carno_layout_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen_10">
+
+                <TextView
+                    android:layout_width="@dimen/dimens_80dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/location_choose_title"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/dimens_16sp" />
+
+                <TextView
+                    android:id="@+id/invuseline_location_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/editsharp"
+                    android:drawableRight="@mipmap/ic_more"
+                    android:gravity="right"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/dimens_16sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen_10">
+
+                <TextView
+                    android:layout_width="@dimen/dimens_80dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/matusetrans_actualdate"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/dimens_16sp" />
+
+                <TextView
+                    android:id="@+id/invuseline_actualdate_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/editsharp"
+                    android:drawableRight="@mipmap/ic_more"
+                    android:gravity="right"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/dimens_16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dimen_10">
+
+                    <TextView
+                        android:layout_width="@dimen/dimens_80dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/udstock_remark"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/dimens_16sp" />
+                    <EditText
+                        android:id="@+id/invuseline_remark_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:background="@drawable/editsharp"
+                        android:gravity="right"
+                        android:hint="@string/udstock_remark"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/dimens_16sp" />
+                </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    </LinearLayout>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"></LinearLayout>
+    <include layout="@layout/asset_buttom"></include>
+
+</LinearLayout>

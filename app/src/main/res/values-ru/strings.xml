@@ -1,0 +1,396 @@
+<resources>
+    <string name="text_content">Это зона отображения</string>
+    <string name="app_name">АГП-ЕАМ</string>
+    <string name="login_please_login">Не в</string>
+
+    <string name="lan_chinese">китайский</string>
+    <string name="lan_en">английский</string>
+    <string name="lan_ru">русский</string>
+    <string name="langlange">язык</string>
+    <string name="select_language">Выбери язык</string>
+    <string name="bianhao">номер</string>
+    <string name="miaoshu">название</string>
+    <string name="chaxuntj">Условие запроса</string>
+    <string name="receive">прием</string>
+
+
+    <string name="receipts">прием</string>
+    <string name="orderData">Дата заказа</string>
+    <string name="totalbeforetax">Доналоговый итог</string>
+    <string name="receivedcost">Принимаемыезатраты</string>
+    <string name="lineinfo">строк информация</string>
+
+
+
+    <!--功能项-->
+    <string name="task_text">Списки задач</string>
+    <string name="asset_text">Активы запрос</string>
+    <string name="job_text">Заявление о приеме на работу</string>
+    <string name="workorder_text">Рабочий одной управления</string>
+    <string name="inventory_text">Управление запасами</string>
+    <string name="po_text">Управление закупками</string>
+    <string name="refund">отжиг  библиотеки  материалов</string>
+    <string name="outbound">Склад материалов</string>
+    <string name="materiel_text">Возврат материалов</string>
+
+    <!--Login_activity-->
+    <string name="please_userid">Введите имя пользователя</string>
+    <string name="please_password">Пожалуйста, введите пароль</string>
+    <string name="remenber_pass">Вспомнить пароль</string>
+    <string name="login"> посадка </string>
+    <string name="version_text"> номер версии  : </string>
+
+    <!-- 登录界面 key-->
+    <string name="logined_member_username">logined_member_username</string>
+    <string name="logined_member_password">logined_member_password</string>
+    <string name="logined_member_ischeck">logined_member_ischeck</string>
+    <string name="logined_user_isoffline">logined_user_isoffline</string>
+    <string name="login_insertOrg">login_insertOrg</string>
+    <string name="login_insertSite">login_insertSite</string>
+    <string name="login_personId">login_personId</string>
+    <string name="login_userName">login_userName</string>
+    <string name="login_displayName">login_displayName</string>
+    <string name="login_department">login_department</string>
+    <string name="ip_address">ip_address</string>
+
+
+    <string name="can_not_find_version_name">Не удалось получить  номер версии</string>
+    <string name="login_error_empty_user">Имя пользователя  не может быть пустым</string>
+    <string name="login_error_empty_passwd">Пароль не может быть пустым</string>
+    <string name="login_loging">Пожалуйста,  посадка  в  позже  ...</string>
+
+
+    <!--网络信息提示-->
+    <string name="error_title">ошибки</string>
+    <string name="error_obtain_once">Отсутствие доступа к ONCE</string>
+    <string name="error_network_exception">Сетевой трафик аномалия, пожалуйста, потом снова пробовать</string>
+    <string name="error_network_disconnect">Сеть недостижимое, пожалуйста, открытие wi-fi или мобильных сетей передачи данных</string>
+    <string name="error_reply">сбойные</string>
+    <string name="error_create_topic">Невозможно создать новую тему</string>
+    <string name="error_login">Не в</string>
+    <string name="error_fav_nodes">Ошибка узла коллекции</string>
+    <string name="error_fav_topic">Коллекции тему ошибки</string>
+    <string name="error_get_profile">Отсутствие доступа к пользователей персональных данных</string>
+    <string name="error_unknown">Неизвестный ошибки</string>
+    <string name="load">В настоящее время загрузки</string>
+    <string name="load1">Пока отсутствуют</string>
+    <string name="have_not_data_txt">Пока без соответствующих данных</string>
+    <string name="necessary">обязательное заполнение</string>
+
+    <string name="loading">В настоящее время загрузки … в</string>
+
+
+    <!--获取信息提示-->
+    <string name="item_num_title">номер:</string>
+    <string name="item_desc_title">описание:</string>
+    <string name="item_quantity_title">количество:</string>
+    <string name="item_quantity2">Фактическое число:</string>
+    <string name="item_quantity1">количество:</string>
+
+    <!-- hint -->
+    <string name="have_not_data">Нет  данных</string>
+    <string name="hint_item_num_title">Нет  , номер</string>
+    <string name="hint_item_desc_title">Нет  описания</string>
+    <string name="hint_item_date_title">Нет  даты</string>
+    <string name="get_data_info_fail">Доступ к информации  не</string>
+    <!--登录信息提示-->
+    <string name="login_successful_hint">приземлился успешно</string>
+
+    <!--权限设置-->
+    <string name="settings"> Настройки </string>
+    <string name="help"> помочь </string>
+    <string name="string_help_text">В настоящее время  отсутствуют необходимые  разрешения на  применение  .  \n\n  нажмите  "настройки  "  \  \  \  "  -\  разрешения  "  -  открыть  необходимые разрешения  .  Наконец,  нажмите  кнопку назад  \n\n  дважды  ,  могут  вернуться  .</string>
+    <string name="quit">выход</string>
+
+    <!--退出程序-->
+    <string name="exit_text">нажмите  один раз  выйти из программы</string>
+    <!--搜索-->
+    <string name="search_text">XX поиск</string>
+
+    <!--流程审批-->
+    <string name="title_activity_wfm"> Процесс утверждения</string>
+    <string name="wfm_app_title">Процесс утверждения из:</string>
+    <string name="wfm_desc_title">Описание:</string>
+    <string name="wfm_ownertable_title">Имя таблицы:</string>
+    <string name="wfm_assigncode_title">Задания человек:</string>
+    <string name="wfm_duedate_title">Дата окончания:</string>
+    <string name="wfm_processname_title">Процесс имен:</string>
+    <string name="wfm_roleid_title">Задач ролей:</string>
+    <string name="wfm_startdate_title">Начало процесса дата:</string>
+
+
+    <!--资产-->
+    <string name="asset_title">Активдетали</string>
+    <string name="asset_assetnum">Актив:</string>
+    <string name="asset_desc">Описание:</string>
+    <string name="asset_udfirstclass">Основная категория оборудования:</string>
+    <string name="asset_firstdesc">Основная категория оборудованияОписание:</string>
+    <string name="asset_udsecondclass">Средняя категория оборудования:</string>
+    <string name="asset_secondesc">Средняя категория оборудованияОписание:</string>
+    <string name="asset_udthirdclass">Подкатегория обородувания :</string>
+    <string name="asset_thirdesc">Подкатегория обородуванияОписание:</string>
+    <string name="asset_parent">Родитель:</string>
+    <string name="asset_parentdesc">РодительОписание:</string>
+    <string name="asset_location">Позиция:</string>
+    <string name="asset_locdesc">ПозицияОписание:</string>
+    <string name="asset_udeqmstatus">состояние оборудования:</string>
+    <string name="asset_udmodule">Номер спецификации:</string>
+    <string name="asset_udconnection">Режим соединений:</string>
+    <string name="asset_udmanufacturer">Завод- изготовитель:</string>
+    <string name="asset_udsequenceno">Порядковый номер выпуска с завода:</string>
+    <string name="asset_udmaintime">отпускной  времени:</string>
+    <string name="asset_udusetime">с  даты  голосования:</string>
+    <string name="asset_udremarks">Примечание:</string>
+
+    <string name="asset_bujian">компонент </string>
+    <string name="asset_beijian">запчасти</string>
+    <string name="asset_workorder">запасные части</string>
+    <string name="asset_wonum">порядок работы:</string>
+    <string name="asset_description">описание:</string>
+    <string name="asset_status">Государства:</string>
+    <string name="asset_statusdate">Государства  Дата:</string>
+    <string name="asset_actstart">фактическое  время начала:</string>
+    <string name="asset_actfinish">фактическое время завершения:</string>
+
+
+    <!--工单-->
+    <string name="work_title">По одной за</string>
+    <string name="work_cm">вина  /  скрытые  работы</string>
+    <string name="work_pm">работы</string>
+    <string name="work_wonum">Рабочее задание:</string>
+    <string name="work_description">описание:</string>
+    <string name="work_worktype">Тип работы:</string>
+    <string name="work_assetnum">Актив:</string>
+    <string name="work_assetdes">описание  активов:</string>
+    <string name="work_stationdes">Станционная площадка:</string>
+    <string name="work_location">Позиция:</string>
+    <string name="work_locationdes">описание места:</string>
+    <string name="work_udworeqnum">Порядковый номер рабочее заявления:</string>
+    <string name="work_udfaultreportnum">Порядковый номер акта доклада о неисправности:</string>
+    <string name="work_udyearplannum">Порядковый номер годового плана:</string>
+    <string name="work_udstatus">Состояние:</string>
+    <string name="work_createbyname">Учредитель:</string>
+    <string name="work_createdate">Дата создания:</string>
+    <string name="work_schedstart">Начало по графику:</string>
+    <string name="work_schedfinish">Завершение по графику:</string>
+    <string name="work_actstart">Фактическое начало:</string>
+    <string name="work_actfinish">Фактическое завершение:</string>
+    <string name="work_udyear">Годовой план:</string>
+    <string name="work_workfrequency">Частота:</string>
+    <string name="work_jpnum">Производственный план:</string>
+    <string name="work_udworkscope">Рабочая область:</string>
+    <string name="work_udfaultdesc">Описание неисправности:</string>
+    <string name="work_udreason">Причина неисправности:</string>
+    <string name="work_hazardlevel">сроки выполнения работ:</string>
+
+    <string name="work_workplan">План работы</string>
+    <string name="work_workreal">Реальная ситуация</string>
+    <string name="work_workflow">Отправить процесса разработки</string>
+    <string name="work_upload">Загрузить приложение</string>
+
+    <string name="work_woactivity">Задача</string>
+    <string name="woactivity_taskid">Задача:</string>
+    <string name="woactivity_description">Сводка:</string>
+    <string name="woactivity_estdur">Оценка длительности:</string>
+    <string name="woactivity_status">Состояние:</string>
+    <string name="woactivity_wosequence">Последовательность:</string>
+
+    <string name="work_wplabor">Работники</string>
+    <string name="wplabor_taskid">Задача:</string>
+    <string name="wplabor_laborcode">Работники:</string>
+    <string name="wplabor_quantity">Количество:</string>
+
+    <string name="work_wpmaterial">мат</string>
+    <string name="wpmaterial_taskid">Операция:</string>
+    <string name="wpmaterial_itemnum">Позиция ТМЦ:</string>
+    <string name="wpmaterial_description">Сводка:</string>
+    <string name="wpmaterial_itemqty">Количество:</string>
+    <string name="wpmaterial_location">Склад:</string>
+    <string name="wpmaterial_vendor">Поставщик:</string>
+    <string name="wpmaterial_requestby">Кем затребовано:</string>
+    <string name="wpmaterial_requiredate">Необходимая дата:</string>
+    <string name="wpmaterial_issueto">Выдавать цель:</string>
+    <string name="wpmaterial_unitcost">Удельнаястоимость:</string>
+    <string name="wpmaterial_linecost">Себестоимость строки:</string>
+
+
+    <string name="work_labtrans">Работники</string>
+    <string name="labtrans_actualstaskid">Операция:</string>
+    <string name="labtrans_laborcode">Работники:</string>
+    <string name="labtrans_startdate">Дата начала:</string>
+    <string name="labtrans_starttime">Время начала:</string>
+    <string name="labtrans_finishdate">Дата окончания:</string>
+    <string name="labtrans_finishtime">Время окончания:</string>
+    <string name="labtrans_regularhrs">Обычная трудоёмкость:</string>
+
+    <string name="work_matusetrans">мат</string>
+    <string name="matusetrans_actualstaskid">Операция:</string>
+    <string name="matusetrans_itemnum">Позиция ТМЦ:</string>
+    <string name="matusetrans_description">Сводка:</string>
+    <string name="matusetrans_storeloc">Склад:</string>
+    <string name="matusetrans_positivequantity">Количество:</string>
+    <string name="matusetrans_binnum">Ящик:</string>
+    <string name="matusetrans_lotnum">Лот:</string>
+    <string name="matusetrans_rotassetnum">Взаимозаменяемый актив:</string>
+    <string name="matusetrans_issuetype">Тип транзакции:</string>
+    <string name="matusetrans_enterby">Кем введено:</string>
+    <string name="matusetrans_actualdate">Фактическая дата:</string>
+
+    <!--库存-->
+    <string name="inventory">запас</string>
+    <string name="inventory_itemnum">проект:</string>
+    <string name="inventory_itemnum_dec">Описание проекта:</string>
+    <string name="inventory_location">пакгауз:</string>
+    <string name="inventory_location_dec">Склад описание:</string>
+    <string name="inventory_status">состояние:</string>
+    <string name="inventory_issueunit">Выдача единица:</string>
+    <string name="inventory_curbaltotal">В запас:</string>
+    <string name="inventory_avblbalance">Может дозировку:</string>
+    <string name="inventory_binnum">Ящик по умолчанию :</string>
+
+    <string name="invbalances">Запас запас</string>
+    <string name="invbalances_binnum">контейнерный:</string>
+    <string name="invbalances_lotnum">партия:</string>
+    <string name="invbalances_curbal">В запас:</string>
+    <string name="invbalances_stagedcurbal">Временное запас:</string>
+    <string name="invbalances_physcnt">Фактически количество:</string>
+    <string name="invbalances_physcntdate">Фактически инвентаризация дата:</string>
+    <string name="invbalances_reconciled">на?</string>
+
+    <string name="udstock">Инвентаризацию запасов</string>
+    <string name="udstock_stocknum">Номер склада</string>
+    <string name="udstock_description">Описание</string>
+    <string name="udstock_storeroom">Номер склад</string>
+    <string name="udstock_udstockstodes">Склад</string>
+    <string name="udstock_invowner">Номер зав.склада</string>
+    <string name="udstock_udstockinvdis">Зав.склада</string>
+    <string name="udstock_remark">Примечание</string>
+    <string name="udstock_status">Статус</string>
+    <string name="udstock_udstockcredis">Создано</string>
+    <string name="udstock_createdate">Дата создания</string>
+    <string name="udstockline">Список ТМЦ</string>
+    <string name="udstockline_sn">Номер строки:</string>
+    <string name="udstockline_itemnum">ТМЦ:</string>
+    <string name="udstockline_udstocklineitedes">ТМЦ :</string>
+    <string name="udstockline_udstocklineiteiss">Единица заказа:</string>
+    <string name="udstockline_quantity1">Исходное количество:</string>
+    <string name="udstockline_quantity2">фактическое количество:</string>
+    <string name="udstockline_difference">Разница:</string>
+    <string name="udstockline_reason">причина различия:</string>
+
+    <string name="po">На склад управления</string>
+    <string name="invuse_issue">Покупная управления</string>
+    <string name="invuse_transfer">Мат фондовые</string>
+    <string name="invuse_item">Справочник кодов ТМЦ</string>
+
+    <!--工作申请-->
+    <string name="udfaultreport_text">Порядковый номер акта доклада</string>
+    <string name="udworkapply_text">Порядковый номер рабочее</string>
+
+    <!--故障提报单-->
+    <string name="have_not_num_text">Нет  , номер</string>
+    <string name="stationdes_text">Станционная площадка:</string>
+
+    <string name="udfaultreportnum_text">Порядковый номер акта доклада о неисправности:</string>
+    <string name="description_text">Описание неисправности:</string>
+    <string name="udstationnum_text">Расположение:</string>
+    <string name="udinside＿text">Внутри станционной площадки ?</string>
+    <string name="udinlocation_text">Необходимо распределение работ ?</string>
+    <string name="udsjgy_text">Техника исправления?</string>
+    <string name="reason_text">Причина неисправности:</string>
+    <string name="conclusion_text">Общий итог неисправности:</string>
+    <string name="material_text">Расходуемые материалы:</string>
+    <string name="status_text">Состояние:</string>
+    <string name="restatus_text">Принимающий режим:</string>
+    <string name="createbyname_text">создатель:</string>
+    <string name="createdate_text">Дата создания:</string>
+
+    <!--工作申请-->
+    <string name="wonum_text">Рабочий одной цифры::</string>
+    <string name="plannum_text">Порядковый номер годового плана:</string>
+    <string name="woapplynum_text">Порядковый номер рабочее заявления:</string>
+    <string name="purpose_text">главная цель:</string>
+    <string name="workexe_text">количество рабочий исполнител:</string>
+    <string name="preparedbyname_text">Составители:</string>
+    <string name="preparedbytitle_text">должность:</string>
+    <string name="startdate_text">Время начала:</string>
+    <string name="workdates_text">сроки выполнения работ:</string>
+    <string name="jpnum_text">Порядковый номер производственного плана:</string>
+
+    <string name="asset_choose_title">активы</string>
+    <string name="location_choose_title">положение</string>
+    <string name="jobplan_choose_title">Оперативный план</string>
+    <string name="craftrate_choose_title">работники</string>
+    <string name="person_choose_title">сотрудники</string>
+    <string name="udyearplan_choose_title">Годовой план</string>
+    <string name="companies_choose_title">поставщик</string>
+    <string name="cancel">отмена</string>
+    <string name="save">сохраните</string>
+    <string name="start">Пуск в…</string>
+    <string name="wfm_approve_text">утверждения</string>
+    <string name="wfm_reject_text">отклонен</string>
+    <string name="approve">Автор лицензирования в…</string>
+    <string name="check_photo_hint">Пожалуйста, выберите нужно загрузить фото</string>
+    <string name="check_phtot">Выбор картинки</string>
+    <string name="work_commit">Фотографии загружать</string>
+    <string name="attachment_details">Просмотреть фотографии</string>
+    <string name="wfm_title_text">Утвержденный рабочий поток</string>
+    <string name="wfm_pass_text">через</string>
+    <string name="wfm_notpass_text">Не пройти</string>
+    <string name="wfm_cancel_text">отмена</string>
+    <string name="wfm_approveoption_text">Утвердить мнение</string>
+
+    <!--物资台帐-->
+    <string name="item_itemnum">Материал:</string>
+    <string name="item_description">Материал:</string>
+    <string name="item_in19">Спецификация:</string>
+    <string name="item_in20">Примечание:</string>
+    <string name="item_in26">Первый класс:</string>
+    <string name="item_in26desc">Опись материалов:</string>
+    <string name="item_in27">Второй класс:</string>
+    <string name="item_in27desc">Опись материала:</string>
+    <string name="item_rotating">Основные средства</string>
+    <string name="item_inspectionrequired">Инспектировать при получении</string>
+    <string name="item_status">Статус:</string>
+    <string name="item_lottype">Тип лота:</string>
+    <string name="item_orderunit">Единица заказа:</string>
+    <string name="item_orderunitdesc">Описание единицы:</string>
+    <string name="item_inventory">запас</string>
+
+    <!--物料退库-->
+    <string name="INVUSENUMI">Перечень материалов</string>
+    <string name="INVUSENUMR">Возврат материалов</string>
+    <string name="INVUSE_DESCRIPTION">Описание</string>
+    <string name="INVUSE_UDFILENO">Кодирование файлов</string>
+    <string name="FROMSTORELOC">склад сырья</string>
+    <string name="LOCATIONS_DESCRIPTION">описание первоначально склад</string>
+    <string name="UDDEPT_DEPTNUM">станция</string>
+    <string name="UDDEPT_DESCRIPTION">станции описание</string>
+    <string name="INVUSE_INVOWNER">владелец склада</string>
+    <string name="PERSON_DISPLAYNAME">владелец склада описание</string>
+    <string name="PERSON_DISPLAYNAME1">создать человек</string>
+    <string name="INVUSE_UDCREATEDATE">время создания</string>
+    <string name="UDTOWAREHOUSE">Подать заявление на склад</string>
+    <string name="UDINVOWNER">Подайте заявление в хранилище</string>
+    <string name="SUBJECT">профессиональные</string>
+    <string name="original_container">Первичный контейнер</string>
+    <string name="original_batch">Первоначальный партия</string>
+    <string name="usetype">Используйте титры</string>
+    <string name="ISSUEUNIT">Единица выдачи</string>
+
+    <!--Invuseline-->
+    <string name="INVUSELINE_FROMLOT">Первоначальный партия:</string>
+    <string name="conversion">преобразование:</string>
+    <string name="toBin">Грузовой контейнер:</string>
+    <string name="tofromLoc">Целевой склад:</string>
+    <string name="toLoc">Партия цели:</string>
+
+    <string name="success">успех</string>
+    <string name="fail">провал</string>
+    <string name="option">Выбор операции </string>
+    <string name="back">возвращение</string>
+    <string name="startwf">Запускайте поток</string>
+    <string name="yes">это</string>
+    <string name="no">нет</string>
+    <string name="wfgon">Утвержденный рабочий поток</string>
+</resources>

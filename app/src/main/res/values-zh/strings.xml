@@ -1,0 +1,394 @@
+<resources>
+    <string name="text_content">这是内容显示区</string>
+    <string name="select_language">选择一个语言</string>
+    <string name="lan_chinese">中文</string>
+    <string name="lan_en">英语</string>
+    <string name="lan_ru">俄语</string>
+    <string name="langlange">语言</string>
+    <string name="app_name">AGP-资产管理</string>
+    <string name="login_please_login">尚未登录</string>
+    <string name="bianhao">编号</string>
+    <string name="miaoshu">名称</string>
+    <string name="chaxuntj">查询条件</string>
+    <string name="receive">接收</string>
+
+
+    <string name="receipts">收据</string>
+    <string name="orderData">订购日期</string>
+    <string name="totalbeforetax">税前总计</string>
+    <string name="receivedcost">已接收成本</string>
+    <string name="lineinfo">行信息</string>
+
+    <!--功能项-->
+    <string name="task_text">待办任务</string>
+    <string name="necessary">必填</string>
+    <string name="asset_text">资产查询</string>
+    <string name="job_text">工作申请</string>
+    <string name="workorder_text">工单管理</string>
+    <string name="inventory_text">库存管理</string>
+    <string name="po_text">采购管理</string>
+    <string name="materiel_text">物料退库</string>
+
+
+    <!--Login_activity-->
+    <string name="please_userid">请输入用户名</string>
+    <string name="please_password">请输入密码</string>
+    <string name="remenber_pass">记住密码</string>
+    <string name="login">登录</string>
+    <string name="version_text">版本号:</string>
+
+
+    <!-- 登录界面 key-->
+    <string name="logined_member_username">logined_member_username</string>
+    <string name="logined_member_password">logined_member_password</string>
+    <string name="logined_member_ischeck">logined_member_ischeck</string>
+    <string name="logined_user_isoffline">logined_user_isoffline</string>
+    <string name="login_insertOrg">login_insertOrg</string>
+    <string name="login_insertSite">login_insertSite</string>
+    <string name="login_personId">login_personId</string>
+    <string name="login_userName">login_userName</string>
+    <string name="login_displayName">login_displayName</string>
+    <string name="login_department">login_department</string>
+    <string name="ip_address">ip_address</string>
+
+
+    <string name="can_not_find_version_name">无法获取版本号</string>
+
+    <string name="login_error_empty_user">用户名不能为空</string>
+    <string name="login_error_empty_passwd">密码不能为空</string>
+    <string name="login_loging">正在登陆中请稍后...</string>
+
+    <!--网络信息提示-->
+    <string name="error_title">错误</string>
+    <string name="error_obtain_once">无法获取ONCE</string>
+    <string name="error_network_exception">网络通信异常，请稍后重试</string>
+    <string name="error_network_disconnect">网络不可达,请开启Wifi或者移动数据网络</string>
+    <string name="error_reply">提交失败</string>
+    <string name="error_create_topic">无法创建新话题</string>
+    <string name="error_login">无法登录</string>
+    <string name="error_fav_nodes">收藏节点错误</string>
+    <string name="error_fav_topic">收藏话题错误</string>
+    <string name="error_get_profile">无法获取用户个人资料</string>
+    <string name="error_unknown">未知错误</string>
+    <string name="load">正在加载</string>
+    <string name="load1">暂无数据</string>
+    <string name="have_not_data_txt">暂无相关数据</string>
+    <string name="loading">正在加载中…</string>
+
+    <!--获取信息提示-->
+    <string name="item_num_title">编号:</string>
+    <string name="item_desc_title">描述:</string>
+    <string name="item_quantity_title">数量:</string>
+    <string name="item_quantity2">实际数量：</string>
+    <string name="item_quantity1">数量：</string>
+
+    <!-- hint -->
+    <string name="have_not_data">暂无数据</string>
+    <string name="hint_item_num_title">暂无编号</string>
+    <string name="hint_item_desc_title">暂无描述</string>
+    <string name="hint_item_date_title">暂无日期</string>
+    <string name="get_data_info_fail">获取信息失败</string>
+    <!--登录信息提示-->
+    <string name="login_successful_hint">登陆成功</string>
+
+    <!--权限设置-->
+    <string name="settings">设置</string>
+    <string name="help">帮助</string>
+    <string name="string_help_text">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。\n\n最后点击两次后退按钮，即可返回。</string>
+    <string name="quit">退出</string>
+
+    <!--退出程序-->
+    <string name="exit_text">再按一次退出程序</string>
+    <!--搜索-->
+    <string name="search_text">XX搜索</string>
+
+    <!--流程审批-->
+    <string name="title_activity_wfm"> 流程审批</string>
+    <string name="wfm_app_title">流程审批名:</string>
+    <string name="wfm_desc_title">描述:</string>
+    <string name="wfm_ownertable_title">表名:</string>
+    <string name="wfm_assigncode_title">任务分配人:</string>
+    <string name="wfm_duedate_title">到期日期:</string>
+    <string name="wfm_processname_title">过程名称:</string>
+    <string name="wfm_roleid_title">任务角色:</string>
+    <string name="wfm_startdate_title">流程发起日期:</string>
+    <!--<string name="wfm_details_text">查看表单详情</string>-->
+    <!--<string name="wfm_approve_text">审批</string>-->
+    <!--<string name="wfm_detail_title">流程审批详情</string>-->
+
+    <!--资产-->
+    <string name="asset_title">资产详情</string>
+    <string name="asset_assetnum">资产编号:</string>
+    <string name="asset_desc">资产描述:</string>
+    <string name="asset_udfirstclass">设备大类:</string>
+    <string name="asset_firstdesc">设备大类描述:</string>
+    <string name="asset_udsecondclass">设备中类:</string>
+    <string name="asset_secondesc">设备中类描述:</string>
+    <string name="asset_udthirdclass">设备小类:</string>
+    <string name="asset_thirdesc">设备小类描述:</string>
+    <string name="asset_parent">父级:</string>
+    <string name="asset_parentdesc">父级描述:</string>
+    <string name="asset_location">位置编号:</string>
+    <string name="asset_locdesc">位置描述:</string>
+    <string name="asset_udeqmstatus">设备状态:</string>
+    <string name="asset_udmodule">规格型号:</string>
+    <string name="asset_udconnection">链接方式:</string>
+    <string name="asset_udmanufacturer">生产厂家:</string>
+    <string name="asset_udsequenceno">出厂序列号:</string>
+    <string name="asset_udmaintime">出厂时间:</string>
+    <string name="asset_udusetime">投用日期:</string>
+    <string name="asset_udremarks">备注:</string>
+
+    <string name="asset_bujian">部件</string>
+    <string name="asset_beijian">备件</string>
+    <string name="asset_workorder">工单历史</string>
+    <string name="asset_wonum">工单:</string>
+    <string name="asset_description">描述:</string>
+    <string name="asset_status">状态:</string>
+    <string name="asset_statusdate">状态日期:</string>
+    <string name="asset_actstart">实际开始时间:</string>
+    <string name="asset_actfinish">实际完成时间:</string>
+
+    <!--工单-->
+    <string name="work_title">工单详情</string>
+    <string name="work_cm">故障/隐患工单</string>
+    <string name="work_pm">维护工单</string>
+    <string name="work_wonum">工单编号:</string>
+    <string name="work_description">描述:</string>
+    <string name="work_worktype">工单类型:</string>
+    <string name="work_assetnum">资产:</string>
+    <string name="work_assetdes">资产描述:</string>
+    <string name="work_stationdes">站场:</string>
+    <string name="work_location">位置:</string>
+    <string name="work_locationdes">位置描述:</string>
+    <string name="work_udworeqnum">工作申请编号:</string>
+    <string name="work_udfaultreportnum">故障提报ACT号:</string>
+    <string name="work_udyearplannum">年度计划编号:</string>
+    <string name="work_udstatus">状态:</string>
+    <string name="work_createbyname">创建人:</string>
+    <string name="work_createdate">创建时间:</string>
+    <string name="work_schedstart">调度开始时间:</string>
+    <string name="work_schedfinish">计划完成时间:</string>
+    <string name="work_actstart">实际开始时间:</string>
+    <string name="work_actfinish">实际完成时间:</string>
+    <string name="work_udyear">年度计划:</string>
+    <string name="work_workfrequency">频率:</string>
+    <string name="work_jpnum">作业计划:</string>
+    <string name="work_udworkscope">工作范围:</string>
+    <string name="work_udfaultdesc">故障描述:</string>
+    <string name="work_udreason">故障原因:</string>
+    <string name="work_hazardlevel">工期:</string>
+
+    <string name="work_workplan">工作计划</string>
+    <string name="work_workreal">实际情况</string>
+    <string name="work_workflow">发送工作流</string>
+    <string name="work_upload">上传附件</string>
+
+    <string name="work_woactivity">任务</string>
+    <string name="woactivity_taskid">任务:</string>
+    <string name="woactivity_description">摘要:</string>
+    <string name="woactivity_estdur">估计持续时间:</string>
+    <string name="woactivity_status">状态:</string>
+    <string name="woactivity_wosequence">序号:</string>
+
+    <string name="work_wplabor">员工</string>
+    <string name="wplabor_taskid">任务:</string>
+    <string name="wplabor_laborcode">员工:</string>
+    <string name="wplabor_quantity">数量:</string>
+
+    <string name="work_wpmaterial">物料</string>
+    <string name="wpmaterial_taskid">任务:</string>
+    <string name="wpmaterial_itemnum">项目:</string>
+    <string name="wpmaterial_description">描述:</string>
+    <string name="wpmaterial_itemqty">数量:</string>
+    <string name="wpmaterial_location">库房:</string>
+    <string name="wpmaterial_vendor">供应商:</string>
+    <string name="wpmaterial_requestby">请求者:</string>
+    <string name="wpmaterial_requiredate">要求的日期:</string>
+    <string name="wpmaterial_issueto">发放目标:</string>
+    <string name="wpmaterial_unitcost">单位成本:</string>
+    <string name="wpmaterial_linecost">行成本:</string>
+
+
+    <string name="work_labtrans">员工</string>
+    <string name="labtrans_actualstaskid">任务:</string>
+    <string name="labtrans_laborcode">员工:</string>
+    <string name="labtrans_startdate">开始日期:</string>
+    <string name="labtrans_starttime">开始时间:</string>
+    <string name="labtrans_finishdate">结束日期:</string>
+    <string name="labtrans_finishtime">结束时间:</string>
+    <string name="labtrans_regularhrs">常规时数:</string>
+
+    <string name="work_matusetrans">物料</string>
+    <string name="matusetrans_actualstaskid">任务:</string>
+    <string name="matusetrans_itemnum">项目:</string>
+    <string name="matusetrans_description">描述:</string>
+    <string name="matusetrans_storeloc">库房:</string>
+    <string name="matusetrans_positivequantity">数量:</string>
+    <string name="matusetrans_binnum">货柜:</string>
+    <string name="matusetrans_lotnum">批次:</string>
+    <string name="matusetrans_rotassetnum">周转资产:</string>
+    <string name="matusetrans_issuetype">交易类型:</string>
+    <string name="matusetrans_enterby">输入人:</string>
+    <string name="matusetrans_actualdate">实际日期:</string>
+
+
+    <!--库存-->
+    <string name="refund">物料退库</string>
+    <string name="outbound">物料出库</string>
+    <string name="inventory">库存查询</string>
+    <string name="inventory_itemnum">项目:</string>
+    <string name="inventory_itemnum_dec">描述:</string>
+    <string name="inventory_location">库房:</string>
+    <string name="inventory_location_dec">库房描述:</string>
+    <string name="inventory_status">状态:</string>
+    <string name="inventory_issueunit">发放单位:</string>
+    <string name="inventory_curbaltotal">当前余量:</string>
+    <string name="inventory_avblbalance">可用量:</string>
+    <string name="inventory_binnum">缺省货柜:</string>
+
+    <string name="invbalances">库存余量</string>
+    <string name="invbalances_binnum">货柜:</string>
+    <string name="invbalances_lotnum">批次:</string>
+    <string name="invbalances_curbal">当前余量:</string>
+    <string name="invbalances_stagedcurbal">暂存余量:</string>
+    <string name="invbalances_physcnt">实际库存量:</string>
+    <string name="invbalances_physcntdate">实际盘点日期:</string>
+    <string name="invbalances_reconciled">已调整?</string>
+
+    <string name="udstock">库存盘点</string>
+    <string name="udstock_stocknum">盘点单号:</string>
+    <string name="udstock_description">描述:</string>
+    <string name="udstock_storeroom">库房:</string>
+    <string name="udstock_udstockstodes">库房名称:</string>
+    <string name="udstock_invowner">库房管理员:</string>
+    <string name="udstock_udstockinvdis">管理员姓名:</string>
+    <string name="udstock_remark">备注:</string>
+    <string name="udstock_status">状态:</string>
+    <string name="udstock_udstockcredis">创建人姓名:</string>
+    <string name="udstock_createdate">创建日期:</string>
+    <string name="udstockline">物资列表</string>
+    <string name="udstockline_sn">序号:</string>
+    <string name="udstockline_itemnum">物资编码:</string>
+    <string name="udstockline_udstocklineitedes">物资名称:</string>
+    <string name="udstockline_udstocklineiteiss">发放单位:</string>
+    <string name="udstockline_quantity1">账存数量:</string>
+    <string name="udstockline_quantity2">实际数量:</string>
+    <string name="udstockline_difference">差异数量:</string>
+    <string name="udstockline_reason">差异原因:</string>
+
+    <string name="po">入库管理</string>
+    <string name="invuse_issue">出库管理</string>
+    <string name="invuse_transfer">物料调拨</string>
+    <string name="invuse_item">物资台帐</string>
+
+
+    <!--工作申请-->
+    <string name="udfaultreport_text">故障提报</string>
+    <string name="udworkapply_text">工作申请</string>
+    <!--故障提报单-->
+    <string name="have_not_num_text">暂无编号</string>
+    <string name="stationdes_text">站场:</string>
+
+    <string name="udfaultreportnum_text">故障编号:</string>
+    <string name="description_text">故障描述:</string>
+    <string name="udstationnum_text">站场编号:</string>
+    <string name="udinside＿text">站场内?</string>
+    <string name="udinlocation_text">需要派工?</string>
+    <string name="udsjgy_text">技术整改?</string>
+    <string name="reason_text">故障原因:</string>
+    <string name="conclusion_text">故障总结:</string>
+    <string name="material_text">消耗物料:</string>
+    <string name="status_text">状态:</string>
+    <string name="restatus_text">接收状态:</string>
+    <string name="createbyname_text">创建人:</string>
+    <string name="createdate_text">创建时间:</string>
+    <!--工作申请-->
+    <string name="wonum_text">工单编号:</string>
+    <string name="plannum_text">年度计划编号:</string>
+    <string name="woapplynum_text">工作申请编号:</string>
+    <string name="purpose_text">目的:</string>
+    <string name="workexe_text">工作执行人数:</string>
+    <string name="preparedbyname_text">准备人姓名:</string>
+    <string name="preparedbytitle_text">职位:</string>
+    <string name="startdate_text">开始时间:</string>
+    <string name="workdates_text">工期:</string>
+    <string name="jpnum_text">作业计划编号:</string>
+
+    <string name="asset_choose_title">资产</string>
+    <string name="location_choose_title">位置</string>
+    <string name="jobplan_choose_title">作业计划</string>
+    <string name="craftrate_choose_title">员工</string>
+    <string name="person_choose_title">人员</string>
+    <string name="udyearplan_choose_title">年度计划</string>
+    <string name="companies_choose_title">供应商</string>
+    <string name="cancel">取消</string>
+    <string name="save">保存</string>
+    <string name="start">启动中…</string>
+    <string name="wfm_approve_text">审批</string>
+    <string name="wfm_reject_text">驳回</string>
+    <string name="approve">审批提交中…</string>
+    <string name="check_photo_hint">请选择需要上传的图片</string>
+    <string name="check_phtot">选择图片</string>
+    <string name="work_commit">图片上传</string>
+    <string name="attachment_details">图片查看</string>
+    <string name="wfm_title_text">审批工作流</string>
+    <string name="wfm_pass_text">通过</string>
+    <string name="wfm_notpass_text">不通过</string>
+    <string name="wfm_cancel_text">取消</string>
+    <string name="wfm_approveoption_text">审批意见</string>
+
+    <!--物资台帐-->
+    <string name="item_itemnum">物资编码:</string>
+    <string name="item_description">物资名称:</string>
+    <string name="item_in19">规格型号:</string>
+    <string name="item_in20">备注:</string>
+    <string name="item_in26">物资大类:</string>
+    <string name="item_in26desc">大类描述:</string>
+    <string name="item_in27">物资小类:</string>
+    <string name="item_in27desc">小类描述:</string>
+    <string name="item_rotating">固定资产？</string>
+    <string name="item_inspectionrequired">接收时检查？</string>
+    <string name="item_status">状态:</string>
+    <string name="item_lottype">批次类型:</string>
+    <string name="item_orderunit">订购单位:</string>
+    <string name="item_orderunitdesc">单位描述:</string>
+    <string name="item_inventory">库房信息</string>
+
+    <!--物料退库-->
+    <string name="INVUSENUMI">物料出库单</string>
+    <string name="INVUSENUMR">物料退库单</string>
+    <string name="INVUSE_DESCRIPTION">描述</string>D
+    <string name="INVUSE_UDFILENO">文件编码</string>D
+    <string name="FROMSTORELOC">原库房</string>
+    <string name="LOCATIONS_DESCRIPTION">原库房描述</string>
+    <string name="UDDEPT_DEPTNUM">站场</string>
+    <string name="UDDEPT_DESCRIPTION">站场描述</string>
+    <string name="INVUSE_INVOWNER">库房所有者</string>
+    <string name="PERSON_DISPLAYNAME">库房所有者描述</string>
+    <string name="PERSON_DISPLAYNAME1">创建人</string>
+    <string name="INVUSE_UDCREATEDATE">创建时间</string>
+    <string name="UDTOWAREHOUSE">申请库房</string>
+    <string name="UDINVOWNER">申请库房库库管</string>
+    <string name="SUBJECT">专业</string>
+    <string name="original_container">原货柜</string>
+    <string name="original_batch">原批次</string>
+    <string name="usetype">使用情况类型</string>
+    <string name="ISSUEUNIT">发放单位</string>
+
+    <!--Invuseline-->
+    <string name="INVUSELINE_FROMLOT">原批次:</string>
+    <string name="conversion">转换:</string>
+    <string name="toBin">目标货柜:</string>
+    <string name="tofromLoc">目标库房:</string>
+    <string name="toLoc">目标批次:</string>
+
+    <string name="success">成功</string>
+    <string name="fail">失败</string>
+    <string name="option">选择操作</string>
+    <string name="back">返回</string>
+    <string name="startwf">是否启动工作流</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="wfgon">审批工作流</string>
+</resources>

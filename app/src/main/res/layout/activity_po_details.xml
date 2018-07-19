@@ -1,0 +1,280 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/title_id"
+        layout="@layout/title_main"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"></include>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <ScrollView
+            android:id="@+id/scrollview_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_id"
+            android:background="@color/white"
+            android:fillViewport="true"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_corner_bottom"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/size_5dp">
+
+                            <TextView
+                                android:layout_width="@dimen/dimens_150dp"
+                                android:layout_height="wrap_content"
+                                android:text="PO"
+                                android:textColor="@color/light_black"
+                                android:textSize="@dimen/dimens_16sp" />
+
+                            <TextView
+                                android:id="@+id/po_ponum_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dimen_10"
+                                android:background="@drawable/editsharp"
+                                android:drawablePadding="@dimen/size_5dp"
+                                android:gravity="right"
+                                android:hint="@string/have_not_data"
+                                android:textColor="@color/light_black"
+                                android:textSize="@dimen/dimens_16sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/size_5dp">
+
+                            <TextView
+                                android:layout_width="@dimen/dimens_150dp"
+                                android:layout_height="wrap_content"
+                                android:text="@string/INVUSE_DESCRIPTION"
+                                android:textColor="@color/light_black"
+                                android:textSize="@dimen/dimens_16sp" />
+
+                            <EditText
+                                android:id="@+id/po_desc_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dimen_10"
+                                android:background="@drawable/editsharp"
+                                android:drawablePadding="@dimen/size_5dp"
+                                android:gravity="right"
+                                android:hint="@string/have_not_data"
+                                android:textColor="@color/light_black"
+                                android:textSize="@dimen/dimens_16sp" />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/size_5dp">
+
+                            <TextView
+                                android:layout_width="@dimen/dimens_150dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="@string/UDDEPT_DEPTNUM"
+                                android:textColor="@color/light_black"
+                                android:textSize="@dimen/dimens_16sp" />
+
+                            <TextView
+                                android:id="@+id/po_stationdesc_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dimen_10"
+                                android:background="@drawable/editsharp"
+                                android:gravity="right"
+                                android:hint="@string/have_not_data"
+                                android:textColor="@color/light_black"
+                                android:textSize="@dimen/dimens_16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/size_5dp">
+
+                            <TextView
+                                android:layout_width="@dimen/dimens_150dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="@string/status_text"
+                                android:textColor="@color/light_black"
+                                android:textSize="@dimen/dimens_16sp" />
+
+                            <TextView
+                                android:id="@+id/po_status_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dimen_10"
+                                android:background="@drawable/editsharp"
+                                android:gravity="right"
+                                android:hint="@string/have_not_data"
+                                android:textColor="@color/light_black"
+                                android:textSize="@dimen/dimens_16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/size_5dp">
+
+                            <TextView
+                                android:layout_width="@dimen/dimens_150dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="@string/udstock_remark"
+                                android:textColor="@color/light_black"
+                                android:textSize="@dimen/dimens_16sp" />
+
+                            <TextView
+                                android:id="@+id/po_receipts_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dimen_10"
+                                android:background="@drawable/editsharp"
+                                android:gravity="right"
+                                android:hint="@string/have_not_data"
+                                android:textColor="@color/light_black"
+                                android:textSize="@dimen/dimens_16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/size_5dp">
+
+                            <TextView
+                                android:layout_width="@dimen/dimens_150dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="@string/orderData"
+                                android:textColor="@color/light_black"
+                                android:textSize="@dimen/dimens_16sp" />
+
+                            <TextView
+                                android:id="@+id/po_orderdate_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dimen_10"
+                                android:background="@drawable/editsharp"
+                                android:gravity="right"
+                                android:hint="@string/have_not_data"
+                                android:textColor="@color/light_black"
+                                android:textSize="@dimen/dimens_16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/size_5dp">
+
+                            <TextView
+                                android:layout_width="@dimen/dimens_150dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="@string/totalbeforetax"
+                                android:textColor="@color/light_black"
+                                android:textSize="@dimen/dimens_16sp" />
+
+                            <TextView
+                                android:id="@+id/po_pretaxtotal_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dimen_10"
+                                android:background="@drawable/editsharp"
+                                android:gravity="right"
+                                android:hint="@string/have_not_data"
+                                android:textColor="@color/light_black"
+                                android:textSize="@dimen/dimens_16sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/size_5dp">
+
+                            <TextView
+                                android:layout_width="@dimen/dimens_150dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="@string/receivedcost"
+                                android:textColor="@color/light_black"
+                                android:textSize="@dimen/dimens_16sp" />
+                            <TextView
+                                android:id="@+id/po_recivedtotalcost_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dimen_10"
+                                android:background="@drawable/editsharp"
+                                android:gravity="right"
+                                android:hint="@string/have_not_data"
+                                android:textColor="@color/light_black"
+                                android:textSize="@dimen/dimens_16sp" />
+                        </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/size_5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="8.0"
+            android:text="@string/receive"
+            android:textColor="@color/light_black"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:textSize="@dimen/dimens_16sp"
+            android:background="@color/light_blue"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <include layout="@layout/list"></include>
+    </LinearLayout>
+    <include layout="@layout/asset_buttom"></include>
+</LinearLayout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_main"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:padding="1dp"
+        android:background="@color/title_color"
+        android:orientation="horizontal">
+
+
+
+        <Button
+            android:id="@+id/work_wplabor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/button_check_style2"
+            android:text="@string/work_wplabor"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/work_wpmaterial"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/button_check_style"
+            android:text="@string/work_wpmaterial"
+            android:textColor="@color/white" />
+        <Button
+            android:id="@+id/work_woactivity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/button_check_style"
+            android:text="@string/work_woactivity"
+            android:textColor="@color/white" />
+
+        <!--<Button-->
+            <!--android:id="@+id/work_wpservice"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1.0"-->
+            <!--android:layout_marginRight="1dp"-->
+            <!--android:background="@color/light_gray"-->
+            <!--android:text="@string/work_wpservice"-->
+            <!--android:textColor="@drawable/text_selector" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/work_wptool"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1.0"-->
+            <!--android:background="@color/light_gray"-->
+            <!--android:text="@string/work_wptool"-->
+            <!--android:textColor="@drawable/text_selector" />-->
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v4.view.ViewPager>
+    </RelativeLayout>
+</LinearLayout>

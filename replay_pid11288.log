@@ -1,0 +1,81 @@
+JvmtiExport can_access_local_variables 0
+JvmtiExport can_hotswap_or_post_breakpoint 0
+JvmtiExport can_post_on_exceptions 0
+# 387 ciObject found
+ciMethod java/lang/Object <init> ()V 4097 1 949891 0 0
+ciMethod java/lang/Object getClass ()Ljava/lang/Class; 2049 1 256 0 -1
+ciMethod java/lang/Object hashCode ()I 2049 1 256 0 -1
+ciMethod java/lang/Object equals (Ljava/lang/Object;)Z 1697 1 20858 0 64
+ciMethod java/lang/Object clone ()Ljava/lang/Object; 3073 1 384 0 -1
+ciMethod java/lang/String equals (Ljava/lang/Object;)Z 14737 151601 4842 0 -1
+ciMethod java/lang/String hashCode ()I 2753 32769 1108 0 288
+ciMethod java/lang/String lastIndexOf (I)I 2121 1 31040 0 -1
+ciMethod java/lang/String substring (II)Ljava/lang/String; 2065 1 7446 0 -1
+ciMethod java/lang/reflect/GenericDeclaration getTypeParameters ()[Ljava/lang/reflect/TypeVariable; 0 0 1 0 -1
+ciMethod java/lang/Class isAssignableFrom (Ljava/lang/Class;)Z 3073 1 384 0 -1
+ciMethod java/lang/Class getName ()Ljava/lang/String; 833 1 38907 0 96
+ciMethod java/lang/Class getName0 ()Ljava/lang/String; 3097 1 387 0 -1
+ciMethod java/lang/Class getClassLoader ()Ljava/lang/ClassLoader; 2153 1 10788 0 -1
+ciMethod java/lang/Class getClassLoader0 ()Ljava/lang/ClassLoader; 1033 1 129 0 0
+ciMethod java/lang/Class getTypeParameters ()[Ljava/lang/reflect/TypeVariable; 3097 1 12859 0 1440
+ciMethod java/lang/Class getGenericSuperclass ()Ljava/lang/reflect/Type; 81 1 618 0 -1
+ciMethod java/lang/Class getInterfaces ()[Ljava/lang/Class; 17 1 5695 0 -1
+ciMethod java/lang/Class getGenericInterfaces ()[Ljava/lang/reflect/Type; 49 1 656 0 -1
+ciMethod java/lang/Class getEnclosingMethod ()Ljava/lang/reflect/Method; 49 129 6 0 -1
+ciMethod java/lang/Class getEnclosingConstructor ()Ljava/lang/reflect/Constructor; 33 17 4 0 -1
+ciMethod java/lang/Class getDeclaringClass ()Ljava/lang/Class; 3761 1 3799 0 0
+ciMethod java/lang/Class getDeclaringClass0 ()Ljava/lang/Class; 3073 1 384 0 -1
+ciMethod java/lang/Class getEnclosingClass ()Ljava/lang/Class; 1673 1 1013 0 -1
+ciMethod java/lang/Class checkPackageAccess (Ljava/lang/ClassLoader;Z)V 113 1 81 0 0
+ciMethod java/lang/Class getGenericSignature0 ()Ljava/lang/String; 2817 1 323 0 -1
+ciMethod java/lang/Class getFactory ()Lsun/reflect/generics/factory/GenericsFactory; 97 1 147 0 0
+ciMethod java/lang/Class getGenericInfo ()Lsun/reflect/generics/repository/ClassRepository; 177 1 14133 0 0
+ciMethod java/lang/ClassLoader getParent ()Ljava/lang/ClassLoader; 313 1 608 0 -1
+ciMethod java/lang/ClassLoader getClassLoader (Ljava/lang/Class;)Ljava/lang/ClassLoader; 145 1 991 0 0
+ciMethod java/lang/ClassLoader checkClassLoaderPermission (Ljava/lang/ClassLoader;Ljava/lang/Class;)V 0 0 1 0 -1
+ciMethod java/lang/System getSecurityManager ()Ljava/lang/SecurityManager; 2049 1 48887 0 -1
+ciMethod java/lang/SecurityManager checkPackageAccess (Ljava/lang/String;)V 0 0 1 0 -1
+ciMethod java/lang/ref/Reference get ()Ljava/lang/Object; 2049 1 256 0 -1
+ciMethod java/lang/ref/WeakReference <init> (Ljava/lang/Object;)V 2873 1 28714 0 -1
+ciMethod java/util/Map get (Ljava/lang/Object;)Ljava/lang/Object; 0 0 1 0 -1
+ciMethod java/util/Map put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; 0 0 1 0 -1
+ciMethod java/util/Map remove (Ljava/lang/Object;)Ljava/lang/Object; 0 0 1 0 -1
+ciMethod java/util/Map entrySet ()Ljava/util/Set; 0 0 1 0 -1
+ciMethod java/lang/reflect/Method getDeclaringClass ()Ljava/lang/Class; 1025 1 128 0 0
+ciMethod java/lang/reflect/Method getName ()Ljava/lang/String; 1193 1 149 0 0
+ciMethod java/lang/reflect/Method hashCode ()I 2057 1 4108 0 0
+ciMethod java/lang/StringBuilder <init> (Ljava/lang/String;)V 3081 1 8891 0 -1
+ciMethod java/lang/StringBuilder append (Ljava/lang/String;)Ljava/lang/StringBuilder; 2033 1 238921 0 -1
+ciMethod java/lang/StringBuilder toString ()Ljava/lang/String; 993 1 85027 0 -1
+ciMethod java/util/List isEmpty ()Z 0 0 1 0 -1
+ciMethod java/util/List iterator ()Ljava/util/Iterator; 0 0 1 0 -1
+ciMethod java/util/Map$Entry getValue ()Ljava/lang/Object; 0 0 1 0 -1
+ciMethod java/util/Map$Entry setValue (Ljava/lang/Object;)Ljava/lang/Object; 0 0 1 0 -1
+ciMethod java/util/AbstractMap <init> ()V 521 1 30862 0 32
+ciMethod java/util/Set iterator ()Ljava/util/Iterator; 0 0 1 0 -1
+ciMethod sun/reflect/Reflection getCallerClass ()Ljava/lang/Class; 2049 1 256 0 -1
+ciMethod java/util/HashMap hash (Ljava/lang/Object;)I 2089 1 76637 0 0
+ciMethod java/util/HashMap <init> ()V 193 1 16339 0 32
+ciMethod java/util/HashMap get (Ljava/lang/Object;)Ljava/lang/Object; 2057 1 21356 0 672
+ciMethod java/util/HashMap getNode (ILjava/lang/Object;)Ljava/util/HashMap$Node; 2689 1 22854 0 480
+ciMethod sun/reflect/generics/repository/ClassRepository <init> (Ljava/lang/String;Lsun/reflect/generics/factory/GenericsFactory;)V 105 1 142 0 -1
+ciMethod sun/reflect/generics/repository/ClassRepository make (Ljava/lang/String;Lsun/reflect/generics/factory/GenericsFactory;)Lsun/reflect/generics/repository/ClassRepository; 105 1 142 0 0
+ciMethod sun/reflect/generics/repository/GenericDeclRepository getTypeParameters ()[Ljava/lang/reflect/TypeVariable; 793 89 7909 0 0
+ciMethod sun/reflect/generics/repository/AbstractRepository getFactory ()Lsun/reflect/generics/factory/GenericsFactory; 1025 1 128 0 0
+ciMethod sun/reflect/generics/repository/AbstractRepository getTree ()Lsun/reflect/generics/tree/Tree; 1601 1 200 0 0
+ciMethod sun/reflect/generics/repository/AbstractRepository getReifier ()Lsun/reflect/generics/visitor/Reifier; 1385 1 3542 0 0
+ciMethodData java/lang/Object <init> ()V 2 949891 orig 264 216 160 107 81 0 0 0 0 128 4 188 21 0 0 0 0 32 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 25 228 115 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 1 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethod java/util/Objects equals (Ljava/lang/Object;Ljava/lang/Object;)Z 3081 1 856 0 0
+ciMethod java/util/Iterator hasNext ()Z 0 0 1 0 -1
+ciMethod java/util/Iterator next ()Ljava/lang/Object; 0 0 1 0 -1
+ciMethod sun/reflect/misc/ReflectUtil conservativeCheckMemberAccess (Ljava/lang/reflect/Member;)V 113 1 43 0 -1
+ciMethod sun/reflect/misc/ReflectUtil checkPackageAccess (Ljava/lang/Class;)V 3425 1 7870 0 -1
+ciMethod sun/reflect/misc/ReflectUtil isAncestor (Ljava/lang/ClassLoader;Ljava/lang/ClassLoader;)Z 0 0 1 0 -1
+ciMethod sun/reflect/misc/ReflectUtil needsPackageAccessCheck (Ljava/lang/ClassLoader;Ljava/lang/ClassLoader;)Z 0 0 1 0 -1
+ciMethod sun/reflect/misc/ReflectUtil checkProxyPackageAccess (Ljava/lang/ClassLoader;[Ljava/lang/Class;)V 0 0 1 0 -1
+ciMethod sun/reflect/misc/ReflectUtil isNonPublicProxyClass (Ljava/lang/Class;)Z 1 1 7870 0 -1
+ciMethod java/lang/reflect/Array newInstance (Ljava/lang/Class;I)Ljava/lang/Object; 481 1 5256 0 288
+ciMethod java/lang/reflect/Array newArray (Ljava/lang/Class;I)Ljava/lang/Object; 2057 1 257 0 -1
+ciMethod java/util/HashMap$TreeNode getTreeNode (ILjava/lang/Object;)Ljava/util/HashMap$TreeNode; 9 1 1 0 -1
+ciMethodData java/lang/String hashCode ()I 2 21825 orig 264 216 160 107 81 0 0 0 0 176 79 188 21 0 0 0 0 152 1 0 0 32 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 16 0 0 225 23 0 0 9 42 2 0 0 0 0 0 0 0 0 0 2 0 0 0 1 0 11 0 2 0 0 0 120 0 0 0 255 255 255 255 7 0 6 0 0 0 0 0 data 15 0x60007 0xfb 0x78 0x201 0xe0007 0x3 0x58 0x1fe 0x1e0007 0x1fe 0x38 0x4521 0x2d0003 0x4521 0xffffffffffffffe0 oops 0
+ciMethodData java/util/HashMap hash (Ljava/lang/Object;)I 2 76637 orig 264 216 160 107 81 0 0 0 0 120 189 203 21 0 0 0 0 176 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5 1 0 0 193 82 9 0 1 0 0 0 20 118 0 0 0 0 0 0 2 0 0 0 0 0 6 0 2 0 0 0 104 0 0 0 255 255 255 255 7 224 1 0 0 0 0 0 data 13 0x1e007 0x12a1d 0x38 0x3e 0x50003 0x3e 0x48 0x90005 0x11974 0x17ae1560 0x72a 0x16494a90 0x399 oops 2

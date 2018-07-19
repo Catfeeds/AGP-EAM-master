@@ -1,0 +1,397 @@
+<resources>
+    <string name="text_content">This is the content display area</string>
+    <string name="lan_chinese">Chinese</string>
+    <string name="lan_en">English</string>
+    <string name="lan_ru">Russian</string>
+    <string name="select_language">Choose a language</string>
+    <string name="langlange">langlange</string>
+    <string name="bianhao">NUM</string>
+    <string name="miaoshu">DESCRIPTION</string>
+    <string name="chaxuntj">Query Conditions</string>
+    <string name="receive">Receive</string>
+
+
+    <string name="receipts">RECEIPTS</string>
+    <string name="orderData">OrderData</string>
+    <string name="totalbeforetax">Totabeforetax</string>
+    <string name="receivedcost">Receivedcost</string>
+    <string name="lineinfo">LineInfo</string>
+
+    <string name="app_name">AGP-EAM</string>
+
+    <string name="login_please_login">Not logged in</string>
+
+    <!--功能项-->
+    <string name="task_text">Todo Tasks</string>
+    <string name="asset_text">Asset Query</string>
+    <string name="job_text">Job Application</string>
+    <string name="workorder_text">Work Order Management</string>
+    <string name="inventory_text">Inventory Management</string>
+    <string name="po_text">Procurement Management</string>
+    <string name="refund">Material Retreating</string>
+    <string name="materiel_text">Material withdrawing</string>
+
+    <!--Login_activity-->
+    <string name="please_userid">Please enter your user name</string>
+    <string name="please_password">Please enter the password</string>
+    <string name="remenber_pass">Remember the password</string>
+    <string name="login">The login</string>
+    <string name="version_text">The version number:</string>
+
+    <!-- 登录界面 key-->
+    <string name="logined_member_username">logined_member_username</string>
+    <string name="logined_member_password">logined_member_password</string>
+    <string name="logined_member_ischeck">logined_member_ischeck</string>
+    <string name="logined_user_isoffline">logined_user_isoffline</string>
+    <string name="login_insertOrg">login_insertOrg</string>
+    <string name="login_insertSite">login_insertSite</string>
+    <string name="login_personId">login_personId</string>
+    <string name="login_userName">login_userName</string>
+    <string name="login_displayName">login_displayName</string>
+    <string name="login_department">login_department</string>
+    <string name="ip_address">ip_address</string>
+
+
+    <string name="can_not_find_version_name">Unable to get version number</string>
+    <string name="login_error_empty_user">User name cannot be empty</string>
+    <string name="login_error_empty_passwd">Password cannot be empty</string>
+    <string name="login_loging">Please log in later...</string>
+
+    <!--网络信息提示-->
+    <string name="error_title">error</string>
+    <string name="error_obtain_once">Unable to get ONCE</string>
+    <string name="error_network_exception">Network communication is unusual, please try again later</string>
+    <string name="error_network_disconnect">Network inaccessible, please open the Wifi or mobile data network</string>
+    <string name="error_reply">Submit Failure</string>
+    <string name="error_create_topic">Unable to create a new topic</string>
+    <string name="error_login">Unable to log in</string>
+    <string name="error_fav_nodes">Collection node error</string>
+    <string name="error_fav_topic">Collect topic error</string>
+    <string name="error_get_profile">Unable to get the user personal information</string>
+    <string name="error_unknown">Unknown Error</string>
+    <string name="load">Loading...</string>
+    <string name="load1">No data</string>
+    <string name="have_not_data_txt">No related data</string>
+    <string name="loading">Loading…</string>
+
+    <!--获取信息提示-->
+    <string name="item_num_title">Number:</string>
+    <string name="item_desc_title">Description:</string>
+    <string name="item_quantity_title">quantity:</string>
+
+    <!-- hint -->
+    <string name="have_not_data">No data</string>
+    <string name="hint_item_num_title">No numbering</string>
+    <string name="hint_item_desc_title">No description</string>
+    <string name="hint_item_date_title">No date</string>
+    <string name="get_data_info_fail">Getting information failure</string>
+    <!--登录信息提示-->
+    <string name="login_successful_hint">Landing success</string>
+
+
+
+
+    <!--权限设置-->
+    <string name="settings">Setting</string>
+    <string name="help">Help</string>
+    <string name="string_help_text">Current application lacks the necessary permissions. Please click on the "\n\n" permission set -\ \ "\" - open the required permissions. \n\n finally hit the two back button, you can return.</string>
+    <string name="quit">Sign out</string>
+
+    <!--退出程序-->
+    <string name="exit_text">Press the exit procedure again</string>
+    <!--搜索-->
+    <string name="search_text">XX Search</string>
+
+    <!--流程审批-->
+    <string name="title_activity_wfm"> The process of examination and approval</string>
+    <string name="wfm_app_title">APP:</string>
+    <string name="wfm_desc_title">Description:</string>
+    <string name="wfm_ownertable_title">TableName:</string>
+    <string name="wfm_assigncode_title">Task allocation people:</string>
+    <string name="wfm_duedate_title">Due Date:</string>
+    <string name="wfm_processname_title">Processname:</string>
+    <string name="wfm_roleid_title">Roleid:</string>
+    <string name="wfm_startdate_title">Start Date:</string>
+
+    <!--资产-->
+    <string name="asset_title">Asset details</string>
+    <string name="asset_assetnum">Assets:</string>
+    <string name="asset_desc">Description:</string>
+    <string name="asset_udfirstclass">First Class:</string>
+    <string name="asset_firstdesc">First Class Description:</string>
+    <string name="asset_udsecondclass">Second Class:</string>
+    <string name="asset_secondesc">Second Class Description:</string>
+    <string name="asset_udthirdclass">Third Class:</string>
+    <string name="asset_thirdesc">Third Class Description:</string>
+    <string name="asset_parent">Parent:</string>
+    <string name="asset_parentdesc">Parent Description:</string>
+    <string name="asset_location">Location:</string>
+    <string name="asset_locdesc">Location Description:</string>
+    <string name="asset_udeqmstatus">Equipment state:</string>
+    <string name="asset_udmodule">Specification Model:</string>
+    <string name="asset_udconnection">Connection Method:</string>
+    <string name="asset_udmanufacturer">Manufacturer:</string>
+    <string name="asset_udsequenceno">Factory Serial No:</string>
+    <string name="asset_udmaintime">Factory time:</string>
+    <string name="asset_udusetime">Cast date:</string>
+    <string name="asset_udremarks">Remarks:</string>
+
+    <string name="asset_bujian">Parts</string>
+    <string name="asset_beijian">Spare part</string>
+    <string name="asset_workorder">Work history</string>
+    <string name="asset_wonum">Work order:</string>
+    <string name="asset_description">describe:</string>
+    <string name="asset_status">state:</string>
+    <string name="asset_statusdate">Status date:</string>
+    <string name="asset_actstart">Actual start time:</string>
+    <string name="asset_actfinish">Actual completion time:</string>
+
+    <!--工单-->
+    <string name="work_title">WorkOrder details</string>
+    <string name="work_cm">Failure Report WorkOrder</string>
+    <string name="work_pm">Maintain Workorder</string>
+    <string name="work_wonum">Work Order:</string>
+    <string name="work_description">describe:</string>
+    <string name="work_worktype">Work Type:</string>
+    <string name="work_assetnum">Asset:</string>
+    <string name="work_assetdes">Asset description:</string>
+    <string name="work_stationdes">Station:</string>
+    <string name="work_location">Location:</string>
+    <string name="work_locationdes">Location description:</string>
+    <string name="work_udworeqnum">Work Request No.:</string>
+    <string name="work_udfaultreportnum">Failure ACT No.:</string>
+    <string name="work_udyearplannum">Yearly Plan No.:</string>
+    <string name="work_udstatus">Status:</string>
+    <string name="work_createbyname">Create By:</string>
+    <string name="work_createdate">Create Date:</string>
+    <string name="work_schedstart">Scheduled Start:</string>
+    <string name="work_schedfinish">Scheduled Finish:</string>
+    <string name="work_actstart">Actual Start:</string>
+    <string name="work_actfinish">Actual Finish:</string>
+    <string name="work_udyear">Year of Plan:</string>
+    <string name="work_workfrequency">Frequency:</string>
+    <string name="work_jpnum">Jop Plan:</string>
+    <string name="work_udworkscope">Work Scope:</string>
+    <string name="work_udfaultdesc">Failure Dexcription:</string>
+    <string name="work_udreason">Failure Reason:</string>
+    <string name="work_hazardlevel">Dates of Work:</string>
+
+    <string name="work_workplan">Work Plan</string>
+    <string name="work_workreal">The actual situation</string>
+    <string name="work_workflow">Send the workflow</string>
+    <string name="work_upload">To upload attachments</string>
+
+    <string name="work_woactivity">Task</string>
+    <string name="woactivity_taskid">Task:</string>
+    <string name="woactivity_description">Summary:</string>
+    <string name="woactivity_estdur">Estimated:</string>
+    <string name="woactivity_status">Status:</string>
+    <string name="woactivity_wosequence">Sequence:</string>
+
+    <string name="work_wplabor">Labor</string>
+    <string name="wplabor_taskid">Task:</string>
+    <string name="wplabor_laborcode">Labor:</string>
+    <string name="wplabor_quantity">Quantity:</string>
+
+    <string name="work_wpmaterial">Material</string>
+    <string name="wpmaterial_taskid">Task:</string>
+    <string name="wpmaterial_itemnum">Item:</string>
+    <string name="wpmaterial_description">Description:</string>
+    <string name="wpmaterial_itemqty">Quantity:</string>
+    <string name="wpmaterial_location">Storeroom:</string>
+    <string name="wpmaterial_vendor">Vendor:</string>
+    <string name="wpmaterial_requestby">Requested By:</string>
+    <string name="wpmaterial_requiredate">Required Date:</string>
+    <string name="wpmaterial_issueto">Distribution of target:</string>
+    <string name="wpmaterial_unitcost">Unitcost:</string>
+    <string name="wpmaterial_linecost">Linecost:</string>
+
+
+    <string name="work_labtrans">Labor</string>
+    <string name="labtrans_actualstaskid">Task:</string>
+    <string name="labtrans_laborcode">Labor:</string>
+    <string name="labtrans_startdate">Start Date:</string>
+    <string name="labtrans_starttime">Start Time:</string>
+    <string name="labtrans_finishdate">Finish Date:</string>
+    <string name="labtrans_finishtime">Finish Time:</string>
+    <string name="labtrans_regularhrs">Reqular Hours:</string>
+
+    <string name="work_matusetrans">Material</string>
+    <string name="matusetrans_actualstaskid">Task:</string>
+    <string name="matusetrans_itemnum">Item:</string>
+    <string name="matusetrans_description">Description:</string>
+    <string name="matusetrans_storeloc">Storeroom:</string>
+    <string name="matusetrans_positivequantity">Quantity:</string>
+    <string name="matusetrans_binnum">Bin:</string>
+    <string name="matusetrans_lotnum">Lot:</string>
+    <string name="matusetrans_rotassetnum">Rotating:</string>
+    <string name="matusetrans_issuetype">Transaction Type:</string>
+    <string name="matusetrans_enterby">Entered By:</string>
+    <string name="matusetrans_actualdate">Actual Date:</string>
+
+    <!--库存-->
+    <string name="outbound">outbound</string>
+    <string name="inventory">Inventory</string>
+    <string name="inventory_itemnum">Item:</string>
+    <string name="inventory_itemnum_dec">Item Des:</string>
+    <string name="inventory_location">Storeroom:</string>
+    <string name="inventory_location_dec">Storeroom Des:</string>
+    <string name="inventory_status">Status:</string>
+    <string name="inventory_issueunit">Unit:</string>
+    <string name="inventory_curbaltotal">Current Balance:</string>
+    <string name="inventory_avblbalance">Quantity Available:</string>
+    <string name="inventory_binnum">Default Bin:</string>
+
+    <string name="invbalances">Inventory Balance</string>
+    <string name="invbalances_binnum">Bin:</string>
+    <string name="invbalances_lotnum">Lot:</string>
+    <string name="invbalances_curbal">Current Balance:</string>
+    <string name="invbalances_stagedcurbal">Staged Balance:</string>
+    <string name="invbalances_physcnt">Physical Count:</string>
+    <string name="invbalances_physcntdate">Physical Count Date:</string>
+    <string name="invbalances_reconciled">Reconciled?</string>
+
+    <string name="udstock">stock-taking</string>
+    <string name="udstock_stocknum">Stock Checking No.:</string>
+    <string name="udstock_description">Description:</string>
+    <string name="udstock_storeroom">Storeroom No.:</string>
+    <string name="udstock_udstockstodes">Storeroom:</string>
+    <string name="udstock_invowner">Storeroom Owner:</string>
+    <string name="udstock_udstockinvdis">Owner Name:</string>
+    <string name="udstock_remark">Remarks:</string>
+    <string name="udstock_status">Status:</string>
+    <string name="udstock_udstockcredis">Create By:</string>
+    <string name="udstock_createdate">Create Date:</string>
+    <string name="udstockline">Material List</string>
+    <string name="udstockline_sn">SN:</string>
+    <string name="udstockline_itemnum">Material No.:</string>
+    <string name="udstockline_udstocklineitedes">Material:</string>
+    <string name="udstockline_udstocklineiteiss">Unit:</string>
+    <string name="udstockline_quantity1">Original Quantity:</string>
+    <string name="udstockline_quantity2">Actual Quantity:</string>
+    <string name="udstockline_difference">Difference:</string>
+    <string name="udstockline_reason">Reason:</string>
+
+    <string name="po">stock management</string>
+    <string name="invuse_issue">Warehouse Management</string>
+    <string name="invuse_transfer">Material allocation</string>
+    <string name="invuse_item">Material Account</string>
+
+    <!--工作申请-->
+    <string name="udfaultreport_text">Failure Report</string>
+    <string name="udworkapply_text">Work Request</string>
+
+    <!--故障提报单-->
+    <string name="have_not_num_text">No no</string>
+    <string name="necessary">necessary</string>
+
+    <string name="stationdes_text">Station:</string>
+
+    <string name="udfaultreportnum_text">ACT No:</string>
+    <string name="description_text">Failure Description:</string>
+    <string name="udstationnum_text">Station No:</string>
+    <string name="udinside＿text">Inside Station?</string>
+    <string name="udinlocation_text">Need Generate Work Order?</string>
+    <string name="udsjgy_text">Need Craft Adjustment?</string>
+    <string name="reason_text">Failure Reason:</string>
+    <string name="conclusion_text">Failure Conclusion:</string>
+    <string name="material_text">Material Used:</string>
+    <string name="status_text">Status:</string>
+    <string name="restatus_text">Receiving state:</string>
+    <string name="createbyname_text">Create By:</string>
+    <string name="createdate_text">Create Date:</string>
+
+    <!--工作申请-->
+    <string name="wonum_text">Work order no:</string>
+    <string name="plannum_text">Year Plan No:</string>
+    <string name="woapplynum_text">Work Request No:</string>
+    <string name="purpose_text">Purpose:</string>
+    <string name="workexe_text">Quantity of Works Executors:</string>
+    <string name="preparedbyname_text">Prepared By:</string>
+    <string name="preparedbytitle_text">Position:</string>
+    <string name="startdate_text">Start Time:</string>
+    <string name="workdates_text">Dates of Work:</string>
+    <string name="jpnum_text">Job Plan No:</string>
+
+    <string name="asset_choose_title">Asset</string>
+    <string name="location_choose_title">Location</string>
+    <string name="jobplan_choose_title">Job Plan</string>
+    <string name="craftrate_choose_title">employees</string>
+    <string name="person_choose_title">person</string>
+    <string name="udyearplan_choose_title">yearly plan</string>
+    <string name="companies_choose_title">supplier</string>
+    <string name="cancel">cancel</string>
+    <string name="save">save</string>
+    <string name="start">be starting…</string>
+    <string name="wfm_approve_text">The examination and approval</string>
+    <string name="wfm_reject_text">rejected</string>
+    <string name="approve">In the examination and approval to submit…</string>
+    <string name="check_photo_hint">Please select need to upload images</string>
+    <string name="check_phtot">Choose images</string>
+    <string name="work_commit">Image upload</string>
+    <string name="attachment_details">Picture to view</string>
+    <string name="wfm_title_text">Approval workflow</string>
+    <string name="wfm_pass_text">pass</string>
+    <string name="wfm_notpass_text">noPass</string>
+    <string name="wfm_cancel_text">cancel</string>
+    <string name="wfm_approveoption_text">The approval opinions</string>
+
+
+    <!--物资台帐-->
+    <string name="item_itemnum">Material:</string>
+    <string name="item_description">Material Description:</string>
+    <string name="item_in19">Module:</string>
+    <string name="item_in20">Remarks:</string>
+    <string name="item_in26">First Class:</string>
+    <string name="item_in26desc">Class Desc:</string>
+    <string name="item_in27">Second Class:</string>
+    <string name="item_in27desc">Class Desc:</string>
+    <string name="item_rotating">Fixed Asset？</string>
+    <string name="item_inspectionrequired">Inspect on Receipt？</string>
+    <string name="item_status">Status:</string>
+    <string name="item_lottype">Lot Type:</string>
+    <string name="item_orderunit">Order Unit:</string>
+    <string name="item_orderunitdesc">Unit Desc:</string>
+    <string name="item_inventory">Inventory:</string>
+    <string name="item_quantity2">realQTY:</string>
+    <string name="item_quantity1">QTY:</string>
+
+
+    <!--物料退库-->
+    <string name="INVUSENUMI">Material delivery order</string>
+    <string name="INVUSENUMR">Material return order</string>
+    <string name="INVUSE_DESCRIPTION">Description:</string>
+    <string name="INVUSE_UDFILENO">File coding</string>
+    <string name="FROMSTORELOC">Original Storeroom:</string>
+    <string name="LOCATIONS_DESCRIPTION">Original Storeroom Description:</string>
+    <string name="UDDEPT_DEPTNUM">Station:</string>
+    <string name="UDDEPT_DESCRIPTION">Station Description:</string>
+    <string name="INVUSE_INVOWNER">Storeroom owner:</string>
+    <string name="PERSON_DISPLAYNAME">Storeroom owner Description:</string>
+    <string name="PERSON_DISPLAYNAME1">Create By:</string>
+    <string name="INVUSE_UDCREATEDATE">Create Date:</string>
+    <string name="UDTOWAREHOUSE">TOWAREHOUSE</string>
+    <string name="UDINVOWNER">invowner</string>
+    <string name="SUBJECT">subject</string>
+    <string name="original_container">original_container</string>
+    <string name="original_batch">original_batch</string>
+    <string name="usetype">usetype</string>
+    <string name="ISSUEUNIT">ISSUEUNIT</string>
+
+    <!--Invuseline-->
+    <string name="INVUSELINE_FROMLOT">FromLoc:</string>
+    <string name="conversion">Conversion:</string>
+    <string name="toBin">TargetContainer:</string>
+    <string name="tofromLoc">TargetWareHouse:</string>
+<string name="toLoc">TargetBatch:</string>
+
+
+    <string name="success">success</string>
+    <string name="fail">fail</string>
+    <string name="option">option</string>
+    <string name="back">Back</string>
+    <string name="startwf">Sure to Start the Workflow?</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="wfgon">Approval workflow</string>
+</resources>

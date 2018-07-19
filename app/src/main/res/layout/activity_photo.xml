@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray_1"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_main"></include>
+
+    <TextView
+        android:id="@+id/text_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_relativelayout_id"
+        android:layout_marginTop="@dimen/size_10dp"
+        android:gravity="center"
+        android:text="@string/check_photo_hint"
+        android:textSize="16sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_below="@+id/title_relativelayout_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:choiceMode="singleChoice"
+        android:divider="@null"
+        android:fadingEdge="none"
+        android:listSelector="@android:color/transparent"
+        android:scrollbarStyle="outsideOverlay"
+        tools:listitem="@layout/list_item_image" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:gravity="center"
+        android:paddingBottom="@dimen/size_10dp"
+        android:paddingTop="@dimen/size_10dp">
+
+        <Button
+            android:id="@+id/picker_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/semi_round_backgroud"
+            android:gravity="center"
+            android:text="@string/check_phtot"
+            android:textColor="@color/white" />
+
+
+    </LinearLayout>
+</RelativeLayout>
