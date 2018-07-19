@@ -95,7 +95,6 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
 
     private Button option;
     private Button back;
-    String [] optionList = {"Back","Add"};
     private BaseAnimatorSet mBasIn;
     private BaseAnimatorSet mBasOut;
     private RelativeLayout relativeLayout;
@@ -148,7 +147,13 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
     protected void initView() {
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backOnClickListener);
-        titleTextView.setText(getResources().getString(R.string.outbound));
+        if (type.equals("MI")) {
+            titleTextView.setText(getResources().getString(R.string.outbound));
+        }else if (type.equals("MR")){
+            titleTextView.setText(R.string.refund);
+        }else {
+            titleTextView.setText(R.string.invuse_transfer);
+        }
         setSearchEdit();
         menuImageView.setVisibility(View.VISIBLE);
         menuImageView.setBackgroundResource(R.drawable.ic_more);
@@ -174,7 +179,7 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
         initAdapter(new ArrayList<INVUSEEntity>());
         items = new ArrayList<>();
         getData(searchText);
-        getIntentData();
+
     }
     private View.OnClickListener serchTypeOnClickListener = new View.OnClickListener() {
         @Override
@@ -221,6 +226,7 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
     private View.OnClickListener optionOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            String [] optionList = {getString(R.string.back),getString(R.string.xinjian)};
             final NormalListDialog normalListDialog = new NormalListDialog(InvuseListActivity.this, optionList);
             normalListDialog.title("Option")
                     .showAnim(mBasIn)//

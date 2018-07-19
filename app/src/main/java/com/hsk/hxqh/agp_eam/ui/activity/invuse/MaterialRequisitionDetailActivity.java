@@ -292,8 +292,8 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
     private View.OnClickListener optionOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            final NormalListDialog normalListDialog = new NormalListDialog(MaterialRequisitionDetailActivity.this, new String[]{"starwf","Upload Picture","New","New Line","Delete","Save"});
-            normalListDialog.title("OPTION")
+            final NormalListDialog normalListDialog = new NormalListDialog(MaterialRequisitionDetailActivity.this, new String[]{getString(R.string.work_workflow),getString(R.string.work_upload),getString(R.string.xinjian),getString(R.string.newline),getString(R.string.delete),getString(R.string.save)});
+            normalListDialog.title(getString(R.string.option))
                     .showAnim(mBasIn)//
                     .dismissAnim(mBasOut)//
                     .show();
@@ -400,7 +400,7 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
     }
     private void submitDataInfo() {
         final NormalDialog dialog = new NormalDialog(this);
-        dialog.content("确定修改工单吗?")//
+        dialog.content(getString(R.string.suretosave))//
                 .showAnim(mBasIn)//
                 .dismissAnim(mBasOut)//
                 .show();
@@ -414,7 +414,7 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
                 new OnBtnClickL() {
                     @Override
                     public void onBtnClick() {
-                        showProgressDialog("数据提交中...");
+                        showProgressDialog("");
                         startAsyncTask();
                         dialog.dismiss();
                     }

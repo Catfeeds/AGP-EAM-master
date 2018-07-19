@@ -89,7 +89,7 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
     private MatrectransAdapter matrectransAdapter;
     private Button option;
     private Button quit;
-    private String[] optionlist = {"Back","Upload Picture","退回的","预定的","保存"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -234,8 +234,9 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
     private View.OnClickListener optionOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            String[] optionlist = {getString(R.string.back),getString(R.string.work_upload),getString(R.string.scan),getString(R.string.reservation),getString(R.string.save)};
             final NormalListDialog normalListDialog = new NormalListDialog(PodetailActivity.this, optionlist);
-            normalListDialog.title("查询条件")
+            normalListDialog.title(getString(R.string.chaxuntj))
                     .showAnim(mBasIn)//
                     .dismissAnim(mBasOut)//
                     .show();

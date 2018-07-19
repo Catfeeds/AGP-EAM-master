@@ -119,7 +119,7 @@ public class PoListActivity extends BaseActivity implements SwipeRefreshLayout.O
         setSearchEdit();
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backOnClickListener);
-        titleTextView.setText(getResources().getString(R.string.invuse_item));
+        titleTextView.setText(R.string.receive);
         layoutManager = new LinearLayoutManager(PoListActivity.this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         layoutManager.scrollToPosition(0);

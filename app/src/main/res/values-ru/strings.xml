@@ -389,8 +389,17 @@
     <string name="fail">провал</string>
     <string name="option">Выбор операции </string>
     <string name="back">возвращение</string>
+    <string name="xinjian">новый</string>
+    <string name="newline">Новый построение</string>
     <string name="startwf">Запускайте поток</string>
     <string name="yes">это</string>
     <string name="no">нет</string>
     <string name="wfgon">Утвержденный рабочий поток</string>
+    <string name="suretosave">Определение сохранения?</string>
+    <string name="genterthan0">Пожалуйста, назовите количество больше, чем ноль</string>
+    <string name="reservation">Выберите пункт назначения</string>
+    <string name="scan">Сканирование штрихового кода</string>
+    <string name="returnitems">Выберите проект возврата</string>
+    <string name="reserveditems">Выберите проект, который будет зарезервирован</string>
+    <string name="delete">удалить</string>
 </resources>

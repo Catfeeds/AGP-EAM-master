@@ -117,9 +117,6 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
     private LinearLayout buttonLayout;
     private Button quit;
     private Button option;
-    private String[] optionList = new String[]{"Back","Add InvuseLine" ,"Save"};
-    private String[] addInvuseLineMIList = {"Select Reserved tems","Add NewLine"};
-    private String[] addInvuseLineMRList = {"Select Return tems","Add NewLine"};
     private List<INVUSELINE> items;
     private InvuseLineAddAdaper itemAdaper;
 
@@ -224,7 +221,7 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         option.setOnClickListener(optionOnClickListener);
-        quit.setOnClickListener(quitOnClickListener);
+        quit.setOnClickListener(backImageViewOnClickListener);
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backImageViewOnClickListener);
         titleTextView.setText(R.string.outbound);
@@ -294,8 +291,9 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
     private View.OnClickListener optionOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            String[] optionList = new String[]{getString(R.string.back),getString(R.string.newline) ,getString(R.string.save)};
             final NormalListDialog normalListDialog = new NormalListDialog(InvusemiAddNewActivity.this, optionList);
-            normalListDialog.title("Option")
+            normalListDialog.title(getString(R.string.option))
                     .showAnim(mBasIn)//
                     .dismissAnim(mBasOut)//
                     .show();
@@ -357,7 +355,7 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
      */
     private void submitDataInfo() {
         final NormalDialog dialog = new NormalDialog(InvusemiAddNewActivity.this);
-        dialog.content("Sure to save?")//
+        dialog.content(getString(R.string.suretosave))//
                 .showAnim(mBasIn)//
                 .dismissAnim(mBasOut)//
                 .show();
@@ -381,7 +379,7 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
         for (int i= 0;i<itemAdaper.getItemCount();i++){
             double qty = Double.parseDouble(itemAdaper.getItem(i).getQUANTITY());
             if (qty<=0){
-                Toast.makeText(this, "请指定大于零的数量",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.genterthan0),Toast.LENGTH_SHORT).show();
                 return;
             }
         }
@@ -497,6 +495,9 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
         }
     }
     public void getaddInvuseLine(){
+        String newline = getString(R.string.newline);
+        String[] addInvuseLineMIList = {getString(R.string.reserveditems),newline};
+        String[] addInvuseLineMRList = {getString(R.string.returnitems),newline};
         String[] optionList2;
         if (type.equalsIgnoreCase("MI")){
             optionList2 = addInvuseLineMIList;

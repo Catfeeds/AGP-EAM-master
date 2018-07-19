@@ -337,6 +337,7 @@
     <string name="wfm_cancel_text">取消</string>
     <string name="wfm_approveoption_text">审批意见</string>
 
+
     <!--物资台帐-->
     <string name="item_itemnum">物资编码:</string>
     <string name="item_description">物资名称:</string>
@@ -387,10 +388,18 @@
     <string name="fail">失败</string>
     <string name="option">选择操作</string>
     <string name="back">返回</string>
+    <string name="xinjian">新建</string>
+    <string name="newline">新建行</string>
     <string name="startwf">是否启动工作流</string>
     <string name="yes">是</string>
     <string name="no">否</string>
     <string name="wfgon">审批工作流</string>
-
+    <string name="suretosave">确定保存?</string>
+    <string name="genterthan0">请指定大于零的数量</string>
+    <string name="reservation">选择预定的项目</string>
+    <string name="scan">条码扫描</string>
+    <string name="returnitems">选择退回的项目</string>
+    <string name="reserveditems">选择预留的项目</string>
+    <string name="delete">删除</string>
 
 </resources>

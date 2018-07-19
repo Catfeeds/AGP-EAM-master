@@ -110,10 +110,6 @@ public class InvuseDetailActivity extends BaseActivity implements SwipeRefreshLa
     private INVUSEEntity invuseEntity ;
     private Button option;
     private Button quit;
-    private String[] optionList = {"Back","upload pictures","startwf","Add Invuse","Add InvuseLine","Save"};
-    private String[] addInvusemiLineList = {"Select MI tems","Add New"};
-    private String[] addInvusemrLineList = {"Select MR tems"};
-    private String[] addInvusemtLineList = {"Add New"};
     private BaseAnimatorSet mBasIn;
     private BaseAnimatorSet mBasOut;
     private String INVUSENUM;
@@ -256,8 +252,9 @@ public class InvuseDetailActivity extends BaseActivity implements SwipeRefreshLa
     private View.OnClickListener optionOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            String[] optionList = {getString(R.string.back),getString(R.string.work_upload),getString(R.string.work_workflow),getString(R.string.xinjian),getString(R.string.newline),getString(R.string.save)};
             final NormalListDialog normalListDialog = new NormalListDialog(InvuseDetailActivity.this, optionList);
-            normalListDialog.title("OPTION")
+            normalListDialog.title(getString(R.string.option))
                     .showAnim(mBasIn)//
                     .dismissAnim(mBasOut)//
                     .show();
@@ -308,6 +305,9 @@ public class InvuseDetailActivity extends BaseActivity implements SwipeRefreshLa
         }
     };
     public void getaddInvuseLine(){
+       String[] addInvusemiLineList = {"Select MI tems","Add New"};
+       String[] addInvusemrLineList = {"Select MR tems"};
+       String[] addInvusemtLineList = {"Add New"};
         String[] addInvuseLineList;
         if (type.equalsIgnoreCase("MI")){
             addInvuseLineList = addInvusemiLineList;
@@ -568,7 +568,7 @@ public class InvuseDetailActivity extends BaseActivity implements SwipeRefreshLa
         for (int i= 0;i<itemAdaper.getItemCount();i++){
             double qty = Double.parseDouble(itemAdaper.getItem(i).getQUANTITY());
             if (qty<=0){
-                Toast.makeText(this, "请指定大于零的数量",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "",Toast.LENGTH_SHORT).show();
                 return;
             }
         }
@@ -616,7 +616,7 @@ public class InvuseDetailActivity extends BaseActivity implements SwipeRefreshLa
      */
     private void submitDataInfo() {
         final NormalDialog dialog = new NormalDialog(InvuseDetailActivity.this);
-        dialog.content("Sure to save?")//
+        dialog.content(getString(R.string.suretosave))//
                 .showAnim(mBasIn)//
                 .dismissAnim(mBasOut)//
                 .show();

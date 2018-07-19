@@ -390,8 +390,18 @@
     <string name="fail">fail</string>
     <string name="option">option</string>
     <string name="back">Back</string>
+    <string name="xinjian">New</string>
+    <string name="newline">New Line</string>
     <string name="startwf">Sure to Start the Workflow?</string>
     <string name="yes">YES</string>
     <string name="no">NO</string>
     <string name="wfgon">Approval workflow</string>
+    <string name="suretosave">Sure to Save?</string>
+    <string name="genterthan0">Please specify the number greater than zero</string>
+    <string name="reservation">Select the scheduled items</string>
+    <string name="scan">Barcode scanning</string>
+    <string name="returnitems">Select the returned items</string>
+    <string name="reserveditems">Select the reserved items</string>
+    <string name="delete">Delete</string>
+
 </resources>
