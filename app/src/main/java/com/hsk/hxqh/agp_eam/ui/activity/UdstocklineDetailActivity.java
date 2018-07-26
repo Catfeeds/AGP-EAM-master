@@ -192,12 +192,11 @@ public class UdstocklineDetailActivity extends BaseActivity{
                 } else {
                     Toast.makeText(UdstocklineDetailActivity.this, s, Toast.LENGTH_SHORT).show();
                     if (s.equalsIgnoreCase("成功")){
-                        udstockline.setISCHECK("1");
+                        udstockline.setISCHECK("Y");
                         Intent intent = getIntent();
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("udstockline",udstockline);
                         bundle.putInt("position",position);
-                        submitDataInfo();
                         setResult(UDSTOCKLINE_CODE,intent);
                         finish();
                     }

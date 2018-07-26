@@ -392,7 +392,6 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
         {
             invuseEntity.setUDTOWAREHOUSE(udtowarehouse.getText().toString());
             invuseEntity.setUDINVOWNER(udinvowner.getText().toString());
-            invuseEntity.setSUBJECT(subject.getText().toString());
         }
 
         try {
@@ -637,7 +636,13 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
             case 100:
                Bundle personBundle = data.getExtras();
                PERSON person = (PERSON) personBundle.get("person");
-               invownerTextView.setText(person.getPERSONID());
+               String owner = personBundle.getString("type");
+               if ("invowner".equals(owner)){
+                   invownerTextView.setText(person.getPERSONID());
+               }else {
+                   udinvowner.setText(person.getPERSONID());
+               }
+
                break;
             case 110:
                 Bundle locationBundle = data.getExtras();
@@ -978,14 +983,9 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
 
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
                                    long arg3) {
-            if (isfirst){
-                spinner.setVisibility(View.VISIBLE);
-            }else {
                 String m = adapter.getItem(arg2);
                 invuseEntity.setSUBJECT(SUBJECT.stringStringMap.get(m));
                 subject.setText(m);
-            }
-            isfirst = false;
         }
         public void onNothingSelected(AdapterView<?> arg0) {
         }

@@ -342,10 +342,11 @@ public class UdstockLineActivity extends BaseActivity implements SwipeRefreshLay
                 if (data !=null){
                     Bundle bundle = data.getExtras();
                     UDSTOCKLINE result = (UDSTOCKLINE) bundle.get("udstockline");
+                    result.setISCHECK("Y");
                     int resInt = bundle.getInt("position");
                     udstockLineAdapter.remove(resInt);
                     udstockLineAdapter.add(resInt,result);
-                    udstockLineAdapter.notifyItemInserted(resInt);
+                    udstockLineAdapter.notifyItemChanged(resInt,result);
                 }
 
         }

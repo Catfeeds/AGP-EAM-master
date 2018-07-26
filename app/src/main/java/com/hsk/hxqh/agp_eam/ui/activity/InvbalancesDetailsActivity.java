@@ -76,7 +76,7 @@ public class InvbalancesDetailsActivity extends BaseActivity {
     protected void initView() {
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backImageViewOnClickListener);
-        titleTextView.setText(R.string.work_wplabor);
+        titleTextView.setText("");
 
         if (invbalances != null) {
             binnum.setText(invbalances.BINNUM);

@@ -305,9 +305,9 @@ public class InvuseDetailActivity extends BaseActivity implements SwipeRefreshLa
         }
     };
     public void getaddInvuseLine(){
-       String[] addInvusemiLineList = {"Select MI tems","Add New"};
-       String[] addInvusemrLineList = {"Select MR tems"};
-       String[] addInvusemtLineList = {"Add New"};
+       String[] addInvusemiLineList = {getString(R.string.reserveditems),getString(R.string.xinjian)};
+       String[] addInvusemrLineList = {getString(R.string.returnitems)};
+       String[] addInvusemtLineList = {getString(R.string.newline)};
         String[] addInvuseLineList;
         if (type.equalsIgnoreCase("MI")){
             addInvuseLineList = addInvusemiLineList;
