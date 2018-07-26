@@ -368,7 +368,7 @@
     <string name="FROMSTORELOC">склад сырья</string>
     <string name="LOCATIONS_DESCRIPTION">описание первоначально склад</string>
     <string name="UDDEPT_DEPTNUM">станция</string>
-    <string name="UDDEPT_DESCRIPTION">станции описание</string>
+    <string name="UDDEPT_DESCRIPTION">станции описание</string>
     <string name="INVUSE_INVOWNER">владелец склада</string>
     <string name="PERSON_DISPLAYNAME">владелец склада описание</string>
     <string name="PERSON_DISPLAYNAME1">создать человек</string>

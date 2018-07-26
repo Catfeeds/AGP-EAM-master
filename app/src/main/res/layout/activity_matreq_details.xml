@@ -49,7 +49,7 @@
                         <TextView
                             android:layout_width="@dimen/dimens_150dp"
                             android:layout_height="wrap_content"
-                            android:text="申请编号"
+                            android:text="@string/bianhao"
                             android:textColor="@color/light_black"
                             android:textSize="@dimen/dimens_16sp" />
 
@@ -141,7 +141,7 @@
                             android:layout_width="@dimen/dimens_150dp"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:text="库房"
+                            android:text="@string/FROMSTORELOC"
                             android:textColor="@color/light_black"
                             android:textSize="@dimen/dimens_16sp" />
 
@@ -230,7 +230,7 @@
                             android:layout_width="@dimen/dimens_150dp"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:text="状态"
+                            android:text="@string/status_text"
                             android:textColor="@color/light_black"
                             android:textSize="@dimen/dimens_16sp" />
 

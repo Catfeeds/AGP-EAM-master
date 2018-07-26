@@ -7,9 +7,15 @@ android {
         applicationId "com.zcl.hxqh.agp_eam"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode getSelfDefinedVersion("code")
+        versionName getSelfDefinedVersion("name")
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        android.applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName = "AGP-${defaultConfig.versionName}.apk"
+            }
+        }
     }
     buildTypes {
         release {
@@ -56,4 +62,17 @@ dependencies {
     compile files('libs/fastjson-1.1.37.jar')
     compile files('libs/zxing.jar')
 
+}
+def getSelfDefinedVersion(type) {
+    int aa = 1
+    int bb = 0
+    Process process = "git rev-list --count HEAD".execute()
+    process.waitFor()
+    int cccc = process.getText().toInteger()
+
+    if ("code".equals(type)) {
+        aa * 1000000 + bb * 10000 + cccc
+    } else if ("name".equals(type)) {
+        "$aa.$bb.$cccc"
+    }
 }
