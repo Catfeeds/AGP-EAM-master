@@ -86,9 +86,14 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
     private TextView titleTextView;
     private RelativeLayout  relativeLayout;
     private ArrayList<MATRECTRANS> matrectrans = new ArrayList<>();
+    private ArrayList<MATRECTRANS> list = new ArrayList<>();
+    private List<MATRECTRANS> listbackup = new ArrayList<>();
     private MatrectransAdapter matrectransAdapter;
     private Button option;
     private Button quit;
+
+    public PodetailActivity() {
+    }
 
 
     @Override
@@ -100,7 +105,6 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
         initView();
         getData("");
         goodsRecSel();
-
     }
 
     @Override
@@ -243,7 +247,7 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
             normalListDialog.setOnOperItemClickL(new OnOperItemClickL() {
                 @Override
                 public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                    linetypeTextView.setText(linetypeList[position]);
+//
                     switch (position){
                         case 0://back
                             normalListDialog.superDismiss();
@@ -266,7 +270,7 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
                             normalListDialog.superDismiss();
                             Intent intent2 = new Intent(PodetailActivity.this, Matrectrans_chooseActivity.class);
                             Bundle bundle1 = new Bundle();
-                            bundle1.putSerializable("matrectrans",matrectrans);
+                            bundle1.putSerializable("matrectrans",list);
                             intent2.putExtras(bundle1);
                             startActivityForResult(intent2,0);
                             break;
@@ -299,18 +303,20 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
                 MATRECTRANS matrectrans = (MATRECTRANS) data.getExtras().get("matrectrans");
                 matrectrans.setFLAG("I");
                 matrectrans.setPONUM(po.getPONUM());
-                matrectrans.setQUANTITY(matrectrans.getORDERQTY());
-                matrectrans.setRECEIPTQUANTITY(matrectrans.getORDERQTY());
+                matrectrans.setQUANTITY( matrectrans.getORDERQTYBackup());
+                matrectrans.setRECEIPTQUANTITY( matrectrans.getORDERQTYBackup());
                 matrectrans.setTOSTORELOC(po.getUDSTATION());
                 matrectrans.setENTERBY(AccountUtils.getpersonId(this));
                 matrectrans.setISSUETYPE("RECEIPT");
                 matrectrans.setQTYREQUESTED(matrectrans.getRECEIVEDQTY());
                 matrectransAdapter.add(matrectrans);
+                changegoolsDate();
                 break;
             case 10:
                 MATRECTRANS matrectrans1 = (MATRECTRANS) data.getExtras().get("matrectrans");
                 matrectransAdapter.remove(requestCode);
                 matrectransAdapter.add(requestCode,matrectrans1);
+                changegoolsDate();
                 break;
         }
 
@@ -319,42 +325,25 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
      * 根据SN号查询资产表是否存在
      **/
     private void isExistSN(final String serialnum) {
-        HttpManager.getDataPagingInfo(PodetailActivity.this, HttpManager.getMATRECTRANSUrl(serialnum,"AGPSITE",1,20),new HttpRequestHandler<Results>() {
-            @Override
-            public void onSuccess(Results results) {
+        boolean flag = false;
+        for (MATRECTRANS matrectrans:list) {
+            if (matrectrans.getITEMNUM().equals(serialnum.trim()) && Double.parseDouble(matrectrans.getRECEIVEDQTY())>0){
+                matrectrans.setFLAG("I");
+                matrectrans.setPONUM(po.getPONUM());
+                matrectrans.setQUANTITY( matrectrans.getORDERQTYBackup());
+                matrectrans.setRECEIPTQUANTITY( matrectrans.getORDERQTYBackup());
+                matrectrans.setTOSTORELOC(po.getUDSTATION());
+                matrectrans.setENTERBY(AccountUtils.getpersonId(this));
+                matrectrans.setISSUETYPE("RECEIPT");
+                matrectrans.setQTYREQUESTED(matrectrans.getRECEIVEDQTY());
+                matrectransAdapter.add(matrectrans);
+                changegoolsDate();
+                flag =true;
             }
-
-            @Override
-            public void onSuccess(Results results, int totalPages, int currentPage) {
-                ArrayList<MATRECTRANS> item = JsonUtils.parsingMATRECTRANS(PodetailActivity.this,results.getResultlist());
-                if (item == null || item.isEmpty()) {
-                    Toast.makeText(PodetailActivity.this,"There is no such item",Toast.LENGTH_SHORT).show();
-                } else {
-                    MATRECTRANS res = item.get(0);
-                    boolean flag = false;
-                    if (matrectransAdapter.getData().isEmpty()){
-                        matrectransAdapter.add(res);
-                    }else {
-                        for (int i = 0;i < matrectransAdapter.getData().size();i++){
-                            String ponum = matrectransAdapter.getItem(i).getITEMNUM();
-                            if (!ponum.equalsIgnoreCase(res.getITEMNUM())){
-                                matrectransAdapter.add(res);
-                                flag = false;
-                                break;
-                            }
-                            flag = true;
-                        }
-                    }
-                    if (flag){
-                        Toast.makeText(PodetailActivity.this,"The Item is already exist",Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(String error) {
-            }
-        });
+        }
+        if (!flag){
+            Toast.makeText(this, "There is no such item",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void goodsRecSel(){
@@ -370,7 +359,11 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 if (s.startsWith("[")){
-                    matrectrans = JsonUtils.parsingMATRECTRANS(PodetailActivity.this, s);
+                    list = JsonUtils.parsingMATRECTRANS(PodetailActivity.this, s);
+                    for (int k= 0;k<list.size();k++){
+                        listbackup.add(list.get(k));
+                    }
+                    changegoolsDate();
                 }
 
             }
@@ -379,7 +372,7 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
     }
     private void submitDataInfo() {
         final NormalDialog dialog = new NormalDialog(PodetailActivity.this);
-        dialog.content("Sure to save?")//
+        dialog.content(getString(R.string.suretosave))//
                 .showAnim(mBasIn)//
                 .dismissAnim(mBasOut)//
                 .show();
@@ -434,15 +427,38 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
             protected void onPostExecute(WebResult workResult) {
                 super.onPostExecute(workResult);
                 if (workResult == null) {
-                    Toast.makeText(PodetailActivity.this, "false", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PodetailActivity.this, "false", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(PodetailActivity.this, workResult.errorMsg, Toast.LENGTH_SHORT).show();
-                    finish();
+                    Toast.makeText(PodetailActivity.this, workResult.errorMsg, Toast.LENGTH_LONG).show();
                 }
                 closeProgressDialog();
             }
         }.execute();
         closeProgressDialog();
+    }
+    private void changegoolsDate(){
+        if(matrectransAdapter.getItemCount()>0){
+            int size = listbackup.size();
+            for (int i = 0;i< size ;i++){
+                String polinenum = listbackup.get(i).getPOLINENUM();
+                double qty = 0;
+                for (int j=0;j<matrectransAdapter.getItemCount();j++) {
+                    if (polinenum.equals(matrectransAdapter.getItem(j).getPOLINENUM())){
+                        qty +=Double.parseDouble(matrectransAdapter.getItem(j).getRECEIPTQUANTITY());
+                    }
+                }
+                double orderqty = Double.parseDouble(listbackup.get(i).getORDERQTY());
+                    for (int k = 0;k<list.size();k++){
+                        if (polinenum.equals(list.get(k).getPOLINENUM())){
+                            double back = orderqty-qty;
+                                list.get(k).setORDERQTYBackup(back+"");
+                                list.get(k).setRECEIVEDQTY(back+"");
+                            break;
+                        }
+                    }
+            }
+        }
+
     }
 
 }

@@ -155,7 +155,7 @@ public class MaterialRequisitionAddNewActivity extends BaseActivity implements S
         workorder = new WORKORDER();
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backImageViewOnClickListener);
-        titleTextView.setText("领料单");
+        titleTextView.setText(R.string.lingliaodan);
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         layoutManager.scrollToPosition(0);
@@ -254,8 +254,8 @@ public class MaterialRequisitionAddNewActivity extends BaseActivity implements S
     private View.OnClickListener optionOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            final NormalListDialog normalListDialog = new NormalListDialog(MaterialRequisitionAddNewActivity.this, new String[]{"New Line","Save"});
-            normalListDialog.title("OPTION")
+            final NormalListDialog normalListDialog = new NormalListDialog(MaterialRequisitionAddNewActivity.this, new String[]{getString(R.string.newline),getString(R.string.save)});
+            normalListDialog.title(getString(R.string.option))
                     .showAnim(mBasIn)//
                     .dismissAnim(mBasOut)//
                     .show();
@@ -327,7 +327,7 @@ public class MaterialRequisitionAddNewActivity extends BaseActivity implements S
     }
     private void submitDataInfo() {
         final NormalDialog dialog = new NormalDialog(this);
-        dialog.content("Sure to save the Material requisition?")//
+        dialog.content(getString(R.string.suretosave))//
                 .showAnim(mBasIn)//
                 .dismissAnim(mBasOut)//
                 .show();
@@ -341,7 +341,7 @@ public class MaterialRequisitionAddNewActivity extends BaseActivity implements S
                 new OnBtnClickL() {
                     @Override
                     public void onBtnClick() {
-                        showProgressDialog("数据提交中...");
+                        showProgressDialog("......");
                         startAsyncTask();
                         dialog.dismiss();
                     }

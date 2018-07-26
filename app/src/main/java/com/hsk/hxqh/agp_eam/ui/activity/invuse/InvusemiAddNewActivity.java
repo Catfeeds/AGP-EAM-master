@@ -219,7 +219,7 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
         layoutManager.scrollToPosition(0);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         option.setOnClickListener(optionOnClickListener);
         quit.setOnClickListener(backImageViewOnClickListener);
         backImageView.setBackgroundResource(R.drawable.ic_back);
@@ -504,11 +504,11 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
         }else if (type.equalsIgnoreCase("MR")){
             optionList2 = addInvuseLineMRList;
         }else {
-            optionList2 = new String[]{"Add NewLined"};
+            optionList2 = new String[]{getString(R.string.newline)};
         }
 
         final NormalListDialog normalListDialog = new NormalListDialog(InvusemiAddNewActivity.this, optionList2);
-        normalListDialog.title("AddInvuseLine")
+        normalListDialog.title(getString(R.string.option))
                 .showAnim(mBasIn)//
                 .dismissAnim(mBasOut)//
                 .show();
@@ -716,7 +716,7 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
                     }else {
                         invuseline1.setINDEX(itemAdaper.getData().size());
                     }
-                    showProgressDialog("waiting.....");
+                    showProgressDialog("......");
                                     getFromBin(invuseline1);
                 }
 
@@ -920,7 +920,7 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
     }
     private void submitmain(){
        final NormalDialog normalDialog = new NormalDialog(this);
-        normalDialog.content("Save the main?")//
+        normalDialog.content(getString(R.string.suretosave))//
                 .showAnim(mBasIn)//
                 .dismissAnim(mBasOut)//
                 .show();

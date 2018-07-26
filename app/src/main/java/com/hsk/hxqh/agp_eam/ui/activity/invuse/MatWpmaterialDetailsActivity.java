@@ -252,11 +252,11 @@ public class MatWpmaterialDetailsActivity extends BaseActivity {
         final NormalDialog dialog = new NormalDialog(MatWpmaterialDetailsActivity.this);
         int i = 3;
         boolean isadd = false;
-        String[] list = {"cancel","update","delete"};
+        String[] list = {getString(R.string.cancel),getString(R.string.update),getString(R.string.delete)};
         if (flag!= null && flag .equalsIgnoreCase("I")){
             i = 2;
             isadd = true;
-            list = new String[]{"cancel","add"};
+            list = new String[]{getString(R.string.cancel),getString(R.string.xinjian)};
         }
         dialog.content(getString(R.string.option)).btnNum(i).btnText(list)//
                 .showAnim(mBasIn)//

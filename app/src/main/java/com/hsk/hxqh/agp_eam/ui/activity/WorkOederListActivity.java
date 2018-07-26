@@ -96,8 +96,8 @@ public class WorkOederListActivity extends BaseActivity implements SwipeRefreshL
     private View.OnClickListener optionOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            final NormalListDialog normalListDialog = new NormalListDialog(WorkOederListActivity.this, new String[]{"Back","New"});
-            normalListDialog.title("OPTION")
+            final NormalListDialog normalListDialog = new NormalListDialog(WorkOederListActivity.this, new String[]{getString(R.string.back),getString(R.string.xinjian)});
+            normalListDialog.title(getString(R.string.option))
                     .showAnim(mBasIn)//
                     .dismissAnim(mBasOut)//
                     .show();
@@ -125,7 +125,7 @@ public class WorkOederListActivity extends BaseActivity implements SwipeRefreshL
         @Override
         public void onClick(View v) {
             final NormalListDialog normalListDialog = new NormalListDialog(WorkOederListActivity.this, new String[]{getString(R.string.item_num_title),getString(R.string.INVUSE_DESCRIPTION),getString(R.string.asset_location),"SCAN"});
-            normalListDialog.title("OPTION")
+            normalListDialog.title(getString(R.string.option))
                     .showAnim(mBasIn)//
                     .dismissAnim(mBasOut)//
                     .show();
@@ -207,7 +207,7 @@ public class WorkOederListActivity extends BaseActivity implements SwipeRefreshL
         if (type.equals("CM")) {
             titleTextView.setText(getResources().getString(R.string.work_cm));
         }else if (type.equalsIgnoreCase("PL")){
-            titleTextView.setText("领料单");
+            titleTextView.setText(getString(R.string.lingliaodan));
         }else {
             titleTextView.setText(getResources().getString(R.string.work_pm));
 

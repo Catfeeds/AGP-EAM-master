@@ -1,9 +1,11 @@
 package com.hsk.hxqh.agp_eam.ui.activity;
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,8 @@ import com.hsk.hxqh.agp_eam.ui.fragment.WorkOrderFragment;
 import com.hsk.hxqh.agp_eam.ui.widget.SlidingMenu;
 import com.hsk.hxqh.agp_eam.unit.AccountUtils;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MainActivity extends BaseActivity {
 
     private SlidingMenu mMenu;
@@ -28,7 +32,6 @@ public class MainActivity extends BaseActivity {
      * 用户名显示
      **/
     private TextView userNameText;
-
 
     private RelativeLayout TaskLayout;//代办任务
     private RelativeLayout AssetLayout;//资产查询
@@ -43,6 +46,7 @@ public class MainActivity extends BaseActivity {
     private WorkOrderFragment workorderFragment;
     private InventoryFragment inventoryFragment;
     private PoFragment poFragment;
+    private CircleImageView img_member;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,17 +62,18 @@ public class MainActivity extends BaseActivity {
     protected void findViewById() {
         mMenu = (SlidingMenu) findViewById(R.id.id_menu);
         menutitle = (TextView) findViewById(R.id.menu_title);
-        userNameText = (TextView) findViewById(R.id.txt_member);
         TaskLayout = (RelativeLayout) findViewById(R.id.task_layout);
         AssetLayout = (RelativeLayout) findViewById(R.id.asset_layout);
         UdworkapplyLayout = (RelativeLayout) findViewById(R.id.udworkapply_layout);
         WorkOrderLayout = (RelativeLayout) findViewById(R.id.workorder_layout);
         KuCunLayout = (RelativeLayout) findViewById(R.id.kucun_layout);
+        img_member = (CircleImageView) findViewById(R.id.img_member);
+        userNameText = (TextView) findViewById(R.id.txt_member);
 //        PoLayout = (RelativeLayout) findViewById(R.id.po_layout);
     }
 
     protected void initView() {
-
+        img_member.setOnClickListener(setOnClickListener);
         userNameText.setText(AccountUtils.getdisplayName(MainActivity.this));
         TaskLayout.setOnClickListener(new layoutClickListener(0));
         AssetLayout.setOnClickListener(new layoutClickListener(1));
@@ -81,7 +86,14 @@ public class MainActivity extends BaseActivity {
         mMenu.toggle();
     }
 
-
+private View.OnClickListener setOnClickListener = new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+};
     /**
      * 点击事件
      **/

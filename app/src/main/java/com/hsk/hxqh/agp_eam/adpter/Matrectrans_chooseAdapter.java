@@ -36,6 +36,7 @@ public class Matrectrans_chooseAdapter extends BaseQuickAdapter<MATRECTRANS> {
         helper.setText(R.id.item_desc_text, item.getDESCRIPTION());
         helper.setText(R.id.item_polinenum_text,item.getPOLINENUM());
         helper.setText(R.id.item_orderqty_text,item.getORDERQTY());
+        helper.setText(R.id.item_recrivedqty_text,item.getRECEIVEDQTY());
 //        helper.setText(R.id.item_location_text, item.getLOCATION());
 //        helper.setText(R.id.item_locdesc_text, item.getLOCDESC());
 //        helper.setText(R.id.item_udmodule_text, item.getUDMODULE());

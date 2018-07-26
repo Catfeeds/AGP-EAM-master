@@ -161,7 +161,7 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
         getIntentData();
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backImageViewOnClickListener);
-        titleTextView.setText("领料单");
+        titleTextView.setText(R.string.lingliaodan);
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         layoutManager.scrollToPosition(0);
@@ -503,8 +503,8 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
         dialog.setCanceledOnTouchOutside(false);
         dialog.isTitleShow(false)//
                 .btnNum(2)
-                .content("是否启动工作流")//
-                .btnText("是", "否")//
+                .content(getString(R.string.work_workflow))//
+                .btnText(getString(R.string.yes),getString(R.string.no))//
                 .showAnim(mBasIn)//
                 .dismissAnim(mBasOut)
                 .show();
@@ -528,7 +528,7 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
 
     private void deleteWO() {
         final NormalDialog dialog = new NormalDialog(this);
-        dialog.content("确定删除工单吗?")//
+        dialog.content(getString(R.string.suretosdelete))//
                 .showAnim(mBasIn)//
                 .dismissAnim(mBasOut)//
                 .show();
@@ -542,7 +542,7 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
                 new OnBtnClickL() {
                     @Override
                     public void onBtnClick() {
-                        showProgressDialog("数据删除中...");
+                        showProgressDialog(".....");
                         deleteAsyncTask();
                         dialog.dismiss();
                     }

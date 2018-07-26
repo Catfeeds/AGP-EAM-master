@@ -71,9 +71,14 @@ public class HttpManager {
     /*
     * PO查询
     * */
-    public static String getPOUrl(String type,int curpage, int showcount){
-        return "{'appid':'" + Constants.PO_APPID + "','objectname':'" + Constants.PO_NAME + "'," +
-                "'curpage':" + curpage + ",'showcount':" + showcount +",'option':'read','condition':{'PONUM':'PO%'},'sinorserch':{'PONUM':'"+type+"','DESCRIPTION':'"+type+"'}}";
+    public static String getPOUrl(String search,String type,int curpage, int showcount){
+        if (search.equals("")) {
+            return "{'appid':'" + Constants.PO_APPID + "','objectname':'" + Constants.PO_NAME + "'," +
+                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'PONUM desc','condition':{'PONUM':'PO%'}}";
+        }else {
+            return "{'appid':'" + Constants.PO_APPID + "','objectname':'" + Constants.PO_NAME + "'," +
+                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'PONUM desc','condition':{'PONUM':'PO%','"+type+"':'"+search+"'}}";
+        }
     }
     public static String getMATRECTRANSUrl(String type,String siteid,int curpage, int showcount){
         return "{'appid':'" + Constants.MATRECTRANS_APPID + "','objectname':'" + Constants.MATRECTRANS_NAME + "'," +

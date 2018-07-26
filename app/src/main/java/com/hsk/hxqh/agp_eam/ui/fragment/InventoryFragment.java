@@ -23,7 +23,7 @@ import com.hsk.hxqh.agp_eam.ui.activity.invuse.InvuseListActivity;
 public class InventoryFragment extends BaseFragment {
     private static final String TAG = "InventoryFragment";
     private RelativeLayout udstockLayout;//库存盘点
-    private RelativeLayout poLayout;//入库管理
+    private RelativeLayout poLayout;//物资领用
     private RelativeLayout issueLayout;//出库管理
     private RelativeLayout transferLayout;//物料调拨
     private RelativeLayout inventoryLayout;//库存查询

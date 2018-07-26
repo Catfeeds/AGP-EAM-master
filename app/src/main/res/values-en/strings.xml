@@ -355,6 +355,8 @@
     <string name="item_inventory">Inventory:</string>
     <string name="item_quantity2">realQTY:</string>
     <string name="item_quantity1">QTY:</string>
+    <string name="item_orderqty">orderQty:</string>
+    <string name="item_RECEIVEDQTY">RECEIVEDQTY:</string>
 
 
     <!--物料退库-->
@@ -403,5 +405,9 @@
     <string name="returnitems">Select the returned items</string>
     <string name="reserveditems">Select the reserved items</string>
     <string name="delete">Delete</string>
+    <string name="lingliaodan">Material requisition</string>
+    <string name="suretosdelete">Sure to Delete？</string>
+    <string name="update">update</string>
+
 
 </resources>

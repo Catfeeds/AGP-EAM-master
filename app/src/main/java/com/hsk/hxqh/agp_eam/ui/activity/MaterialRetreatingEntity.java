@@ -112,7 +112,7 @@ public class MaterialRetreatingEntity extends BaseActivity implements Serializab
         lotnum .setText(matrectrans.getTOLOT());
         remark.setText(matrectrans.getREMARK());
         backImageView.setBackgroundResource(R.drawable.ic_back);
-        titleTextView.setText("接收");
+        titleTextView.setText(R.string.receive);
         backImageView.setOnClickListener(backOnClickListener);
         back.setOnClickListener(backOnClickListener);
         option.setOnClickListener(optionOnClickListener);
@@ -163,5 +163,6 @@ public class MaterialRetreatingEntity extends BaseActivity implements Serializab
         matrectrans.setTOLOT(lotnum.getText().toString());
         matrectrans.setREMARK(remark.getText().toString());
         matrectrans.setQUANTITY(quantity.getText().toString());
+        matrectrans.setRECEIPTQUANTITY(quantity.getText().toString());
     }
 }

@@ -86,6 +86,9 @@
     <string name="item_quantity_title">количество:</string>
     <string name="item_quantity2">Фактическое число:</string>
     <string name="item_quantity1">количество:</string>
+    <string name="item_orderqty">Количество заказов:</string>
+    <string name="item_RECEIVEDQTY">По количеств:</string>
+
 
     <!-- hint -->
     <string name="have_not_data">Нет  данных</string>
@@ -402,4 +405,8 @@
     <string name="returnitems">Выберите проект возврата</string>
     <string name="reserveditems">Выберите проект, который будет зарезервирован</string>
     <string name="delete">удалить</string>
+    <string name="lingliaodan">Лист бумаги</string>
+    <string name="suretosdelete">Подтверждаю？</string>
+    <string name="update">обновление</string>
+
 </resources>

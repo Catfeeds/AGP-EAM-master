@@ -15,6 +15,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,6 +24,8 @@ import android.widget.TextView;
 import com.flyco.animation.BaseAnimatorSet;
 import com.flyco.animation.BounceEnter.BounceTopEnter;
 import com.flyco.animation.SlideExit.SlideBottomExit;
+import com.flyco.dialog.listener.OnOperItemClickL;
+import com.flyco.dialog.widget.NormalListDialog;
 import com.hsk.hxqh.agp_eam.R;
 import com.hsk.hxqh.agp_eam.adpter.BaseQuickAdapter;
 import com.hsk.hxqh.agp_eam.adpter.POAdapter;
@@ -117,6 +120,9 @@ public class PoListActivity extends BaseActivity implements SwipeRefreshLayout.O
     @Override
     protected void initView() {
         setSearchEdit();
+        menuImageView.setBackgroundResource(R.drawable.ic_more);
+        menuImageView.setOnClickListener(serchtypeOnClickListener);
+        menuImageView.setVisibility(View.VISIBLE);
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backOnClickListener);
         titleTextView.setText(R.string.receive);
@@ -141,6 +147,36 @@ public class PoListActivity extends BaseActivity implements SwipeRefreshLayout.O
         @Override
         public void onClick(View v) {
             finish();
+        }
+    };
+    private String type = "PONUM";
+    private View.OnClickListener serchtypeOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            final NormalListDialog dialog = new NormalListDialog(PoListActivity.this, new String[]{getString(R.string.bianhao),getString(R.string.INVUSE_DESCRIPTION)});
+            dialog.title(getString(R.string.search_text))
+                    .showAnim(mBasIn)
+                    .dismissAnim(mBasOut)
+                    .show();
+            dialog.setOnOperItemClickL(new OnOperItemClickL() {
+                @Override
+                public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    switch (position){
+                        case 0:
+                            dialog.dismiss();
+                            search.setText("");
+                            type = "PONUM";
+                            search.setHint(getString(R.string.bianhao));
+                            break;
+                        case 1:
+                            dialog.dismiss();
+                            type = "DESCRIPTION";
+                            search.setText("");
+                            search.setHint(getString(R.string.INVUSE_DESCRIPTION));
+                            break;
+                    }
+                }
+            });
         }
     };
 
@@ -192,7 +228,7 @@ public class PoListActivity extends BaseActivity implements SwipeRefreshLayout.O
      * 获取数据*
      */
     private void getData(String search) {
-        HttpManager.getDataPagingInfo(PoListActivity.this, HttpManager.getPOUrl(search,page, 20), new HttpRequestHandler<Results>() {
+        HttpManager.getDataPagingInfo(PoListActivity.this, HttpManager.getPOUrl(search,type,page, 20), new HttpRequestHandler<Results>() {
             @Override
             public void onSuccess(Results results) {
                 Log.i(TAG, "data=" + results);

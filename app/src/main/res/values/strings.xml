@@ -356,6 +356,8 @@
     <string name="item_inventory">库房信息：</string>
     <string name="item_quantity2">实际数量：</string>
     <string name="item_quantity1">数量：</string>
+    <string name="item_orderqty">订购量：</string>
+    <string name="item_RECEIVEDQTY">应到数量：</string>
 
 
     <!--物料退库-->
@@ -401,5 +403,8 @@
     <string name="returnitems">选择退回的项目</string>
     <string name="reserveditems">选择预留的项目</string>
     <string name="delete">删除</string>
+    <string name="lingliaodan">领料单</string>
+    <string name="suretosdelete">确认删除？</string>
+    <string name="update">更新</string>
 
 </resources>

@@ -41,7 +41,7 @@
             android:layout_alignRight="@id/search_edit"
             android:layout_weight="1.0"
             android:background="@color/burlywood"
-            android:text="查询条件"
+            android:text="@string/search_text"
             android:textColor="@color/white"
             android:visibility="gone"/>
     </RelativeLayout>

@@ -104,7 +104,7 @@ public class Matrectrans_chooseActivity extends BaseActivity implements SwipeRef
     protected void initView() {
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backOnClickListener);
-        titleTextView.setText(getResources().getString(R.string.asset_choose_title));
+        titleTextView.setText("");
 //        menuImageView.setImageResource(R.drawable.ic_add);
 //        menuImageView.setOnClickListener(menuImageViewOnClickListener);
 //        confirmlayout.setVisibility(View.GONE);
@@ -166,6 +166,7 @@ public class Matrectrans_chooseActivity extends BaseActivity implements SwipeRef
                                             .getWindowToken(),
                                     InputMethodManager.HIDE_NOT_ALWAYS);
                     searchText = search.getText().toString();
+                    assetChooseAdapter.removeAll(assetChooseAdapter.getData());
                     getData(searchText);
                     return true;
                 }
@@ -184,15 +185,24 @@ public class Matrectrans_chooseActivity extends BaseActivity implements SwipeRef
         if (item != null || item.size() != 0) {
             if(search != null&&!search.equalsIgnoreCase("")){
                 for (int i = 0;i<item.size();i++){
-                    if (item.get(i).getITEMNUM().contains(search)){
-                        assetChooseAdapter.add(item.get(i));
-                    }else if (item.get(i).getDESCRIPTION().contains(search)){
-                        assetChooseAdapter.add(item.get(i));
+                    double back = Double.parseDouble(item.get(i).getORDERQTYBackup());
+                    if (back > 0) {
+                        if (item.get(i).getITEMNUM().contains(search)) {
+                            assetChooseAdapter.add(item.get(i));
+                        } else if (item.get(i).getDESCRIPTION().contains(search)) {
+                            assetChooseAdapter.add(item.get(i));
+                        }
                     }
                 }
             }else {
                 nodatalayout.setVisibility(View.GONE);
-                addData(item);
+                for ( MATRECTRANS matrectrans:item) {
+                    double orderqty = Double.parseDouble(matrectrans.getORDERQTY());
+                    double back = Double.parseDouble(matrectrans.getORDERQTYBackup());
+                    if (back > 0){
+                        assetChooseAdapter.add(matrectrans);
+                    }
+                }
             }
         }else {
             nodatalayout.setVisibility(View.VISIBLE);
@@ -231,12 +241,11 @@ public class Matrectrans_chooseActivity extends BaseActivity implements SwipeRef
     @Override
     public void onRefresh() {
             page = 1;
+            assetChooseAdapter.removeAll(assetChooseAdapter.getData());
             getData(searchText);
     }
 
     @Override
     public void onLoad() {
-            page++;
-        getData(searchText);
     }
 }

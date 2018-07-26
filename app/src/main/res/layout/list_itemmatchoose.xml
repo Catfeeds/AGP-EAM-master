@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/item_desc_title"
                 android:layout_marginTop="5dp"
-                android:text="@string/item_desc_title"
+                android:text="@string/item_orderqty"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -105,14 +105,37 @@
                 android:layout_below="@+id/item_desc_text"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_toRightOf="@+id/item_desc_title"
+                android:layout_toRightOf="@+id/item_orderqty_title"
                 android:ellipsize="end"
                 android:ems="14"
                 android:hint="@string/hint_item_desc_title"
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
+            <TextView
+                android:id="@+id/item_recrivedqty_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_orderqty_title"
+                android:layout_marginTop="5dp"
+                android:text="@string/item_RECEIVEDQTY"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
+            <TextView
+                android:id="@+id/item_recrivedqty_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_orderqty_text"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/item_recrivedqty_title"
+                android:ellipsize="end"
+                android:ems="14"
+                android:hint="@string/hint_item_desc_title"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
 
         </RelativeLayout>

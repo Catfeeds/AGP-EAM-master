@@ -79,6 +79,7 @@ public class InvuselineAddNewActivity extends BaseActivity{
     private LinearLayout linearLayout;
     private EditText toBin;
     private EditText toLoc;
+    private TextView titleTextView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +93,7 @@ public class InvuselineAddNewActivity extends BaseActivity{
 
     @Override
     protected void findViewById() {
+        titleTextView = (TextView) findViewById(R.id.menu_title);
         linearLayout = (LinearLayout) findViewById(R.id.invuseline_tobin_layout);
         toBin = (EditText) findViewById(R.id.invuseline_tobin_id);
         toLoc = (EditText) findViewById(R.id.invuseline_toloc_id);
@@ -131,16 +133,20 @@ public class InvuselineAddNewActivity extends BaseActivity{
         assetnum.setOnClickListener(assetnumOnClickListener);
         location.setOnClickListener(locationOnClickListener);
         actualdate.setOnClickListener(getActualdateOnClickListener);
+        quit.setOnClickListener(backImageViewOnClickListener);
         if (type!=null){
             if (type.equalsIgnoreCase("MI")){
                 usetype.setText("ISSUE");
+                titleTextView.setText(R.string.outbound);
             }else if (type.equalsIgnoreCase("MR")){
+                titleTextView.setText(R.string.refund);
                 usetype.setText("RETURN");
             }else if (type.equalsIgnoreCase("MT")){
                 usetype.setText("TRANSFER");
                 conversion.setText("1.00");
                 conLayout.setVisibility(View.VISIBLE);
                 linearLayout.setVisibility(View.VISIBLE);
+                titleTextView.setText(R.string.invuse_transfer);
             }
         }
         if (invuseline!=null){

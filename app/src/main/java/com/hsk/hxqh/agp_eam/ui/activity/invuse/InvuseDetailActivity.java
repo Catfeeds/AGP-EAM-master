@@ -724,7 +724,7 @@ public class InvuseDetailActivity extends BaseActivity implements SwipeRefreshLa
                 if (s != null && s.errorMsg != null && s.errorMsg.equals("工作流启动成功")) {
                     Toast.makeText(InvuseDetailActivity.this, s.errorMsg, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(InvuseDetailActivity.this, "工作流启动失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InvuseDetailActivity.this, getString(R.string.fail), Toast.LENGTH_SHORT).show();
                 }
                 mProgressDialog.dismiss();
             }

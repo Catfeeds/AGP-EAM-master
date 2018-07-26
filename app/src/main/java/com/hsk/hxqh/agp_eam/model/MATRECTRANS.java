@@ -41,6 +41,7 @@ private String FLAG ;
     private int SN;
         private String POLINENUM;
         private String ORDERQTY;
+        private String ORDERQTYBackup;
         private String ITEMNUM;
         private String DESCRIPTION;
         private String ORDERUNIT;
@@ -59,6 +60,13 @@ private String FLAG ;
       private String ISSUETYPE;
       private String RECEIPTQUANTITY;
 
+    public String getORDERQTYBackup() {
+        return ORDERQTYBackup;
+    }
+
+    public void setORDERQTYBackup(String ORDERQTYBackup) {
+        this.ORDERQTYBackup = ORDERQTYBackup;
+    }
 
     public String getRECEIPTQUANTITY() {
         return RECEIPTQUANTITY;
@@ -172,7 +180,7 @@ private String FLAG ;
 
         public void setORDERQTY(String ORDERQTY) {
             this.ORDERQTY = ORDERQTY;
-            this.QUANTITY = ORDERQTY;
+            this.ORDERQTYBackup = ORDERQTY;
         }
         public String getORDERQTY() {
             return ORDERQTY;
