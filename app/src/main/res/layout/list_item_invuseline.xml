@@ -50,8 +50,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_toLeftOf="@+id/drop-down"
                 android:layout_toRightOf="@+id/item_desc_title"
-                android:hint="@string/have_not_data"
                 android:maxLines="1"
+                android:hint="@string/have_not_data"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -70,16 +70,16 @@
                 android:id="@+id/invuse_line_FROMBIN_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/invuseline_desc_id"
+                android:layout_below="@+id/item_desc_title"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_toLeftOf="@+id/drop-down"
                 android:layout_toRightOf="@+id/item_location_title"
                 android:ellipsize="end"
                 android:ems="14"
+                android:maxLines="1"
                 android:background="@color/sb__transparent"
                 android:hint="@string/have_not_data"
-                android:maxLines="1"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -97,17 +97,48 @@
                 android:id="@+id/invuseline_FROMLOT_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/invuse_line_FROMBIN_id"
+                android:layout_below="@+id/item_location_title"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_toLeftOf="@+id/drop-down"
                 android:layout_toRightOf="@+id/item_status_title"
                 android:ellipsize="end"
                 android:ems="14"
-                android:hint="@string/have_not_data"
                 android:maxLines="1"
+                android:hint="@string/have_not_data"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
+            <RelativeLayout
+                android:id="@+id/MatrectransAdapter_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_status_title"
+                android:layout_toLeftOf="@+id/drop-down"
+                android:visibility="gone"
+                >
+                <TextView
+                    android:id="@+id/matreq_tobin_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/toBin"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+                <EditText
+                    android:id="@+id/invuseline_tobin_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@+id/matreq_tobin_title"
+                    android:ellipsize="end"
+                    android:ems="14"
+                    android:maxLines="1"
+                    android:background="@color/sb__transparent"
+                    android:hint="@string/have_not_data"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </RelativeLayout>
 
             <ImageButton
                 android:id="@+id/drop-down"

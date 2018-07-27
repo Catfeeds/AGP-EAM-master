@@ -238,6 +238,7 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
     private View.OnClickListener optionOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            option.requestFocus();
             String[] optionlist = {getString(R.string.back),getString(R.string.work_upload),getString(R.string.scan),getString(R.string.reservation),getString(R.string.save)};
             final NormalListDialog normalListDialog = new NormalListDialog(PodetailActivity.this, optionlist);
             normalListDialog.title(getString(R.string.chaxuntj))
@@ -386,9 +387,14 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
                 new OnBtnClickL() {
                     @Override
                     public void onBtnClick() {
-                        showProgressDialog("Waiting...");
-                        startAsyncTask();
                         dialog.dismiss();
+                        if (hasEmptyBin()){
+                            Toast.makeText(PodetailActivity.this, "ToBin can not be Empty",Toast.LENGTH_LONG).show();
+                        }else {
+                            showProgressDialog("Waiting...");
+                            startAsyncTask();
+                        }
+
                     }
                 });
     }
@@ -418,16 +424,33 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
 
                 WebResult reviseresult = AndroidClientService.UpdateWO(PodetailActivity.this,json, Constants.PO_NAME,"PONUM", po.getPONUM(),Constants.WORK_URL);
                 String stringrel = AndroidClientService.insertMa(PodetailActivity.this, majson);
-                //WebResult result = AndroidClientService.UpdateWO(InvuseDetailActivity.this, "",Constants.MATUSETRANS_NAME,"MATUSETRANSID","",Constants.WORK_URL);
-                reviseresult.errorMsg = reviseresult.errorMsg + stringrel;
+                String rest = "";
+                if (stringrel!=null){
+                    String[] results = stringrel.split("!");
+                    for (int i = 0;i<results.length;i++){
+                        if (results[i].contains("succeed")){
+                            rest = "成功";
+                            continue;
+                        }else {
+                            rest = "The" + i + "Failed";
+                            break;
+                        }
+                    }
+                    reviseresult.errorMsg = rest;
+                }else {
+                    reviseresult.errorMsg = "No Records";
+                }
                 return reviseresult;
             }
 
             @Override
             protected void onPostExecute(WebResult workResult) {
                 super.onPostExecute(workResult);
-                if (workResult == null) {
-                    Toast.makeText(PodetailActivity.this, "false", Toast.LENGTH_LONG).show();
+                if (workResult.errorMsg.equals("成功")) {
+                    Toast.makeText(PodetailActivity.this,getString(R.string.success), Toast.LENGTH_LONG).show();
+                    for (int i = 0;i < matrectransAdapter.getItemCount();i++){
+                        matrectransAdapter.getItem(i).setFLAG("U");
+                    }
                 } else {
                     Toast.makeText(PodetailActivity.this, workResult.errorMsg, Toast.LENGTH_LONG).show();
                 }
@@ -436,7 +459,7 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
         }.execute();
         closeProgressDialog();
     }
-    private void changegoolsDate(){
+    public void changegoolsDate(){
         if(matrectransAdapter.getItemCount()>0){
             int size = listbackup.size();
             for (int i = 0;i< size ;i++){
@@ -460,7 +483,17 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
         }
 
     }
-
+    public boolean hasEmptyBin(){
+        boolean flag = false;
+        for (int i= 0 ;i<matrectransAdapter.getItemCount();i++){
+            String toBin = matrectransAdapter.getItem(i).getTOBIN();
+            if (toBin == null || "".equalsIgnoreCase(toBin)){
+                flag = true;
+                break;
+            }
+        }
+        return flag;
+    }
 }
 
 

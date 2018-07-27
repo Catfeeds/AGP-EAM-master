@@ -259,8 +259,7 @@ public class HttpManager {
      * 设置库存盘点子表查询*
      */
     public static String getUdstocklineUrl(String stocknum,int curpage, int showcount) {
-        return "{'appid':'" + Constants.UDSTOCKLINE_APPID + "','objectname':'" + Constants.UDSTOCKLINE_NAME + "'," +
-                "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'SN asc','condition':{'STOCKNUM':'" + stocknum + "'}}";
+        return "{'appid':'" + Constants.UDSTOCKLINE_APPID + "','objectname':'" + Constants.UDSTOCKLINE_NAME + "','option':'read','orderby':'SN asc','condition':{'STOCKNUM':'" + stocknum + "'}}";
     }
     public static String getUdstocklineUrl(String stocknum,String itemnum,int curpage,int showcount) {
         return "{'appid':'" + Constants.UDSTOCKLINE_APPID + "','objectname':'" + Constants.UDSTOCKLINE_NAME +"','curpage':" + curpage + ",'showcount':" + showcount +  ",'option':'read','orderby':'SN asc','condition':{'STOCKNUM':'" + stocknum + "','ITEMNUM':'"+itemnum+"'}}";

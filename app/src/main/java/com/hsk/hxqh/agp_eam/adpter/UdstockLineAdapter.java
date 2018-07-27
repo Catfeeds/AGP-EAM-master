@@ -46,6 +46,8 @@ public class UdstockLineAdapter extends BaseQuickAdapter<UDSTOCKLINE> {
         helper.setText(R.id.udstockline_udstocklineitedes_text, item.getUDSTOCKLINEITEDES());
         helper.setText(R.id.udstockline_quantity1_text, item.getQUANTITY1()+"");
         helper.setText(R.id.udstockline_quantity2_text, item.getQUANTITY2()+"");
+        helper.setText(R.id.udstockline_itemnum_text,item.getITEMNUM());
+        helper.setText(R.id.udstockline_toLot_text,item.getLOTNUM());
     }
 
 

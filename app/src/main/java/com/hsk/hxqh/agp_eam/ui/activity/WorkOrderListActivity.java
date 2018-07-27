@@ -136,8 +136,9 @@ public class WorkOrderListActivity extends BaseActivity implements SwipeRefreshL
 
     @Override
     public void onLoad() {
-        page++;
-        getData(searchText);
+/*        page++;
+        getData(searchText);*/
+    refresh_layout.setLoading(false);
     }
     private void setSearchEdit() {
         SpannableString msp = new SpannableString(getString(R.string.search_text));

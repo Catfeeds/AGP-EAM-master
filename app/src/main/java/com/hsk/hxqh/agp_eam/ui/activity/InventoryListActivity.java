@@ -212,8 +212,9 @@ private     ArrayList<INVENTORY> inventories;
 
     @Override
     public void onLoad() {
-        page++;
-        getData(searchText);
+/*        page++;
+        getData(searchText);*/
+        refresh_layout.setLoading(false);
     }
 
     @Override

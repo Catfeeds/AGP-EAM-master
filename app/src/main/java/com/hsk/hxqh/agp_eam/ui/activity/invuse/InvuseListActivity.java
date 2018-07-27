@@ -263,8 +263,9 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
 
     @Override
     public void onLoad() {
-        page++;
-        getData(searchText);
+/*        page++;
+        getData(searchText);*/
+        refresh_layout.setLoading(false);
     }
 
     @Override

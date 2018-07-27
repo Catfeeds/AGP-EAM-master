@@ -186,7 +186,7 @@ public class UdstockLineActivity extends BaseActivity implements SwipeRefreshLay
      * 获取数据*
      */
     private void getData() {
-        HttpManager.getDataPagingInfo(UdstockLineActivity.this, HttpManager.getUdstocklineUrl(udstock.getSTOCKNUM(),page, 20), new HttpRequestHandler<Results>() {
+        HttpManager.getData(UdstockLineActivity.this, HttpManager.getUdstocklineUrl(udstock.getSTOCKNUM(),page, 20), new HttpRequestHandler<Results>() {
             @Override
             public void onSuccess(Results results) {
                 Log.i(TAG, "data=" + results);
@@ -200,16 +200,21 @@ public class UdstockLineActivity extends BaseActivity implements SwipeRefreshLay
                 if (item == null || item.isEmpty()) {
                     nodatalayout.setVisibility(View.VISIBLE);
                 } else {
-
+                    List<UDSTOCKLINE> udstocklineList = new ArrayList<>();
                     if (item != null || item.size() != 0) {
                         if (page == 1) {
                             assetArrayList = new ArrayList<UDSTOCKLINE>();
                             initAdapter(assetArrayList);
                         }
                         for (int i = 0; i < item.size(); i++) {
-                            assetArrayList.add(item.get(i));
+                            if ("Y".equalsIgnoreCase(item.get(i).getISCHECK())){
+                                udstocklineList.add(item.get(i));
+                            }else {
+                                assetArrayList.add(item.get(i));
+                            }
                         }
-                        addData(item);
+                        assetArrayList.addAll(udstocklineList);
+                        addData(assetArrayList);
                     }
                     nodatalayout.setVisibility(View.GONE);
 
@@ -250,10 +255,7 @@ public class UdstockLineActivity extends BaseActivity implements SwipeRefreshLay
      * 添加数据*
      */
     private void addData(final List<UDSTOCKLINE> list) {
-        for (UDSTOCKLINE udstockline:
-             list){
-            udstockLineAdapter.add(udstockline);
-        }
+            udstockLineAdapter.addData(list);
     }
 
 
@@ -324,11 +326,10 @@ public class UdstockLineActivity extends BaseActivity implements SwipeRefreshLay
 //            } else {
 //                page = woactivityList.size() / 20 + 1;
 //            }
-        page++;
-        getData();
 //        }else {
 //            refresh_layout.setLoading(false);
 //        }
+        refresh_layout.setLoading(false);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -345,8 +346,7 @@ public class UdstockLineActivity extends BaseActivity implements SwipeRefreshLay
                     result.setISCHECK("Y");
                     int resInt = bundle.getInt("position");
                     udstockLineAdapter.remove(resInt);
-                    udstockLineAdapter.add(resInt,result);
-                    udstockLineAdapter.notifyItemChanged(resInt,result);
+                    udstockLineAdapter.add(result);
                 }
 
         }

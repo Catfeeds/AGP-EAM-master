@@ -166,8 +166,9 @@ public class ItemListActivity extends BaseActivity implements SwipeRefreshLayout
 
     @Override
     public void onLoad() {
-        page++;
-        getData(searchText);
+/*        page++;
+        getData(searchText);*/
+    refresh_layout.setLoading(false);
     }
 
     @Override

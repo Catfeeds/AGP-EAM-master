@@ -28,7 +28,7 @@ public class MATRECTRANS implements Serializable{
     private String TOSTORELOC;
     private String UNITCOST;
     private String WONUM;*/
-private String FLAG ;
+private String FLAG  = "U";
 
     public String getFLAG() {
         return FLAG;
@@ -47,7 +47,7 @@ private String FLAG ;
         private String ORDERUNIT;
         private String UNITCOST;
         private String RECEIVEDQTY;
-      private String INSPECTIONREQUIRED;
+      private String INSPECTIONREQUIRED = "1";
       private String REMARK;
       private String TOSTORELOC;
       private String TOBIN;
@@ -59,6 +59,15 @@ private String FLAG ;
       private String ENTERBY;
       private String ISSUETYPE;
       private String RECEIPTQUANTITY;
+      private String MATRECTRANSID;
+
+    public String getMATRECTRANSID() {
+        return MATRECTRANSID;
+    }
+
+    public void setMATRECTRANSID(String MATRECTRANSID) {
+        this.MATRECTRANSID = MATRECTRANSID;
+    }
 
     public String getORDERQTYBackup() {
         return ORDERQTYBackup;
@@ -74,6 +83,8 @@ private String FLAG ;
 
     public void setRECEIPTQUANTITY(String RECEIPTQUANTITY) {
         this.RECEIPTQUANTITY = RECEIPTQUANTITY;
+        this.QUANTITY = RECEIPTQUANTITY;
+        this.QTYREQUESTED = RECEIPTQUANTITY;
     }
 
     public String getISSUETYPE() {

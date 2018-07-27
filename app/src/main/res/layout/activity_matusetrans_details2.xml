@@ -261,7 +261,7 @@
                         android:textColor="@color/light_black"
                         android:textSize="@dimen/dimens_16sp" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/matusetrans_orderunit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -364,7 +364,7 @@
                         android:textColor="@color/light_black"
                         android:textSize="@dimen/dimens_16sp" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/matusetrans_enterby"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

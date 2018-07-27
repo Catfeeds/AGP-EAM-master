@@ -182,8 +182,9 @@ public class PoListActivity extends BaseActivity implements SwipeRefreshLayout.O
 
     @Override
     public void onLoad() {
-        page++;
-        getData(searchText);
+       /* page++;
+        getData(searchText);*/
+       refresh_layout.setLoading(false);
     }
 
     @Override
@@ -247,6 +248,8 @@ public class PoListActivity extends BaseActivity implements SwipeRefreshLayout.O
                         if (page == 1) {
                             items = new ArrayList<PO>();
                             initAdapter(items);
+                        }else {
+                            itemAdapter.openLoadMore(page,true);
                         }
                         for (int i = 0; i < item.size(); i++) {
                             items.add(item.get(i));

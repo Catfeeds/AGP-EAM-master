@@ -2,6 +2,7 @@ package com.hsk.hxqh.agp_eam.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -100,11 +101,12 @@ public class UdstocklineDetailActivity extends BaseActivity{
         titleTextView.setText(getResources().getString(R.string.udstockline));
         itemnumView.setText(udstockline.getITEMNUM());
         differenceView.setText(udstockline.getDIFFERENCE());
+        differenceView.setBackgroundColor(Color.GRAY);
         descView.setText(udstockline.getUDSTOCKLINEITEDES());
         quantity1View.setText(udstockline.getQUANTITY1());
         lotnumView.setText(udstockline.getLOTNUM());
         certain.setOnClickListener(certainOnClickListener);
-        orderunitView.setText(udstockline.getUDSTOCKLINEITEMODER());
+        orderunitView.setText(udstockline.getUDSTOCKLINEITEISS());
         quantity2View.setText(udstockline.getQUANTITY2());
 
     }
@@ -128,13 +130,6 @@ public class UdstocklineDetailActivity extends BaseActivity{
         public void onClick(View v) {
             udstockline.setQUANTITY2(quantity2View.getText().toString());
             udstockline.setREASON(reasonsView.getText().toString());
-      /*      Intent intent = getIntent();
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("udstockline",udstockline);
-            bundle.putInt("position",position);
-            submitDataInfo();
-            setResult(UDSTOCKLINE_CODE,intent);
-            finish();*/
             submitDataInfo();
         }
     };
@@ -169,6 +164,7 @@ public class UdstocklineDetailActivity extends BaseActivity{
       if (num2 != null && !num2.equals("")){
           udstockline.setDIFFERENCE((Integer.parseInt(num2)-Integer.parseInt(num1)) + "");
       }
+        udstockline.setQUANTITY2(quantity2View.getText().toString());
         udstockline.setISCHECK("1");
         json = JsonUtils.submitUdstocklineData(udstockline);
         new AsyncTask<String,String,String>(){
@@ -197,6 +193,7 @@ public class UdstocklineDetailActivity extends BaseActivity{
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("udstockline",udstockline);
                         bundle.putInt("position",position);
+                        intent.putExtras(bundle);
                         setResult(UDSTOCKLINE_CODE,intent);
                         finish();
                     }

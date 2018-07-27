@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.flyco.animation.BaseAnimatorSet;
 import com.flyco.animation.BounceEnter.BounceTopEnter;
@@ -116,11 +117,6 @@ public class MaterialRetreatingEntity extends BaseActivity implements Serializab
         backImageView.setOnClickListener(backOnClickListener);
         back.setOnClickListener(backOnClickListener);
         option.setOnClickListener(optionOnClickListener);
-        if (matrectrans.getFLAG()==null|| matrectrans.getFLAG().equals("")){
-            binnum.setEnabled(false);
-            lotnum.setEnabled(false);
-            remark.setEnabled(false);
-        }
     }
     private View.OnClickListener backOnClickListener = new View.OnClickListener() {
         @Override
@@ -147,13 +143,18 @@ public class MaterialRetreatingEntity extends BaseActivity implements Serializab
                         @Override
                         public void onBtnClick() {
                             getChangeData();
-                            Intent intent = getIntent();
-                            Bundle bundle = new Bundle();
-                            bundle.putSerializable("matrectrans",matrectrans);
-                            intent.putExtras(bundle);
-                            setResult(10,intent);
-                            normalListDialog.dismiss();
-                            finish();
+                            if (matrectrans.getTOBIN()==null || "".equalsIgnoreCase(matrectrans.getTOBIN())){
+                                Toast.makeText(MaterialRetreatingEntity.this, "The toBin can not be Empty",Toast.LENGTH_LONG).show();
+                            }else {
+                                Intent intent = getIntent();
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("matrectrans",matrectrans);
+                                intent.putExtras(bundle);
+                                setResult(10,intent);
+                                normalListDialog.dismiss();
+                                finish();
+                            }
+
                         }
                     });
         }
@@ -164,5 +165,8 @@ public class MaterialRetreatingEntity extends BaseActivity implements Serializab
         matrectrans.setREMARK(remark.getText().toString());
         matrectrans.setQUANTITY(quantity.getText().toString());
         matrectrans.setRECEIPTQUANTITY(quantity.getText().toString());
+        matrectrans.setENTERBY(enterby.getText().toString());
+        matrectrans.setRECEIVEDUNIT(orderunit.getText().toString());
+        matrectrans.setQTYREQUESTED(quantity.getText().toString());
     }
 }

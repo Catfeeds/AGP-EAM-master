@@ -194,8 +194,7 @@ public class UdstockListActivity extends BaseActivity implements SwipeRefreshLay
 
     @Override
     public void onLoad() {
-        page++;
-        getData(searchText);
+        refresh_layout.setLoading(false);
     }
 
     @Override
