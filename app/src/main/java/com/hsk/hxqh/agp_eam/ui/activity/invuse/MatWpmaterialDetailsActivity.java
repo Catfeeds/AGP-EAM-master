@@ -92,10 +92,10 @@ public class MatWpmaterialDetailsActivity extends BaseActivity {
     private  String flag;
     private RelativeLayout relativeLayout;
     private EditText unitcost;
-    private TextView issueto;
+    private TextView issueto,linecost;
     private ImageView dateSelect;
     private ProgressDialog mProgressDialog;
-    private LinearLayout linearLayout;
+    private LinearLayout linearLayout,linecostLinearLayout,unitcostLinearLayout,loc_linearLayout;
     private LinearLayout vendorLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,18 +151,25 @@ public class MatWpmaterialDetailsActivity extends BaseActivity {
         dateSelect = (ImageView) findViewById(R.id.wpmaterial_requiredate_image_id);
         linearLayout = (LinearLayout) findViewById(R.id.taskid_layout);
         vendorLayout = (LinearLayout) findViewById(R.id.vendor_layout_id);
+        linecost = (TextView) findViewById(R.id.wpmaterial_linecost);
+        linecostLinearLayout = (LinearLayout) findViewById(R.id.linecostLinearLayout);
+        unitcostLinearLayout = (LinearLayout) findViewById(R.id.unitcostLinearLayout);
+        loc_linearLayout= (LinearLayout) findViewById(R.id.tagid_layout_id);
     }
 
 
     @Override
     protected void initView() {
+        linecostLinearLayout.setVisibility(View.GONE);
+        unitcostLinearLayout.setVisibility(View.GONE);
+        loc_linearLayout.setVisibility(View.GONE);
         vendorLayout.setVisibility(View.GONE);
         linearLayout.setVisibility(View.GONE);
         includ.setVisibility(View.GONE);
         relativeLayout.setVisibility(View.VISIBLE);
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backImageViewOnClickListener);
-        titleTextView.setText(R.string.work_wpmaterial);
+        titleTextView.setText(R.string.lineinfo);
 
         if (wpmaterial != null) {
             taskid.setText(wpmaterial.getTASKID());
@@ -176,6 +183,7 @@ public class MatWpmaterialDetailsActivity extends BaseActivity {
             issueto.setText(wpmaterial.getISSUETO());
             unitcost.setText(wpmaterial.getUNITCOST());
             vendor.setText(wpmaterial.getVENDOR());
+            linecost.setText(wpmaterial.getLINECOST());
 
         }
 
@@ -258,6 +266,7 @@ public class MatWpmaterialDetailsActivity extends BaseActivity {
             isadd = true;
             list = new String[]{getString(R.string.cancel),getString(R.string.xinjian)};
         }
+        dialog.title(getString(R.string.tip));
         dialog.content(getString(R.string.option)).btnNum(i).btnText(list)//
                 .showAnim(mBasIn)//
                 .dismissAnim(mBasOut)//
@@ -346,6 +355,7 @@ public class MatWpmaterialDetailsActivity extends BaseActivity {
      wpmaterial.setLOCATION(location.getText().toString());
      wpmaterial.setREQUESTBY(requestby.getText().toString());
      wpmaterial.setREQUIREDATE(requiredate.getText().toString());
+     wpmaterial.setUNITCOST(unitcost.getText().toString());
      double qut = Double.parseDouble(itemqty.getText().toString());
      double unit = Double.parseDouble(unitcost.getText().toString());
      double totole = qut*unit;

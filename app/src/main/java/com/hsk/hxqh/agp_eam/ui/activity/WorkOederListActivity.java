@@ -42,6 +42,7 @@ import com.hsk.hxqh.agp_eam.model.WPMATERIAL;
 import com.hsk.hxqh.agp_eam.ui.activity.invuse.InvuseListActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.invuse.MaterialRequisitionAddNewActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.invuse.MaterialRequisitionDetailActivity;
+import com.hsk.hxqh.agp_eam.ui.widget.BaseViewHolder;
 import com.hsk.hxqh.agp_eam.ui.widget.SwipeRefreshLayout;
 import com.j256.ormlite.stmt.query.In;
 
@@ -124,7 +125,7 @@ public class WorkOederListActivity extends BaseActivity implements SwipeRefreshL
     private View.OnClickListener searchTypeOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            final NormalListDialog normalListDialog = new NormalListDialog(WorkOederListActivity.this, new String[]{getString(R.string.item_num_title),getString(R.string.INVUSE_DESCRIPTION),getString(R.string.asset_location),"SCAN"});
+            final NormalListDialog normalListDialog = new NormalListDialog(WorkOederListActivity.this, new String[]{getString(R.string.item_num_title),getString(R.string.INVUSE_DESCRIPTION),getString(R.string.udstock_storeroom),getString(R.string.scan)});
             normalListDialog.title(getString(R.string.option))
                     .showAnim(mBasIn)//
                     .dismissAnim(mBasOut)//
@@ -149,7 +150,7 @@ public class WorkOederListActivity extends BaseActivity implements SwipeRefreshL
                         case 2://新建
                             normalListDialog.superDismiss();
                             searchType = "UDTEMPMATERIAL";
-                            search.setHint(R.string.asset_location);
+                            search.setHint(R.string.inventory_location);
                             break;
                         case 3://保存
                             normalListDialog.superDismiss();
@@ -244,9 +245,9 @@ public class WorkOederListActivity extends BaseActivity implements SwipeRefreshL
 
     @Override
     public void onLoad() {
-        page++;
-
-        getData(searchText);
+       /* page++;
+        getData(searchText);*/
+    refresh_layout.setLoading(false);
     }
 
     @Override
@@ -317,7 +318,10 @@ public class WorkOederListActivity extends BaseActivity implements SwipeRefreshL
                         for (int i = 0; i < item.size(); i++) {
                             items.add(item.get(i));
                         }
+                        int postion = assetAdapter.getItemCount();
                         addData(item);
+                        BaseViewHolder baseViewHolder = new BaseViewHolder(WorkOederListActivity.this, recyclerView);
+                        assetAdapter.onBindViewHolder(baseViewHolder,postion);
                     }
                     nodatalayout.setVisibility(View.GONE);
 

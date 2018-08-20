@@ -51,7 +51,7 @@
                                 android:id="@+id/stocknum_title_id"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/item_itemnum"
+                                android:text="@string/inventory_itemnum"
                                 android:textColor="@color/light_black"
                                 android:textSize="@dimen/dimens_16sp" />
 
@@ -156,7 +156,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/item_quantity_title"
+                            android:text="@string/udstockline_quantity1"
                             android:textColor="@color/light_black"
                             android:textSize="@dimen/dimens_16sp" />
 
@@ -218,6 +218,34 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dimens_line"
                         android:background="@drawable/line"></View>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/dimen_10">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/invbalances_binnum"
+                            android:textColor="@color/light_black"
+                            android:textSize="@dimen/dimens_16sp" />
+
+                        <TextView
+                            android:id="@+id/udstockline_binnum"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:hint="@string/have_not_data"
+                            android:textColor="@color/light_black"
+                            android:textSize="@dimen/dimens_16sp" />
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimens_line"
+                        android:background="@drawable/line"></View>
+
 
                     <LinearLayout
                         android:id="@+id/cartasknum_layout_id"
@@ -230,7 +258,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="批次号"
+                            android:text="@string/invbalances_lotnum"
                             android:textColor="@color/light_black"
                             android:textSize="@dimen/dimens_16sp" />
 
@@ -260,7 +288,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:text="差异:"
+                            android:text="@string/udstockline_difference"
                             android:textColor="@color/light_black"
                             android:textSize="@dimen/dimens_16sp" />
 
@@ -293,7 +321,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:text="差异原因:"
+                            android:text="@string/udstockline_reason"
                             android:textColor="@color/light_black"
                             android:textSize="@dimen/dimens_16sp" />
 
@@ -326,7 +354,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_gravity="center"
-                    android:text="确认"
+                    android:text="@string/confirm"
                     android:background="@color/burlywood"/>
             </LinearLayout>
 

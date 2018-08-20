@@ -46,6 +46,7 @@ import com.hsk.hxqh.agp_eam.model.INVUSELINE;
 import com.hsk.hxqh.agp_eam.model.LOCATIONS;
 import com.hsk.hxqh.agp_eam.model.MATUSETRANS;
 import com.hsk.hxqh.agp_eam.model.SUBJECT;
+import com.hsk.hxqh.agp_eam.model.UDDEPT;
 import com.hsk.hxqh.agp_eam.model.WORKORDER;
 import com.hsk.hxqh.agp_eam.model.WPMATERIAL;
 import com.hsk.hxqh.agp_eam.model.WebResult;
@@ -55,6 +56,7 @@ import com.hsk.hxqh.agp_eam.ui.activity.WorkOrderDetailsActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.WpmaterialDetailsActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.WxDemoActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.invuse.adapter.WpmaterialAdapter2;
+import com.hsk.hxqh.agp_eam.ui.activity.option.Dept_chooseActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.option.Location_chooseActivity;
 import com.hsk.hxqh.agp_eam.ui.widget.SwipeRefreshLayout;
 import com.hsk.hxqh.agp_eam.unit.AccountUtils;
@@ -188,7 +190,7 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
             wonum.setText(workorder.getWONUM());
             description.setText(workorder.getDESCRIPTION());
             dep .setText(workorder.getUDSTATIONNUM());
-            fromstoreloc.setText(workorder.getLOCATION());
+            fromstoreloc.setText(workorder.getUDTEMPMATERIAL());
             //invowner .setText(workorder.get);
             creatby .setText(workorder.getCREATEBY());
             creatdate.setText(workorder.getCREATEDATE());
@@ -281,7 +283,7 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
     private View.OnClickListener udstationnumOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(MaterialRequisitionDetailActivity.this, Location_chooseActivity.class);
+            Intent intent = new Intent(MaterialRequisitionDetailActivity.this, Dept_chooseActivity.class);
             Bundle bundle = new Bundle();
             bundle.putString("type","STOREROOM");
             bundle.putString("from","udstationnum");
@@ -329,7 +331,7 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
                                 bundle.putSerializable("workorder",workorder);
                                 bundle.putString("flag","I");
                                 intent1.putExtras(bundle);
-                                startActivityForResult(intent1,0);
+                                startActivityForResult(intent1,wpmaterialAdapter.getItemCount());
                             }else {
                                 Toast.makeText(MaterialRequisitionDetailActivity.this, "The Status is not WAPPR",Toast.LENGTH_SHORT).show();
                             }
@@ -367,11 +369,14 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
                 if (wpmaterial!=null && wpmaterial.getFLAG()!= null) {
                     if (wpmaterial.getFLAG().equalsIgnoreCase("I")) {
                         wpmaterial.setTYPE("add");
-                        if (requestCode==0){
+                        if (wpmaterialAdapter.getItemCount()==0){
                             wpmaterialAdapter.add(wpmaterial);
                         }else if (requestCode!=0 && requestCode < wpmaterialAdapter.getItemCount() ){
                             wpmaterialAdapter.remove(requestCode);
                             wpmaterialAdapter.add(requestCode,wpmaterial);
+                        }else if(wpmaterialAdapter.getItemCount()!=0&&requestCode == 0) {
+                            wpmaterialAdapter.remove(0);
+                            wpmaterialAdapter.add(0,wpmaterial);
                         }else {
                             wpmaterialAdapter.add(wpmaterial);
                         }
@@ -389,17 +394,18 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
                 }
             break;
             case 110:
-                LOCATIONS locations = (LOCATIONS) data.getExtras().get("location");
+                UDDEPT locations = (UDDEPT) data.getExtras().get("location");
                 if (locations!=null){
-                    dep.setText(locations.getLOCATION());
-                    workorder.setUDTEMPMATERIAL(locations.getLOCATION());
-                    workorder.setUDSTATIONNUM(locations.getLOCATION());
+                    dep.setText(locations.getDEPTNUM());
+                    workorder.setUDTEMPMATERIAL(locations.getDEPTNUM());
+                    workorder.setUDSTATIONNUM(locations.getDEPTNUM());
                 }
                 break;
         }
     }
     private void submitDataInfo() {
         final NormalDialog dialog = new NormalDialog(this);
+        dialog.title(getString(R.string.tip)).btnText(getString(R.string.cancel),getString(R.string.queren));
         dialog.content(getString(R.string.suretosave))//
                 .showAnim(mBasIn)//
                 .dismissAnim(mBasOut)//
@@ -491,7 +497,7 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
                 if (s != null && s.errorMsg != null && s.errorMsg.equals("工作流启动成功")) {
                     Toast.makeText(MaterialRequisitionDetailActivity.this, s.errorMsg, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(MaterialRequisitionDetailActivity.this, "工作流启动失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MaterialRequisitionDetailActivity.this, getString(R.string.fail), Toast.LENGTH_SHORT).show();
                 }
                 mProgressDialog.dismiss();
             }

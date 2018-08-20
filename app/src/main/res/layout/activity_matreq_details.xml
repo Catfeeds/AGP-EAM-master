@@ -141,7 +141,7 @@
                             android:layout_width="@dimen/dimens_150dp"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:text="@string/FROMSTORELOC"
+                            android:text="@string/udstock_storeroom"
                             android:textColor="@color/light_black"
                             android:textSize="@dimen/dimens_16sp" />
 
@@ -314,7 +314,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="8.0"
-            android:text="物资申请"
+            android:text="@string/lineinfo"
             android:textColor="@color/light_black"
             android:layout_centerVertical="true"
             android:gravity="center"

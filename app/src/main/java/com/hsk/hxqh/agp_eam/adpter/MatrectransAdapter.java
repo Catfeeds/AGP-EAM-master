@@ -47,6 +47,8 @@ public class MatrectransAdapter extends BaseQuickAdapter<MATRECTRANS> {
         helper.setText(R.id.invuse_line_FROMBIN_id,item.getRECEIPTQUANTITY());
         helper.setText(R.id.invuseline_FROMLOT_id,item.getUNITCOST());
         helper.setVisible(R.id.MatrectransAdapter_id,true);
+        helper.setVisible(R.id.MatrectransAdapterline_id,true);
+        helper.setText(R.id.invuseline_poline_id,item.getPOLINENUM());
         helper.setText(R.id.invuseline_tobin_id,item.getTOBIN());
 
         final EditText editText = (EditText) helper.getView(R.id.invuse_line_FROMBIN_id);

@@ -64,9 +64,6 @@
                     android:layout_centerHorizontal="true"
                     android:text="@string/inventory" />
             </RelativeLayout>
-
-
-
         </LinearLayout>
 
         <View
@@ -106,12 +103,13 @@
                 android:layout_width="@dimen/dimens_line"
                 android:layout_height="match_parent"
                 android:background="@drawable/line" />
+
             <RelativeLayout
                 android:id="@+id/po_layout"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1.0">
 
                 <ImageView
@@ -125,18 +123,15 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/po" />
+                    android:text="@string/lingliaodan" />
             </RelativeLayout>
 
 
-
         </LinearLayout>
-
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimens_line"
             android:background="@drawable/line" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -161,6 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
+                    android:gravity="center"
                     android:text="@string/invuse_transfer" />
             </RelativeLayout>
 
@@ -184,7 +180,6 @@
                     android:src="@drawable/ic_inventory2" />
 
                 <TextView
-                    android:layout_below="@+id/imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"

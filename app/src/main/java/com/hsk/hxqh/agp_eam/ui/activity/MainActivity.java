@@ -47,6 +47,7 @@ public class MainActivity extends BaseActivity {
     private InventoryFragment inventoryFragment;
     private PoFragment poFragment;
     private CircleImageView img_member;
+    private View incloud;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,7 @@ public class MainActivity extends BaseActivity {
         KuCunLayout = (RelativeLayout) findViewById(R.id.kucun_layout);
         img_member = (CircleImageView) findViewById(R.id.img_member);
         userNameText = (TextView) findViewById(R.id.txt_member);
+        incloud = findViewById(R.id.title_menu_id);
 //        PoLayout = (RelativeLayout) findViewById(R.id.po_layout);
     }
 
@@ -111,7 +113,9 @@ private View.OnClickListener setOnClickListener = new View.OnClickListener() {
             isshow(positiong);
             switch (positiong) {
                 case 0: //代办任务
+                    incloud.setVisibility(View.GONE);
                     if (taskFragment == null) {
+
                         taskFragment = new TaskFragment();
                         Bundle bundle = new Bundle();
                         taskFragment.setArguments(bundle);
@@ -159,6 +163,7 @@ private View.OnClickListener setOnClickListener = new View.OnClickListener() {
                     fragmentTransaction.replace(R.id.container, inventoryFragment).commit();
                     menutitle.setText(R.string.inventory_text);
                     mMenu.toggle();
+                    incloud.setVisibility(View.VISIBLE);
                     break;
 //                case 5://采购管理
 //                    if (poFragment == null) {

@@ -34,9 +34,40 @@
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/invuseline_text_id"
             android:padding="5dp">
+            <RelativeLayout
+                android:layout_alignParentTop="true"
+                android:id="@+id/MatrectransAdapterline_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/drop-down"
+                android:layout_marginBottom="5dp"
+                android:visibility="gone"
+                >
+                <TextView
+                    android:id="@+id/matreq_poline_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/polinenum"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+                <EditText
+                    android:id="@+id/invuseline_poline_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/matreq_poline_title"
+                    android:ellipsize="end"
+                    android:ems="14"
+                    android:maxLines="1"
+                    android:background="@color/sb__transparent"
+                    android:hint="@string/have_not_data"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/item_desc_title"
+                android:layout_below="@+id/MatrectransAdapterline_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/inventory_itemnum_dec"
@@ -48,6 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
+                android:layout_below="@+id/MatrectransAdapterline_id"
                 android:layout_toLeftOf="@+id/drop-down"
                 android:layout_toRightOf="@+id/item_desc_title"
                 android:maxLines="1"
@@ -62,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/item_desc_title"
                 android:layout_marginTop="5dp"
-                android:text="@string/inventory_location"
+                android:text="@string/original_container"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 

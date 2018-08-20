@@ -28,10 +28,11 @@
             android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true">
+            android:padding="5dp">
+
             <TextView
                 android:id="@+id/item_num_title"
                 android:layout_width="wrap_content"
@@ -45,17 +46,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/item_desc_title"
+                android:layout_toRightOf="@+id/item_num_title"
                 android:hint="@string/have_not_data"
+                android:maxLines="1"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:maxLines="1"/>
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/inventory_location_dec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_num_title"
+                android:text="@string/inventory_location_dec"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/inventory_desc_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/inventory_location_text"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/inventory_location_dec"
+                android:hint="@string/have_not_data"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/inventory_curbaltotal_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/item_num_title"
+                android:layout_below="@+id/inventory_location_dec"
                 android:text="@string/inventory_curbaltotal"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -64,57 +85,14 @@
                 android:id="@+id/inventory_curbaltotal_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/inventory_location_text"
+                android:layout_below="@+id/inventory_desc_text"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/item_desc_title"
+                android:layout_toRightOf="@+id/inventory_curbaltotal_title"
                 android:hint="@string/have_not_data"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:maxLines="1"/>
-            <TextView
-                android:id="@+id/item_desc_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/inventory_curbaltotal_title"
-                android:text="@string/inventory_binnum"
+                android:maxLines="1"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/inventory_binnum_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/inventory_curbaltotal_text"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/item_desc_title"
-                android:hint="@string/have_not_data"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:maxLines="1"/>
-
-
-            <TextView
-                android:id="@+id/item_quantity_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/item_desc_title"
-                android:text="@string/inventory_status"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/inventory_status_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/inventory_binnum_text"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/item_desc_title"
-                android:ellipsize="end"
-                android:ems="14"
-                android:hint="@string/have_not_data"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:maxLines="1" />
 
         </RelativeLayout>
     </RelativeLayout>

@@ -1,5 +1,7 @@
 package com.hsk.hxqh.agp_eam.config;
 
+import android.content.SharedPreferences;
+
 /**
  * Created by think on 2015/10/19.
  */
@@ -14,6 +16,7 @@ public class Constants {
 //    public static final String HTTP_API_IP = "http://182.92.8.94:7011";
 //    public static final String HTTP_API_IP = "http://10.3.252.11";
     public static final String HTTP_API_IP = "http://180.76.184.121:7005";
+    //public static final String HTTP_API_IP = "http://eam03.agp.com";
     //public static final String HTTP_API_IP = "http://192.168.199.238:7001";
    //public static final String HTTP_API_IP = "http://192.168.1.145:7001";
     //public static final String HTTP_API_IP = "http://10.3.252.1";
@@ -26,7 +29,7 @@ public class Constants {
 //    public static final String SIGN_IN_URL = "eam03.agp.com/maximo";
 
 
-    /**
+    /**u
      * 通用接口查询*
      */
     public static final String BASE_URL = "/maximo/mobile/common/api";
@@ -35,6 +38,7 @@ public class Constants {
      * 通用修改接口*
      */
 //    public static final String WORK_URL = "http://192.168.100.17:7001/meaweb/services/MOBILESERVICE";
+    //public static final String WORK_URL = "/meaweb/services/MOBILESERVICE";
     public static final String WORK_URL = "/meaweb/services/MOBILESERVICE";
     /*
     * 物资出库新建接口
@@ -201,6 +205,8 @@ public class Constants {
     //UDGETREFUNDLINE
     public static final String UDGETREFUNDLINE_NAME = "UDGETREFUNDLINE";
     public static final String UDGETREFUNDLINE_APPID= "UDGETREFUNDLINE";
+    public static final String UDDEPT_NAME = "UDDEPT";
+    public static final String UDDEPT_APPID= "UDDEPT";
     public static final String USER_INFO = "userinfo";
     public static final String NAME_KEY = "name_key";
     public static final String PASS_KEY = "pass_key";

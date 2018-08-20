@@ -29,6 +29,7 @@ import com.hsk.hxqh.agp_eam.model.MATUSETRANS;
 import com.hsk.hxqh.agp_eam.model.PERSON;
 import com.hsk.hxqh.agp_eam.model.PO;
 import com.hsk.hxqh.agp_eam.model.SPAREPART;
+import com.hsk.hxqh.agp_eam.model.UDDEPT;
 import com.hsk.hxqh.agp_eam.model.UDSTOCK;
 import com.hsk.hxqh.agp_eam.model.UDSTOCKLINE;
 import com.hsk.hxqh.agp_eam.model.UDYEARPLAN;
@@ -1227,7 +1228,7 @@ public class JsonUtils<E> {
                     field[j].setAccessible(true);
                     String name = field[j].getName();    //获取属性的名字
                     Log.i(TAG, "name=" + name);
-                    if (jsonObject.has(name)){
+/*                    if (jsonObject.has(name)){
                         try {
                             // 调用getter方法获取属性值
                             Method getOrSet = udstockline.getClass().getMethod("get" + name);
@@ -1236,12 +1237,12 @@ public class JsonUtils<E> {
                                 Class[] parameterTypes = new Class[1];
                                 parameterTypes[0] = field[j].getType();
                                 getOrSet = udstockline.getClass().getDeclaredMethod("set" + name, parameterTypes);
-                                getOrSet.invoke(udstockline, jsonObject.getInt(name));
+                                getOrSet.invoke(udstockline, jsonObject.getString(name));
 
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                    }
+                    }*/
                     if (jsonObject.has(name) && jsonObject.getString(name) != null && !jsonObject.getString(name).equals("")) {
                         try {
                             // 调用getter方法获取属性值
@@ -2092,47 +2093,47 @@ public class JsonUtils<E> {
 //     * 解析部门信息*
 //     */
 //
-//    public static ArrayList<Uddept> parsingUddept(String data) {
-//        ArrayList<Uddept> list = null;
-//        Uddept uddept = null;
-//        try {
-//            JSONArray jsonArray = new JSONArray(data);
-//            JSONObject jsonObject;
-//            list = new ArrayList<Uddept>();
-//            for (int i = 0; i < jsonArray.length(); i++) {
-//                uddept = new Uddept();
-//                jsonObject = jsonArray.getJSONObject(i);
-//                Field[] field = uddept.getClass().getDeclaredFields();        //获取实体类的所有属性，返回Field数组
-//                for (int j = 0; j < field.length; j++) {     //遍历所有属性
-//                    field[j].setAccessible(true);
-//                    String name = field[j].getName();    //获取属性的名字
-//                    if (jsonObject.has(name) && jsonObject.getString(name) != null && !jsonObject.getString(name).equals("")) {
-//                        try {
-//                            // 调用getter方法获取属性值
-//                            Method getOrSet = uddept.getClass().getMethod("get" + name);
-//                            Object value = getOrSet.invoke(uddept);
-//                            if (value == null) {
-//                                //调用setter方法设属性值
-//                                Class[] parameterTypes = new Class[1];
-//                                parameterTypes[0] = field[j].getType();
-//                                getOrSet = uddept.getClass().getDeclaredMethod("set" + name, parameterTypes);
-//                                getOrSet.invoke(uddept, jsonObject.getString(name));
-//                            }
-//
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//
-//                }
-//                list.add(uddept);
-//            }
-//            return list;
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
+    public static ArrayList<UDDEPT> parsingUddept(Context ctx,String data) {
+        ArrayList<UDDEPT> list = null;
+        UDDEPT uddept = null;
+        try {
+            JSONArray jsonArray = new JSONArray(data);
+            JSONObject jsonObject;
+            list = new ArrayList<UDDEPT>();
+            for (int i = 0; i < jsonArray.length(); i++) {
+                uddept = new UDDEPT();
+                jsonObject = jsonArray.getJSONObject(i);
+                Field[] field = uddept.getClass().getDeclaredFields();        //获取实体类的所有属性，返回Field数组
+                for (int j = 0; j < field.length; j++) {     //遍历所有属性
+                    field[j].setAccessible(true);
+                    String name = field[j].getName();    //获取属性的名字
+                    if (jsonObject.has(name) && jsonObject.getString(name) != null && !jsonObject.getString(name).equals("")) {
+                        try {
+                            // 调用getter方法获取属性值
+                            Method getOrSet = uddept.getClass().getMethod("get" + name);
+                            Object value = getOrSet.invoke(uddept);
+                            if (value == null) {
+                                //调用setter方法设属性值
+                                Class[] parameterTypes = new Class[1];
+                                parameterTypes[0] = field[j].getType();
+                                getOrSet = uddept.getClass().getDeclaredMethod("set" + name, parameterTypes);
+                                getOrSet.invoke(uddept, jsonObject.getString(name));
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+                list.add(uddept);
+            }
+            return list;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+      }
+  }
 //
 //    /**
 //     * 项目日报*
@@ -4721,6 +4722,49 @@ public class JsonUtils<E> {
 
                 }
                 list.add(wpmaterial);
+            }
+            return list;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public static ArrayList<INVUSEEntity> parsingINVUSEEntity(Context ctx, String data) {
+        Log.i(TAG, "udpro data=" + data);
+        ArrayList<INVUSEEntity> list = null;
+        INVUSEEntity  INVUSEEntity = null;
+        try {
+            JSONArray jsonArray = new JSONArray(data);
+            JSONObject jsonObject;
+            list = new ArrayList<INVUSEEntity>();
+            Log.i(TAG, "jsonArray length=" + jsonArray.length());
+            for (int i = 0; i < jsonArray.length(); i++) {
+                INVUSEEntity = new INVUSEEntity();
+                jsonObject = jsonArray.getJSONObject(i);
+                Field[] field = INVUSEEntity.getClass().getDeclaredFields();        //获取实体类的所有属性，返回Field数组
+                for (int j = 0; j < field.length; j++) {     //遍历所有属性
+                    field[j].setAccessible(true);
+                    String name = field[j].getName();    //获取属性的名字
+                    Log.i(TAG, "name=" + name);
+                    if (jsonObject.has(name) && jsonObject.getString(name) != null && !jsonObject.getString(name).equals("")) {
+                        try {
+                            // 调用getter方法获取属性值
+                            Method getOrSet = INVUSEEntity.getClass().getMethod("get" + name);
+                            Object value = getOrSet.invoke(INVUSEEntity);
+                            if (value == null) {
+                                //调用setter方法设属性值
+                                Class[] parameterTypes = new Class[1];
+                                parameterTypes[0] = field[j].getType();
+                                getOrSet = INVUSEEntity.getClass().getDeclaredMethod("set" + name, parameterTypes);
+                                getOrSet.invoke(INVUSEEntity, jsonObject.getString(name));
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                list.add(INVUSEEntity);
             }
             return list;
         } catch (JSONException e) {

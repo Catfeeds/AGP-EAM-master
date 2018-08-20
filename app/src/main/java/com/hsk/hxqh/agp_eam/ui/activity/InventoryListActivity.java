@@ -38,14 +38,21 @@ import com.hsk.hxqh.agp_eam.bean.Results;
 import com.hsk.hxqh.agp_eam.model.INVENTORY;
 import com.hsk.hxqh.agp_eam.model.ITEM;
 import com.hsk.hxqh.agp_eam.model.LOCATIONS;
+import com.hsk.hxqh.agp_eam.ui.activity.invuse.InvuseListActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.invuse.InvusemiAddNewActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.option.Location_chooseActivity;
+import com.hsk.hxqh.agp_eam.ui.widget.BaseViewHolder;
 import com.hsk.hxqh.agp_eam.ui.widget.SwipeRefreshLayout;
+import com.hsk.hxqh.agp_eam.unit.UHFReader;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import android_serialport_api.UHFHXAPI;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 /**
  * Created by Administrator on 2017/3/8.
@@ -87,7 +94,7 @@ public class InventoryListActivity extends BaseActivity implements SwipeRefreshL
 
 
     ArrayList<INVENTORY> items = new ArrayList<INVENTORY>();
-    private String type;
+    private String type = "ITEMNUM";
     private String[] optionList;
     private BaseAnimatorSet mBasIn;
     private BaseAnimatorSet mBasOut;
@@ -100,7 +107,7 @@ private     ArrayList<INVENTORY> inventories;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-        optionList = new String[]{getString(R.string.bianhao),"SCAN"};
+        optionList = new String[]{getString(R.string.bianhao),getString(R.string.wpmaterial_location),getString(R.string.scan),getString(R.string.uhfscan)};
        // getIntentData();
         findViewById();
         initView();
@@ -188,16 +195,32 @@ private     ArrayList<INVENTORY> inventories;
                             break;
                         case 0:
                             normalListDialog.superDismiss();
-                            type = "INVNUM";
-                            select.setVisibility(View.VISIBLE);
+                            type = "ITEMNUM";
+                            select.setVisibility(View.GONE);
                             search.setHint(R.string.item_num_title);
                             break;
-                        case 2:
-                            normalListDialog.superDismiss();
-                            type = "INVDESC";
-                            search.setHint(optionList[2]);
-                            break;
                         case 1:
+                            normalListDialog.superDismiss();
+                            type = "LOCATION";
+                            select.setVisibility(View.VISIBLE);
+                            search.setHint(R.string.udstock_storeroom);
+                            break;
+                        case 3:
+                            normalListDialog.superDismiss();
+                            UHFReader uhfReader = new UHFReader();
+                            UHFHXAPI uhfhxapi = new UHFHXAPI();
+                            String uhfString = uhfReader.reader(uhfhxapi);
+                            if (!uhfString.contains("fail")){
+                                String[] results = uhfString.split("a1a");
+                                type = "INVNUM";
+                                itemAdapter.removeAll(itemAdapter.getData());
+                                getData(results[0]);
+                            }else{
+                                Toast.makeText(InventoryListActivity.this, uhfString + "\nPlace try again",LENGTH_SHORT).show();
+                            }
+
+                            break;
+                        case 2:
                             normalListDialog.superDismiss();
                             Intent intent = new Intent(InventoryListActivity.this, MipcaActivityCapture.class);
                             intent.putExtra("mark", 1); //扫码标识
@@ -212,15 +235,18 @@ private     ArrayList<INVENTORY> inventories;
 
     @Override
     public void onLoad() {
-/*        page++;
-        getData(searchText);*/
+        page++;
+        type="";
+        getData(searchText);
         refresh_layout.setLoading(false);
     }
 
     @Override
     public void onRefresh() {
         page = 1;
+        type = "";
         getData(searchText);
+
     }
 
 
@@ -284,11 +310,15 @@ private     ArrayList<INVENTORY> inventories;
                         for (int i = 0; i < item.size(); i++) {
                             items.add(item.get(i));
                         }
+                        int postion = itemAdapter.getItemCount();
                         addData(item);
+                        BaseViewHolder baseViewHolder = new BaseViewHolder(InventoryListActivity.this, recyclerView);
+                        itemAdapter.onBindViewHolder(baseViewHolder,postion);
                     }
                     nodatalayout.setVisibility(View.GONE);
 
                     initAdapter(items);
+                    type = "";
                 }
             }
 
@@ -296,6 +326,7 @@ private     ArrayList<INVENTORY> inventories;
             public void onFailure(String error) {
                 refresh_layout.setRefreshing(false);
                 nodatalayout.setVisibility(View.VISIBLE);
+                type = "";
             }
         });
 

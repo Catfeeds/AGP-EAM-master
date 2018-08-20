@@ -34,8 +34,7 @@ public class Item_InventoryAdapter extends BaseQuickAdapter<INVENTORY> {
         CardView cardView = helper.getView(R.id.card_container);
         helper.setText(R.id.inventory_location_text, item.getLOCATION());
         helper.setText(R.id.inventory_curbaltotal_text, item.getCURBALTOTAL());
-        helper.setText(R.id.inventory_binnum_text, item.getBINNUM());
-        helper.setText(R.id.inventory_status_text, item.getSTATUS());
+        helper.setText(R.id.inventory_desc_text, item.getLOCATION_DEC());
     }
 
 

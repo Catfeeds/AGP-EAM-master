@@ -34,9 +34,9 @@ public class WorkOrderAdapter extends BaseQuickAdapter<WORKORDER> {
         CardView cardView = helper.getView(R.id.card_container);
         helper.setText(R.id.item_num_text, item.getWONUM());
         helper.setText(R.id.item_desc_text, item.getDESCRIPTION());
-        helper.setText(R.id.item_location_text, item.getLOCATION());
+        helper.setText(R.id.item_location_text, item.getUDTEMPMATERIAL());
+        helper.setText(R.id.item_location_desc_text,item.getWORKORDERUDTDES());
         helper.setText(R.id.item_udstatus_text, item.getUDSTATUS());
-
     }
 
 

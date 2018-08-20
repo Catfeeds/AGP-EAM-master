@@ -8,10 +8,12 @@ import android.content.Context;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.TypeReference;
+import com.hsk.hxqh.agp_eam.application.BaseApplication;
 import com.hsk.hxqh.agp_eam.config.Constants;
 import com.hsk.hxqh.agp_eam.model.DeleteResult;
 import com.hsk.hxqh.agp_eam.model.Result3;
 import com.hsk.hxqh.agp_eam.model.Result4;
+import com.hsk.hxqh.agp_eam.unit.AccountUtils;
 import com.hsk.hxqh.agp_eam.unit.TestUtil;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 
@@ -32,7 +34,7 @@ import static com.hsk.hxqh.agp_eam.config.Constants.HTTP_API_IP;
  * Created by wxs on 2018/1/4.
  */
 public class CommonViewModel extends ViewModel {
-    String ip_adress = HTTP_API_IP + BASE_URL;
+    String ip_adress = AccountUtils.getIpAddress(BaseApplication.getContext()) + BASE_URL;
 
     public <T> MediatorLiveData<ArrayList<T>> getSelectLiveData(Context context, String data, final Class<T> tClass) {
         final MediatorLiveData<ArrayList<T>> resultData = new MediatorLiveData();

@@ -32,6 +32,34 @@
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/dimen_10"
                 android:paddingRight="@dimen/dimen_10">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dimen_10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/polinenum"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/dimens_16sp" />
+
+                    <EditText
+                        android:id="@+id/matusetrans_polinenum"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:background="@color/sb__transparent"
+                        android:gravity="right"
+                        android:hint="@string/have_not_data"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/dimens_16sp" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/loc_layout_id"
@@ -46,7 +74,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/item_num_title"
+                        android:text="@string/inventory_itemnum"
                         android:textColor="@color/light_black"
                         android:textSize="@dimen/dimens_16sp" />
 
@@ -113,6 +141,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     android:padding="@dimen/dimen_10">
 
                     <TextView
@@ -201,7 +230,8 @@
                         android:gravity="right"
                         android:hint="@string/necessary"
                         android:textColor="@color/light_black"
-                        android:textSize="@dimen/dimens_16sp" />
+                        android:textSize="@dimen/dimens_16sp"
+                        android:enabled="false"/>
 
                 </LinearLayout>
                 <View

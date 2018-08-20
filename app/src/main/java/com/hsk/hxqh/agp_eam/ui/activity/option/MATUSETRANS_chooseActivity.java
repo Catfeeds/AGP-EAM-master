@@ -106,7 +106,7 @@ private List<MATUSETRANS> invuselinelist = new ArrayUtil<>();
     protected void initView() {
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backOnClickListener);
-        titleTextView.setText(getResources().getString(R.string.asset_choose_title));
+        titleTextView.setText("");
 //        menuImageView.setImageResource(R.drawable.ic_add);
 //        menuImageView.setOnClickListener(menuImageViewOnClickListener);
 //        confirmlayout.setVisibility(View.GONE);

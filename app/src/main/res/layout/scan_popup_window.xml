@@ -5,12 +5,12 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/udstockline_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/udstockline_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -27,16 +27,86 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimen_5"
-                android:text="SCAN"
+                android:text="@string/scan"
                 android:textSize="@dimen/dimens_16dp" />
 
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/udstocklineuhf_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/size_10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_workplan"/>
+
+            <TextView
+                android:id="@+id/udstocklineUHF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_5"
+                android:text="@string/uhfscan"
+                android:textSize="@dimen/dimens_16dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/udstocklinechecked_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/size_10dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_workplan"/>
+
+            <TextView
+                android:id="@+id/udstocklinechecked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_5"
+                android:text="@string/udstocklinechecked"
+                android:textSize="@dimen/dimens_16dp" />
+
+        </LinearLayout>
+
 
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimens_line"
             android:background="@drawable/line" />
+        <LinearLayout
+            android:id="@+id/udstocklinedifference_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/size_10dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_workplan"/>
+
+            <TextView
+                android:id="@+id/udstocklinedifference"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_5"
+                android:text="@string/havedifference"
+                android:textSize="@dimen/dimens_16dp" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <!--<LinearLayout-->

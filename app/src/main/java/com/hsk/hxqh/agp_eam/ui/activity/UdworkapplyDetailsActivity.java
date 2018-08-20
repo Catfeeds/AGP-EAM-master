@@ -407,9 +407,9 @@ public class UdworkapplyDetailsActivity extends BaseActivity {
             protected void onPostExecute(WebResult s) {
                 super.onPostExecute(s);
                 if (s != null && s.errorMsg != null && s.errorMsg.equals("工作流启动成功")) {
-                    Toast.makeText(UdworkapplyDetailsActivity.this, s.errorMsg, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UdworkapplyDetailsActivity.this, getString(R.string.success), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(UdworkapplyDetailsActivity.this, "工作流启动失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UdworkapplyDetailsActivity.this, getString(R.string.fail), Toast.LENGTH_SHORT).show();
                 }
                 mProgressDialog.dismiss();
             }

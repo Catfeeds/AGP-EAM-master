@@ -33,13 +33,13 @@ public class HttpManager {
     /**
      * 设置待办事项接口*
      */
-    public static String getwfassignmentUrl(String persionid, String vlaue, int curpage, int showcount) {
+    public static String getwfassignmentUrl(String persionid, String vlaue,String type, int curpage, int showcount) {
         if (vlaue.equals("")) {
             String str =  "{'appid':'" + Constants.WFASSIGNMENT_APPID + "','objectname':'" + Constants.WFASSIGNMENT_NAME + "','curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'WFASSIGNMENTID DESC','condition':{'ASSIGNCODE':'" + persionid + "','ASSIGNSTATUS':'=ACTIVE'}}";
             Log.e("待办事件", "getwfassignmentUrl: "+str );
             return str;
         } else {
-            return "{'appid':'" + Constants.WFASSIGNMENT_APPID + "','objectname':'" + Constants.WFASSIGNMENT_NAME + "','curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'WFASSIGNMENTID DESC','condition':{'ASSIGNCODE':'" + persionid + "','ASSIGNSTATUS':'=INACTIVE'}" + ",'sinorsearch':{'WFASSIGNMENTID':'" + vlaue + "','DESCRIPTION':'" + vlaue + "'}}";
+            return "{'appid':'" + Constants.WFASSIGNMENT_APPID + "','objectname':'" + Constants.WFASSIGNMENT_NAME + "','curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'WFASSIGNMENTID DESC','condition':{'ASSIGNCODE':'" + persionid + "','ASSIGNSTATUS':'=INACTIVE','"+type+"':'%"+vlaue+"%'}}";
         }
     }
 
@@ -82,7 +82,7 @@ public class HttpManager {
     }
     public static String getMATRECTRANSUrl(String type,String siteid,int curpage, int showcount){
         return "{'appid':'" + Constants.MATRECTRANS_APPID + "','objectname':'" + Constants.MATRECTRANS_NAME + "'," +
-                "'curpage':" + curpage + ",'showcount':" + showcount +",'option':'read','condition':{'PONUM':'"+type+"','SITEID':'"+siteid+"'},'sinorserch':{'PONUM':'"+type+"','DESCRIPTION':'"+type+"'}}";
+                "'curpage':" + curpage + ",'showcount':" + showcount +",'option':'read','orderby':'POLINENUM asc','condition':{'PONUM':'"+type+"','SITEID':'"+siteid+"'},'sinorserch':{'PONUM':'"+type+"','DESCRIPTION':'"+type+"'}}";
     }
      /**
      * 设置部件查询*
@@ -118,6 +118,14 @@ public class HttpManager {
         } else {
             return "{'appid':'" + Constants.UDWOTRACK_APPID + "','objectname':'" + Constants.WORKORDER_NAME + "'," +
                     "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'WONUM desc','condition':{'WONUM':'" + type + "%'},'sinorsearch':{'WONUM':' "+ search + "','DESCRIPTION':'" + search + "'}}";
+        }
+    }    public static String getWorkOrderUrl(String search, int curpage, int showcount) {
+        if (search.equals("")) {
+            return "{'appid':'" + Constants.UDWOTRACK_APPID + "','objectname':'" + Constants.WORKORDER_NAME + "'," +
+                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'WONUM desc'}";
+        } else {
+            return "{'appid':'" + Constants.UDWOTRACK_APPID + "','objectname':'" + Constants.WORKORDER_NAME + "'," +
+                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'WONUM desc','condition':{'WONUM':'" + search + "%'}}";
         }
     }
     public static String getWorkOrderUrl(String search,String type, int showcount) {
@@ -223,23 +231,20 @@ public class HttpManager {
         if (search.equals("")) {
             return "{'appid':'" + Constants.INVENTORY_APPID + "','objectname':'" + Constants.INVENTORY_NAME + "'," +
                     "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','ITEMSITEID':'ITEMSET','orderby':'ITEMNUM asc'}";
-        } else if (type == null || type.equalsIgnoreCase("")){
+        } else {
             return "{'appid':'" + Constants.INVENTORY_APPID + "','objectname':'" + Constants.INVENTORY_NAME + "'," +
-                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','ITEMSITEID':'ITEMSET','orderby':'ITEMNUM desc','condition':{'ITEMNUM':'"+search+"'}}";
-        }else if (type!=null&&type.equalsIgnoreCase("INVNUM")){
-            return "{'appid':'" + Constants.INVENTORY_APPID + "','objectname':'" + Constants.INVENTORY_NAME + "'," +
-                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','ITEMSITEID':'ITEMSET','orderby':'ITEMNUM desc','condition':{'LOCATION':'"+search+"'}}";
-        }else if (type!=null&&type.equalsIgnoreCase("INVDESV")){
-            return "{'appid':'" + Constants.INVENTORY_APPID + "','objectname':'" + Constants.INVENTORY_NAME + "'," +
-                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','ITEMSITEID':'ITEMSET','orderby':'ITEMNUM desc','condition':{'LOCATION_DEC':'"+search+"'}}";
-        }else {
-            return "{'appid':'" + Constants.INVENTORY_APPID + "','objectname':'" + Constants.INVENTORY_NAME + "'," +
-                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','ITEMSITEID':'ITEMSET','orderby':'ITEMNUM asc','condition':{'ITEMNUM_DEC':'"+search+"'}}";
+                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','ITEMSITEID':'ITEMSET','orderby':'ITEMNUM desc','condition':{'"+type+"':'"+search+"'}}";
         }
     }
-    public static String getInventoryUrl(String search, int curpage, int showcount,int s) {
+    public static String getInventoryUrl(String storeroom,String search, int curpage, int showcount,int s) {
+        if (search.equals("")){
             return "{'appid':'" + Constants.INVENTORY_APPID + "','objectname':'" + Constants.INVENTORY_NAME + "'," +
-                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','ITEMSITEID':'ITEMSET','orderby':'ITEMNUM desc','condition':{'LOCATION':'="+ search + "'}}";
+                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','ITEMSITEID':'ITEMSET','orderby':'ITEMNUM desc','condition':{'LOCATION':'="+ storeroom + "'}}";
+        }else {
+            return "{'appid':'" + Constants.INVENTORY_APPID + "','objectname':'" + Constants.INVENTORY_NAME + "'," +
+                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','ITEMSITEID':'ITEMSET','orderby':'ITEMNUM desc','condition':{'LOCATION':'="+ storeroom + "','ITEMNUM':'"+search+"'}}";
+
+        }
     }
 
     /**
@@ -261,8 +266,14 @@ public class HttpManager {
     public static String getUdstocklineUrl(String stocknum,int curpage, int showcount) {
         return "{'appid':'" + Constants.UDSTOCKLINE_APPID + "','objectname':'" + Constants.UDSTOCKLINE_NAME + "','option':'read','orderby':'SN asc','condition':{'STOCKNUM':'" + stocknum + "'}}";
     }
+    public static String getUdstocklineUrl(String stocknum) {
+        return "{'appid':'" + Constants.UDSTOCKLINE_APPID + "','objectname':'" + Constants.UDSTOCKLINE_NAME + "','option':'read','orderby':'SN asc','condition':{'STOCKNUM':'" + stocknum + "','ISCHECK':'1'}}";
+    }
     public static String getUdstocklineUrl(String stocknum,String itemnum,int curpage,int showcount) {
         return "{'appid':'" + Constants.UDSTOCKLINE_APPID + "','objectname':'" + Constants.UDSTOCKLINE_NAME +"','curpage':" + curpage + ",'showcount':" + showcount +  ",'option':'read','orderby':'SN asc','condition':{'STOCKNUM':'" + stocknum + "','ITEMNUM':'"+itemnum+"'}}";
+    }
+    public static String getUdstocklineUrl(String stocknum,String binnum) {
+        return "{'appid':'" + Constants.UDSTOCKLINE_APPID + "','objectname':'" + Constants.UDSTOCKLINE_NAME +"','option':'read','orderby':'SN asc','condition':{'STOCKNUM':'" + stocknum + "','BINNUM':'"+binnum+"'}}";
     }
 
     /**
@@ -271,16 +282,16 @@ public class HttpManager {
     public static String getItemUrl(String search,String type, int curpage, int showcount) {
         if (search.equals("")) {
             return "{'appid':'" + Constants.ITEM2_APPID + "','objectname':'" + Constants.ITEM2_NAME + "'," +
-                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'ITEMNUM desc'}";
+                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'ITEMNUM asc'}";
         } else {
             if (type == null || type.equals("")) {
-                return "{'appid':'" + Constants.ITEM2_APPID + "','objectname':'" + Constants.ITEM2_NAME + "','curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','condition':{'ITEMNUM':'=" + search + "'}}";
+                return "{'appid':'" + Constants.ITEM2_APPID + "','objectname':'" + Constants.ITEM2_NAME + "','curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'ITEMNUM asc','condition':{'ITEMNUM':'=" + search + "'}}";
             }else if (type.equals("IN26")){
-                return "{'appid':'" + Constants.ITEM2_APPID + "','objectname':'" + Constants.ITEM2_NAME + "','curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','condition':{'IN26':'=" + search + "'}}";
+                return "{'appid':'" + Constants.ITEM2_APPID + "','objectname':'" + Constants.ITEM2_NAME + "','curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'ITEMNUM asc','condition':{'IN26':'=" + search + "'}}";
             }else if (type.equals("IN27")){
-                return "{'appid':'" + Constants.ITEM2_APPID + "','objectname':'" + Constants.ITEM2_NAME + "','curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','condition':{'IN27':'=" + search + "'}}";
+                return "{'appid':'" + Constants.ITEM2_APPID + "','objectname':'" + Constants.ITEM2_NAME + "','curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'ITEMNUM asc','condition':{'IN27':'=" + search + "'}}";
             }else if (type.equals("DESC")){
-                return "{'appid':'" + Constants.ITEM2_APPID + "','objectname':'" + Constants.ITEM2_NAME + "','curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','condition':{'DESCRIPTION':'" + search + "'}}";
+                return "{'appid':'" + Constants.ITEM2_APPID + "','objectname':'" + Constants.ITEM2_NAME + "','curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'ITEMNUM asc','condition':{'DESCRIPTION':'" + search + "'}}";
             }else {
                 return "{'appid':'" + Constants.ITEM2_APPID + "','objectname':'" + Constants.ITEM2_NAME + "','curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','condition':{'ITEMNUM':'" + search + "'}}";
             }
@@ -310,6 +321,13 @@ public class HttpManager {
     public static String getInvbalancesUrl(String itemnum,String location,String siteid,String itemsetid,int curpage, int showcount) {
         return "{'appid':'" + Constants.INVENTORY_APPID + "','objectname':'" + Constants.INVBALANCES_NAME + "'," +
                 "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','condition':{'itemnum':'" + itemnum + "','location':'" + location + "','itemsetid':'"+ itemsetid +"'}}";
+    }
+    public static String getInvbalancesUrl(String search,String location,String binnum) {
+        if (search.equals("")){
+            return "{'appid':'" + Constants.INVENTORY_APPID + "','objectname':'" + Constants.INVBALANCES_NAME + "','option':'read','condition':{'LOCATION':'"+location+"','BINNUM':'"+binnum+"'}}";
+        }else {
+            return "{'appid':'" + Constants.INVENTORY_APPID + "','objectname':'" + Constants.INVBALANCES_NAME + "','option':'read','condition':{'LOCATION':'"+location+"','BINNUM':'"+binnum+"','ITEMNUM':'"+search+"'}}";
+        }
     }
 
     /**
@@ -432,6 +450,16 @@ public class HttpManager {
    public static String getPOlineURl(String type,String udstation){
         return "{'appid':'" + Constants.POLINE_APPID+ "','objectname':'" + Constants.POLINE_NAME + "','option':'read','condition':{'PONUM':'="+type+"','STORELOC':'="+udstation+"'}}";
     }
+    public static String getDeptUrl(String search, int curpage, int showcount) {
+        if (search.equals("")) {
+            return "{'appid':'" + Constants.UDDEPT_APPID + "','objectname':'" + Constants.UDDEPT_NAME + "'," +
+                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'DEPTNUM ASC','condition':{'TYPE':'!=01','TYPE':'!=02'}}";
+        } else {
+            return "{'appid':'" + Constants.PERSON_APPID + "','objectname':'" + Constants.PERSON_NAME + "'," +
+                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'DEPTNUM ASC','condition':{'TYPE':'!=01','TYPE':'!=02'},'sinorsearch':{'LOCATION':' "+ search + "','DESCRIPTION':'" + search + "'}}";
+        }
+    }
+
 
 
 
@@ -448,7 +476,8 @@ public class HttpManager {
     public static void loginWithUsername(final Context cxt, final String username, final String password, String imei,
                                          final HttpRequestHandler<String> handler) {
 
-        String ip_adress = Constants.HTTP_API_IP + Constants.SIGN_IN_URL;
+        //String ip_adress = Constants.HTTP_API_IP + Constants.SIGN_IN_URL;
+        String ip_adress = AccountUtils.getIpAddress(cxt) + Constants.SIGN_IN_URL;
 
         Log.i(TAG,"ip_adress="+ip_adress);
         AsyncHttpClient client = new AsyncHttpClient();
@@ -489,7 +518,8 @@ public class HttpManager {
      * 不分页获取信息方法*
      */
     public static void getData(final Context cxt, String data, final HttpRequestHandler<Results> handler) {
-        String url = Constants.HTTP_API_IP + Constants.BASE_URL;
+        //String url = Constants.HTTP_API_IP + Constants.BASE_URL;
+        String url = AccountUtils.getIpAddress(cxt) + Constants.BASE_URL;
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.put("data", data);
@@ -524,7 +554,8 @@ public class HttpManager {
      */
     public static void getDataPagingInfo(final Context cxt, String data, final HttpRequestHandler<Results> handler) {
         Log.i(TAG, "data=" + data);
-        String url = Constants.HTTP_API_IP + Constants.BASE_URL;
+        //String url = Constants.HTTP_API_IP + Constants.BASE_URL;
+        String url = AccountUtils.getIpAddress(cxt) + Constants.BASE_URL;
             AsyncHttpClient client = new AsyncHttpClient();
             RequestParams params = new RequestParams();
         params.put("data", data);
@@ -555,7 +586,7 @@ public class HttpManager {
      */
     public static void getDataPagingInfo2(final Context cxt, String data, final HttpRequestHandler<Results> handler) {
         Log.i(TAG, "data=" + data);
-        String url = Constants.HTTP_API_IP + Constants.BASE_URL;
+        String url = AccountUtils.getIpAddress(cxt) + Constants.BASE_URL;
         //SyncHttpClient client = new SyncHttpClient();
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();

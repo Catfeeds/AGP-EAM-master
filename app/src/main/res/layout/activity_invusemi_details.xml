@@ -47,6 +47,7 @@
                         android:padding="@dimen/size_5dp">
 
                         <TextView
+                            android:id="@+id/ordername"
                             android:layout_width="@dimen/dimens_150dp"
                             android:layout_height="wrap_content"
                             android:text="@string/INVUSENUMI"
@@ -160,6 +161,7 @@
                         android:padding="@dimen/size_5dp">
 
                         <TextView
+                            android:id="@+id/yuankufang"
                             android:layout_width="@dimen/dimens_150dp"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"

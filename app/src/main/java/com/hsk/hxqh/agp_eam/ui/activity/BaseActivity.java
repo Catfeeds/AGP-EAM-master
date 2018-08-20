@@ -132,6 +132,7 @@ public abstract class BaseActivity extends ActionBarActivity  implements Lifecyc
 //        progressDialog.setIndeterminateDrawable(drawable);
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(true);
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage(message);
         progressDialog.show();
     }

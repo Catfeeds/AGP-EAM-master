@@ -17,10 +17,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.flyco.animation.BaseAnimatorSet;
+import com.flyco.animation.BounceEnter.BounceTopEnter;
+import com.flyco.animation.SlideExit.SlideBottomExit;
+import com.flyco.dialog.listener.OnOperItemClickL;
+import com.flyco.dialog.widget.NormalListDialog;
 import com.hsk.hxqh.agp_eam.R;
 import com.hsk.hxqh.agp_eam.adpter.BaseQuickAdapter;
 import com.hsk.hxqh.agp_eam.adpter.WfassignmentAdapter;
@@ -30,12 +38,19 @@ import com.hsk.hxqh.agp_eam.api.JsonUtils;
 import com.hsk.hxqh.agp_eam.bean.Results;
 import com.hsk.hxqh.agp_eam.model.PROCESSNAME;
 import com.hsk.hxqh.agp_eam.model.WFASSIGNMENT;
+import com.hsk.hxqh.agp_eam.ui.activity.InventoryListActivity;
+import com.hsk.hxqh.agp_eam.ui.activity.MipcaActivityCapture;
 import com.hsk.hxqh.agp_eam.ui.activity.Wfm_Details_Activity;
 import com.hsk.hxqh.agp_eam.ui.widget.SwipeRefreshLayout;
 import com.hsk.hxqh.agp_eam.unit.AccountUtils;
+import com.hsk.hxqh.agp_eam.unit.UHFReader;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import android_serialport_api.UHFHXAPI;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 /**
  * Created by Administrator on 2017/2/27.
@@ -45,6 +60,7 @@ import java.util.List;
 
 public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, SwipeRefreshLayout.OnLoadListener{
     private static final String TAG = "TaskFragment";
+    private ImageView menuImageView;
     LinearLayoutManager layoutManager;
     /**
      * RecyclerView*
@@ -71,6 +87,9 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
      */
     private String searchText = "";
     private int page = 1;
+    private String type = "";
+    private BaseAnimatorSet mBasIn;
+    private BaseAnimatorSet mBasOut;
 
 
     ArrayList<WFASSIGNMENT> items = new ArrayList<WFASSIGNMENT>();
@@ -84,7 +103,8 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container,
                 false);
-
+        mBasIn = new BounceTopEnter();
+        mBasOut = new SlideBottomExit();
         findByIdView(view);
         initView();
         return view;
@@ -99,6 +119,7 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         refresh_layout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
         nodatalayout = (LinearLayout) view.findViewById(R.id.have_not_data_id);
         search = (EditText) view.findViewById(R.id.search_edit);
+        menuImageView = (ImageView) view.findViewById(R.id.title_more);
     }
 
 
@@ -107,7 +128,9 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
      */
     private void initView() {
         setSearchEdit();
-
+        menuImageView.setBackgroundResource(R.drawable.ic_more);
+        menuImageView.setVisibility(View.VISIBLE);
+        menuImageView.setOnClickListener(optionOnClickListener);
         layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         layoutManager.scrollToPosition(0);
@@ -150,8 +173,8 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     private void setSearchEdit() {
         SpannableString msp = new SpannableString(getString(R.string.search_text));
         Drawable drawable = getResources().getDrawable(R.drawable.ic_search);
-        msp.setSpan(new ImageSpan(drawable), 0, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        msp.setSpan(new ImageSpan(drawable), 0, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         search.setHint(msp);
         search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
@@ -177,13 +200,43 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
             }
         });
     }
-
+    private View.OnClickListener optionOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            final NormalListDialog normalListDialog;
+            normalListDialog = new NormalListDialog(TaskFragment.this.getActivity(),new String[]{getString(R.string.bianhao),getString(R.string.INVUSE_DESCRIPTION)});
+            normalListDialog.title(getString(R.string.chaxuntj))
+                    .showAnim(mBasIn)//
+                    .dismissAnim(mBasOut)//
+                    .show();
+            normalListDialog.setOnOperItemClickL(new OnOperItemClickL() {
+                @Override
+                public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                    linetypeTextView.setText(linetypeList[position]);
+                    search.getText().clear();
+                    switch (position){
+                        case 0:
+                            normalListDialog.superDismiss();
+                            type = "WFASSIGNMENTID";
+                            search.setHint(R.string.bianhao);
+                            break;
+                        case 1:
+                            normalListDialog.superDismiss();
+                            type = "DESCRIPTION";
+                            search.setHint(R.string.asset_description);
+                            break;
+                    }
+//                    normalListDialog.dismiss();
+                }
+            });
+        }
+    };
 
     /**
      * 获取数据*
      */
     private void getData(String search) {
-        HttpManager.getDataPagingInfo(getActivity(), HttpManager.getwfassignmentUrl(AccountUtils.getpersonId(getActivity()),search, page, 20), new HttpRequestHandler<Results>() {
+        HttpManager.getDataPagingInfo(getActivity(), HttpManager.getwfassignmentUrl(AccountUtils.getpersonId(getActivity()),search,type, page, 20), new HttpRequestHandler<Results>() {
             @Override
             public void onSuccess(Results results) {
                 Log.i(TAG, "data=" + results);
@@ -204,14 +257,13 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                             initAdapter(items);
                         }
                         for (int i = 0; i < item.size(); i++) {
-                            if (item.get(i).getPROCESSNAME().indexOf(PROCESSNAME.PROCESSNAME)>= 0){
+                            if (PROCESSNAME.PROCESSNAME.indexOf(item.get(i).getPROCESSNAME())>= 0){
                                 items.add(item.get(i));
                             }
                         }
                         addData(items);
                     }
                     nodatalayout.setVisibility(View.GONE);
-
                     initAdapter(items);
                 }
             }

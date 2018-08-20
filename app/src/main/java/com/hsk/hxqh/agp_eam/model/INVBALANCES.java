@@ -18,6 +18,15 @@ public class INVBALANCES implements Serializable {
     public String RECONCILED;//已调整
     private String ITEMNUM;//
     private String DESCRIPTION;//
+    private String ITEMNUM_DEC;
+
+    public String getITEMNUM_DEC() {
+        return ITEMNUM_DEC;
+    }
+
+    public void setITEMNUM_DEC(String ITEMNUM_DEC) {
+        this.ITEMNUM_DEC = ITEMNUM_DEC;
+    }
 
     public String getDESCRIPTION() {
         return DESCRIPTION;

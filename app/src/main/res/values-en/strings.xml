@@ -4,11 +4,12 @@
     <string name="lan_en">English</string>
     <string name="lan_ru">Russian</string>
     <string name="select_language">Choose a language</string>
-    <string name="langlange">langlange</string>
-    <string name="bianhao">NUM</string>
+    <string name="langlange">Langlange</string>
+    <string name="bianhao">Number</string>
     <string name="miaoshu">DESCRIPTION</string>
     <string name="chaxuntj">Query Conditions</string>
-    <string name="receive">Receive</string>
+    <string name="receive">Receiving</string>
+    <string name="receiveline">Receiving Line</string>
 
 
     <string name="receipts">RECEIPTS</string>
@@ -17,7 +18,7 @@
     <string name="receivedcost">Receivedcost</string>
     <string name="lineinfo">LineInfo</string>
 
-    <string name="app_name">AGP-EAM</string>
+    <string name="app_name">AGP-RFID</string>
 
     <string name="login_please_login">Not logged in</string>
 
@@ -28,15 +29,15 @@
     <string name="workorder_text">Work Order Management</string>
     <string name="inventory_text">Inventory Management</string>
     <string name="po_text">Procurement Management</string>
-    <string name="refund">Material Retreating</string>
+    <string name="refund">Material Return</string>
     <string name="materiel_text">Material withdrawing</string>
 
     <!--Login_activity-->
     <string name="please_userid">Please enter your user name</string>
     <string name="please_password">Please enter the password</string>
     <string name="remenber_pass">Remember the password</string>
-    <string name="login">The login</string>
-    <string name="version_text">The version number:</string>
+    <string name="login">Login</string>
+    <string name="version_text">Version</string>
 
     <!-- 登录界面 key-->
     <string name="logined_member_username">logined_member_username</string>
@@ -151,7 +152,7 @@
     <string name="work_cm">Failure Report WorkOrder</string>
     <string name="work_pm">Maintain Workorder</string>
     <string name="work_wonum">Work Order:</string>
-    <string name="work_description">describe:</string>
+    <string name="work_description">Description:</string>
     <string name="work_worktype">Work Type:</string>
     <string name="work_assetnum">Asset:</string>
     <string name="work_assetdes">Asset description:</string>
@@ -230,12 +231,12 @@
     <string name="matusetrans_actualdate">Actual Date:</string>
 
     <!--库存-->
-    <string name="outbound">outbound</string>
+    <string name="outbound">Material Issue</string>
     <string name="inventory">Inventory</string>
-    <string name="inventory_itemnum">Item:</string>
-    <string name="inventory_itemnum_dec">Item Des:</string>
+    <string name="inventory_itemnum"> Material Code:</string>
+    <string name="inventory_itemnum_dec">Material Desc:</string>
     <string name="inventory_location">Storeroom:</string>
-    <string name="inventory_location_dec">Storeroom Des:</string>
+    <string name="inventory_location_dec">Storeroom Desc:</string>
     <string name="inventory_status">Status:</string>
     <string name="inventory_issueunit">Unit:</string>
     <string name="inventory_curbaltotal">Current Balance:</string>
@@ -251,11 +252,12 @@
     <string name="invbalances_physcntdate">Physical Count Date:</string>
     <string name="invbalances_reconciled">Reconciled?</string>
 
-    <string name="udstock">stock-taking</string>
-    <string name="udstock_stocknum">Stock Checking No.:</string>
+    <string name="udstock">Stock Checking</string>
+    <string name="udstocklinechecked">Material checked List</string>
+    <string name="udstock_stocknum">Stock Checking Num:</string>
     <string name="udstock_description">Description:</string>
-    <string name="udstock_storeroom">Storeroom No.:</string>
-    <string name="udstock_udstockstodes">Storeroom:</string>
+    <string name="udstock_storeroom">Storeroom:</string>
+    <string name="udstock_udstockstodes">Storeroom Desc:</string>
     <string name="udstock_invowner">Storeroom Owner:</string>
     <string name="udstock_udstockinvdis">Owner Name:</string>
     <string name="udstock_remark">Remarks:</string>
@@ -265,16 +267,16 @@
     <string name="udstockline">Material List</string>
     <string name="udstockline_sn">SN:</string>
     <string name="udstockline_itemnum">Material No.:</string>
-    <string name="udstockline_udstocklineitedes">Material:</string>
+    <string name="udstockline_udstocklineitedes">Material Desc:</string>
     <string name="udstockline_udstocklineiteiss">Unit:</string>
     <string name="udstockline_quantity1">Original Quantity:</string>
     <string name="udstockline_quantity2">Actual Quantity:</string>
     <string name="udstockline_difference">Difference:</string>
     <string name="udstockline_reason">Reason:</string>
 
-    <string name="po">stock management</string>
-    <string name="invuse_issue">Warehouse Management</string>
-    <string name="invuse_transfer">Material allocation</string>
+    <string name="po">Material Request</string>
+    <string name="invuse_issue">Material Issue</string>
+    <string name="invuse_transfer">Material Transfer</string>
     <string name="invuse_item">Material Account</string>
 
     <!--工作申请-->
@@ -302,7 +304,7 @@
     <string name="createdate_text">Create Date:</string>
 
     <!--工作申请-->
-    <string name="wonum_text">Work order no:</string>
+    <string name="wonum_text">WO Num:</string>
     <string name="plannum_text">Year Plan No:</string>
     <string name="woapplynum_text">Work Request No:</string>
     <string name="purpose_text">Purpose:</string>
@@ -320,31 +322,31 @@
     <string name="person_choose_title">person</string>
     <string name="udyearplan_choose_title">yearly plan</string>
     <string name="companies_choose_title">supplier</string>
-    <string name="cancel">cancel</string>
-    <string name="save">save</string>
-    <string name="start">be starting…</string>
+    <string name="cancel">ancel</string>
+    <string name="save">Save</string>
+    <string name="start">e starting…</string>
     <string name="wfm_approve_text">The examination and approval</string>
-    <string name="wfm_reject_text">rejected</string>
+    <string name="wfm_reject_text">Rejected</string>
     <string name="approve">In the examination and approval to submit…</string>
     <string name="check_photo_hint">Please select need to upload images</string>
     <string name="check_phtot">Choose images</string>
     <string name="work_commit">Image upload</string>
     <string name="attachment_details">Picture to view</string>
     <string name="wfm_title_text">Approval workflow</string>
-    <string name="wfm_pass_text">pass</string>
-    <string name="wfm_notpass_text">noPass</string>
-    <string name="wfm_cancel_text">cancel</string>
+    <string name="wfm_pass_text">Pass</string>
+    <string name="wfm_notpass_text">NotPass</string>
+    <string name="wfm_cancel_text">Cancel</string>
     <string name="wfm_approveoption_text">The approval opinions</string>
 
 
     <!--物资台帐-->
-    <string name="item_itemnum">Material:</string>
-    <string name="item_description">Material Description:</string>
+    <string name="item_itemnum">Material Code:</string>
+    <string name="item_description">Material Desc:</string>
     <string name="item_in19">Module:</string>
     <string name="item_in20">Remarks:</string>
-    <string name="item_in26">First Class:</string>
+    <string name="item_in26">Group Code:</string>
     <string name="item_in26desc">Class Desc:</string>
-    <string name="item_in27">Second Class:</string>
+    <string name="item_in27">Class Code:</string>
     <string name="item_in27desc">Class Desc:</string>
     <string name="item_rotating">Fixed Asset？</string>
     <string name="item_inspectionrequired">Inspect on Receipt？</string>
@@ -353,61 +355,72 @@
     <string name="item_orderunit">Order Unit:</string>
     <string name="item_orderunitdesc">Unit Desc:</string>
     <string name="item_inventory">Inventory:</string>
-    <string name="item_quantity2">realQTY:</string>
+    <string name="item_quantity2">Actual Quantity:</string>
     <string name="item_quantity1">QTY:</string>
     <string name="item_orderqty">orderQty:</string>
     <string name="item_RECEIVEDQTY">RECEIVEDQTY:</string>
 
 
     <!--物料退库-->
-    <string name="INVUSENUMI">Material delivery order</string>
+    <string name="INVUSENUMI">Material Issue</string>
     <string name="INVUSENUMR">Material return order</string>
     <string name="INVUSE_DESCRIPTION">Description:</string>
     <string name="INVUSE_UDFILENO">File coding</string>
-    <string name="FROMSTORELOC">Original Storeroom:</string>
-    <string name="LOCATIONS_DESCRIPTION">Original Storeroom Description:</string>
+    <string name="FROMSTORELOC">From Storeroom:</string>
+    <string name="fromstoreroom">From Storeroom</string>
+    <string name="LOCATIONS_DESCRIPTION">Storeroom Desc:</string>
     <string name="UDDEPT_DEPTNUM">Station:</string>
     <string name="UDDEPT_DESCRIPTION">Station Description:</string>
-    <string name="INVUSE_INVOWNER">Storeroom owner:</string>
+    <string name="INVUSE_INVOWNER">Inventory Owner:</string>
     <string name="PERSON_DISPLAYNAME">Storeroom owner Description:</string>
     <string name="PERSON_DISPLAYNAME1">Create By:</string>
     <string name="INVUSE_UDCREATEDATE">Create Date:</string>
-    <string name="UDTOWAREHOUSE">TOWAREHOUSE</string>
-    <string name="UDINVOWNER">invowner</string>
-    <string name="SUBJECT">subject</string>
-    <string name="original_container">original_container</string>
+    <string name="UDTOWAREHOUSE">Apply Storeroom</string>
+    <string name="UDINVOWNER">Apply Inventory Owner</string>
+    <string name="SUBJECT">Subject</string>
+    <string name="original_container">From Bin:</string>
     <string name="original_batch">original_batch</string>
-    <string name="usetype">usetype</string>
+    <string name="usetype">Usetype</string>
     <string name="ISSUEUNIT">ISSUEUNIT</string>
 
     <!--Invuseline-->
-    <string name="INVUSELINE_FROMLOT">FromLoc:</string>
+    <string name="INVUSELINE_FROMLOT">FromLot:</string>
     <string name="conversion">Conversion:</string>
-    <string name="toBin">TargetContainer:</string>
+    <string name="toBin">To Bin:</string>
     <string name="tofromLoc">TargetWareHouse:</string>
-<string name="toLoc">TargetBatch:</string>
+<string name="toLoc">To Lot:</string>
 
 
     <string name="success">success</string>
     <string name="fail">fail</string>
-    <string name="option">option</string>
+    <string name="option">Option</string>
     <string name="back">Back</string>
     <string name="xinjian">New</string>
     <string name="newline">New Line</string>
-    <string name="startwf">Sure to Start the Workflow?</string>
+    <string name="startwf">Start the Workflow?</string>
     <string name="yes">YES</string>
     <string name="no">NO</string>
     <string name="wfgon">Approval workflow</string>
-    <string name="suretosave">Sure to Save?</string>
+    <string name="suretosave">Save?</string>
     <string name="genterthan0">Please specify the number greater than zero</string>
     <string name="reservation">Select the scheduled items</string>
-    <string name="scan">Barcode scanning</string>
+    <string name="scan">Bar Code Scan</string>
+    <string name="uhfscan">Magnetic Stripe Scan</string>
     <string name="returnitems">Select the returned items</string>
     <string name="reserveditems">Select the reserved items</string>
     <string name="delete">Delete</string>
-    <string name="lingliaodan">Material requisition</string>
-    <string name="suretosdelete">Sure to Delete？</string>
-    <string name="update">update</string>
+    <string name="lingliaodan">Material Request</string>
+    <string name="suretosdelete">Delete？</string>
+    <string name="update">Update</string>
+    <string name="confirm">Confirm</string>
+    <string name="tip">Tip</string>
+    <string name="upload">Upload</string>
+    <string name="havedifference">Have difference</string>
+    <string name="checknecessary">Please check the required fields</string>
+    <string name="queren">OK</string>
+    <string name="polinenum">POLine Num:</string>
+
+
 
 
 </resources>

@@ -288,9 +288,9 @@ public class WxDemoActivity extends BaseActivity implements ImagePickerAdapter.O
                                 protected void onPostExecute(String workResult) {
                                     super.onPostExecute(workResult);
                                     if (workResult == null) {
-                                        MessageUtils.showMiddleToast(WxDemoActivity.this, "图片上传失败");
+                                        MessageUtils.showMiddleToast(WxDemoActivity.this, getString(R.string.fail));
                                     } else {
-                                        MessageUtils.showMiddleToast(WxDemoActivity.this, "图片上传成功");
+                                        MessageUtils.showMiddleToast(WxDemoActivity.this, getString(R.string.success));
                                         finish();
                                     }
                                     closeProgressDialog();
@@ -308,7 +308,7 @@ public class WxDemoActivity extends BaseActivity implements ImagePickerAdapter.O
 
                     @Override
                     public void onError(Throwable e) {
-                        MessageUtils.showMiddleToast(WxDemoActivity.this, "图片上传失败");
+                        MessageUtils.showMiddleToast(WxDemoActivity.this, getString(R.string.fail));
                     }
                 });
 

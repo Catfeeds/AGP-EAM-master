@@ -36,10 +36,13 @@ public class InvuseAdapter extends BaseQuickAdapter<INVUSEEntity> {
         TextView INVUSELOCATIONSDES = helper.getView(R.id.item_status_title);
         INVUSELOCATIONSDES.setText(R.string.inventory_location_dec);
         helper.setText(R.id.INVUSENUM, item.getINVUSENUM());
+        TextView desc = helper.getView(R.id.item_desc_title);
+        desc.setText(R.string.udstock_description);
         helper.setText(R.id.DESCRIPTION, item.getDESCRIPTION());
         helper.setText(R.id.FROMSTORELOC, item.getFROMSTORELOC());
         helper.setText(R.id.INVUSELOCATIONSDES, item.getINVUSELOCATIONSDES());
-
+        helper.setVisible(R.id.item_location_desc_title,false);
+        helper.setVisible(R.id.item_location_desc_text,false);
     }
 
 

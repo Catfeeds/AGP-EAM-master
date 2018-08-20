@@ -63,7 +63,7 @@ public class INVRESERVE_chooseActivity extends BaseActivity implements SwipeRefr
     private Invresvre_chooseAdapter assetChooseAdapter;
     private SwipeRefreshLayout refresh_layout = null;
     private int page = 1;
-    private String[] optionList = new String[]{"SCAN"};
+    private String[] optionList;
     /**
      * 编辑框*
      */
@@ -118,7 +118,7 @@ public class INVRESERVE_chooseActivity extends BaseActivity implements SwipeRefr
     protected void initView() {
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backOnClickListener);
-        titleTextView.setText("Reserve");
+        titleTextView.setText(getString(R.string.reserveditems));
         menuImageView.setVisibility(View.VISIBLE);
         menuImageView.setOnClickListener(optionOnClickListener);
 //        menuImageView.setImageResource(R.drawable.ic_add);
@@ -140,6 +140,7 @@ public class INVRESERVE_chooseActivity extends BaseActivity implements SwipeRefr
 
         refresh_layout.setOnRefreshListener(this);
         refresh_layout.setOnLoadListener(this);
+        optionList = new String[]{getString(R.string.scan)};
 
         setSearchEdit();
 
@@ -151,7 +152,7 @@ public class INVRESERVE_chooseActivity extends BaseActivity implements SwipeRefr
         @Override
         public void onClick(View v) {
             final NormalListDialog normalListDialog = new NormalListDialog(INVRESERVE_chooseActivity.this, optionList);
-            normalListDialog.title("查询条件")
+            normalListDialog.title(getString(R.string.chaxuntj))
                     .showAnim(mBasIn)//
                     .dismissAnim(mBasOut)//
                     .show();

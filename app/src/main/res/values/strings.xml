@@ -9,6 +9,7 @@
     <string name="miaoshu">描述</string>
     <string name="chaxuntj">查询条件</string>
     <string name="receive">接收</string>
+    <string name="receiveline">接收行</string>
 <!--//物资领用-->
     <string name="receipts">收据</string>
     <string name="orderData">订购日期</string>
@@ -17,7 +18,7 @@
     <string name="lineinfo">行信息</string>
 
 
-    <string name="app_name">AGP-资产管理</string>
+    <string name="app_name">AGP-RFID</string>
     <string name="login_please_login">尚未登录</string>
 
     <!--功能项-->
@@ -115,7 +116,7 @@
     <!--<string name="wfm_details_text">查看表单详情</string>-->
     <!--<string name="wfm_approve_text">审批</string>-->
     <!--<string name="wfm_detail_title">流程审批详情</string>-->
-    
+
     <!--资产-->
     <string name="asset_title">资产详情</string>
     <string name="asset_assetnum">资产编号:</string>
@@ -138,7 +139,7 @@
     <string name="asset_udmaintime">出厂时间:</string>
     <string name="asset_udusetime">投用日期:</string>
     <string name="asset_udremarks">备注:</string>
-    
+
     <string name="asset_bujian">部件</string>
     <string name="asset_beijian">备件</string>
     <string name="asset_workorder">工单历史</string>
@@ -148,7 +149,7 @@
     <string name="asset_statusdate">状态日期:</string>
     <string name="asset_actstart">实际开始时间:</string>
     <string name="asset_actfinish">实际完成时间:</string>
-    
+
     <!--工单-->
     <string name="work_title">工单详情</string>
     <string name="work_cm">故障/隐患工单</string>
@@ -245,7 +246,7 @@
     <string name="inventory_curbaltotal">当前余量:</string>
     <string name="inventory_avblbalance">可用量:</string>
     <string name="inventory_binnum">缺省货柜:</string>
-    
+
     <string name="invbalances">库存余量</string>
     <string name="invbalances_binnum">货柜:</string>
     <string name="invbalances_lotnum">批次:</string>
@@ -254,8 +255,9 @@
     <string name="invbalances_physcnt">实际库存量:</string>
     <string name="invbalances_physcntdate">实际盘点日期:</string>
     <string name="invbalances_reconciled">已调整?</string>
-    
+
     <string name="udstock">库存盘点</string>
+    <string name="udstocklinechecked">已盘点物资</string>
     <string name="udstock_stocknum">盘点单号:</string>
     <string name="udstock_description">描述:</string>
     <string name="udstock_storeroom">库房:</string>
@@ -267,7 +269,7 @@
     <string name="udstock_udstockcredis">创建人姓名:</string>
     <string name="udstock_createdate">创建日期:</string>
     <string name="udstockline">物资列表</string>
-    <string name="udstockline_sn">序号:</string>
+    <string name="udstockline_sn">行序号:</string>
     <string name="udstockline_itemnum">物资编码:</string>
     <string name="udstockline_udstocklineitedes">物资名称:</string>
     <string name="udstockline_udstocklineiteiss">发放单位:</string>
@@ -366,11 +368,12 @@
     <string name="INVUSE_DESCRIPTION">描述</string>
     <string name="INVUSE_UDFILENO">文件编码</string>
     <string name="FROMSTORELOC">原库房</string>
+    <string name="fromstoreroom">调出库房</string>
     <string name="UDTOWAREHOUSE">申请库房</string>
     <string name="UDINVOWNER">申请库房库库管</string>
     <string name="SUBJECT">专业</string>
-    <string name="original_container">原货柜</string>
-        <string name="original_batch">原批次</string>
+    <string name="original_container">原货柜:</string>
+        <string name="original_batch">原批次:</string>
     <string name="usetype">使用情况类型</string>
     <string name="ISSUEUNIT">发放单位</string>
     <string name="LOCATIONS_DESCRIPTION">原库房描述</string>
@@ -400,11 +403,20 @@
     <string name="genterthan0">请指定大于零的数量</string>
     <string name="reservation">选择预定的项目</string>
     <string name="scan">条码扫描</string>
+    <string name="uhfscan">磁条扫描</string>
     <string name="returnitems">选择退回的项目</string>
     <string name="reserveditems">选择预留的项目</string>
     <string name="delete">删除</string>
     <string name="lingliaodan">领料单</string>
     <string name="suretosdelete">确认删除？</string>
     <string name="update">更新</string>
+    <string name="confirm">确认</string>
+    <string name="tip">提示</string>
+    <string name="upload">上传</string>
+    <string name="havedifference">存在差异的物资</string>
+    <string name="checknecessary">请检查必填项是否填写</string>
+    <string name="queren">确认</string>
+    <string name="polinenum">行序号:</string>
+
 
 </resources>

@@ -36,7 +36,11 @@ public class UdstockLineAdapter extends BaseQuickAdapter<UDSTOCKLINE> {
     protected  void convert(BaseViewHolder helper, UDSTOCKLINE item) {
         CardView cardView = helper.getView(R.id.card_container);
             if (item.getISCHECK().equalsIgnoreCase("Y")) {
-                cardView.setCardBackgroundColor(Color.GREEN);
+                if(Integer.parseInt(item.getDIFFERENCE())!=0){
+                    cardView.setCardBackgroundColor(Color.YELLOW);
+                }else{
+                    cardView.setCardBackgroundColor(Color.GREEN);
+                }
             }else {
                 cardView.setCardBackgroundColor(Color.WHITE);
             }

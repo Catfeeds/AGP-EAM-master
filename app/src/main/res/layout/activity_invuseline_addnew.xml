@@ -91,6 +91,7 @@
                            android:gravity="right"
                            android:textColor="@color/light_black"
                            android:textSize="@dimen/dimens_16sp"
+                           android:editable="false"
                            />
                    </LinearLayout>
                    <LinearLayout
@@ -98,6 +99,7 @@
                        android:layout_height="wrap_content"
                        android:gravity="center_vertical"
                        android:orientation="horizontal"
+                       android:visibility="gone"
                        android:padding="@dimen/dimen_10">
 
                        <TextView
@@ -128,7 +130,7 @@
                     <TextView
                         android:layout_width="@dimen/dimens_80dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/FROMSTORELOC"
+                        android:text="@string/original_container"
                         android:textColor="@color/light_black"
                         android:textSize="@dimen/dimens_16sp" />
 

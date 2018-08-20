@@ -373,7 +373,7 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
     }
     private void submitDataInfo() {
         final NormalDialog dialog = new NormalDialog(PodetailActivity.this);
-        dialog.content(getString(R.string.suretosave))//
+        dialog.content(getString(R.string.suretosave)).title(getString(R.string.tip)).btnText(getString(R.string.cancel),getString(R.string.confirm))//
                 .showAnim(mBasIn)//
                 .dismissAnim(mBasOut)//
                 .show();
@@ -467,7 +467,12 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
                 double qty = 0;
                 for (int j=0;j<matrectransAdapter.getItemCount();j++) {
                     if (polinenum.equals(matrectransAdapter.getItem(j).getPOLINENUM())){
-                        qty +=Double.parseDouble(matrectransAdapter.getItem(j).getRECEIPTQUANTITY());
+                        if("".equals(matrectransAdapter.getItem(j).getRECEIPTQUANTITY())){
+                            qty +=0;
+                        } else {
+                            qty +=Double.parseDouble(matrectransAdapter.getItem(j).getRECEIPTQUANTITY());
+                        }
+
                     }
                 }
                 double orderqty = Double.parseDouble(listbackup.get(i).getORDERQTY());

@@ -108,7 +108,7 @@ public class Location_chooseActivity extends BaseActivity implements SwipeRefres
     protected void initView() {
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backOnClickListener);
-        titleTextView.setText(getResources().getString(R.string.location_choose_title));
+        titleTextView.setText(getResources().getString(R.string.inventory_location));
 //        menuImageView.setImageResource(R.drawable.ic_add);
 //        menuImageView.setOnClickListener(menuImageViewOnClickListener);
 //        confirmlayout.setVisibility(View.GONE);

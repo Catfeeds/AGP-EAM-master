@@ -134,7 +134,7 @@ public class MipcaActivityCapture extends BaseActivity implements Callback {
     protected void initView() {
         mButtonBack.setBackgroundResource(R.drawable.ic_back);
         mButtonBack.setOnClickListener(backImageViewOnClickListener);
-        textView.setText("SCAN");
+        textView.setText(getString(R.string.scan));
     }
     private View.OnClickListener backImageViewOnClickListener = new View.OnClickListener() {
         @Override

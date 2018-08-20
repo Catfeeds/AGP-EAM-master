@@ -35,6 +35,8 @@ import com.hsk.hxqh.agp_eam.api.HttpRequestHandler;
 import com.hsk.hxqh.agp_eam.api.JsonUtils;
 import com.hsk.hxqh.agp_eam.bean.Results;
 import com.hsk.hxqh.agp_eam.model.UDSTOCK;
+import com.hsk.hxqh.agp_eam.ui.activity.invuse.InvuseListActivity;
+import com.hsk.hxqh.agp_eam.ui.widget.BaseViewHolder;
 import com.hsk.hxqh.agp_eam.ui.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
@@ -85,8 +87,8 @@ public class UdstockListActivity extends BaseActivity implements SwipeRefreshLay
     private View.OnClickListener searchTypeOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            final NormalListDialog normalListDialog = new NormalListDialog(UdstockListActivity.this, new String[]{getString(R.string.item_num_title),getString(R.string.INVUSE_DESCRIPTION),getString(R.string.asset_location),"SCAN"});
-            normalListDialog.title("OPTION")
+            final NormalListDialog normalListDialog = new NormalListDialog(UdstockListActivity.this, new String[]{getString(R.string.item_num_title),getString(R.string.INVUSE_DESCRIPTION),getString(R.string.inventory_location),getString(R.string.scan)});
+            normalListDialog.title(getString(R.string.option))
                     .showAnim(mBasIn)//
                     .dismissAnim(mBasOut)//
                     .show();
@@ -194,6 +196,8 @@ public class UdstockListActivity extends BaseActivity implements SwipeRefreshLay
 
     @Override
     public void onLoad() {
+        page++;
+        getData(searchText);
         refresh_layout.setLoading(false);
     }
 
@@ -263,7 +267,10 @@ public class UdstockListActivity extends BaseActivity implements SwipeRefreshLay
                         for (int i = 0; i < item.size(); i++) {
                             items.add(item.get(i));
                         }
+                        int postion = assetAdapter.getItemCount();
                         addData(item);
+                        BaseViewHolder baseViewHolder = new BaseViewHolder(UdstockListActivity.this, recyclerView);
+                        assetAdapter.onBindViewHolder(baseViewHolder,postion);
                     }
                     nodatalayout.setVisibility(View.GONE);
 

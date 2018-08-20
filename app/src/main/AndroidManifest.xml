@@ -292,6 +292,27 @@
             android:name=".ui.activity.MaterialRetreatingEntity"
             android:screenOrientation="portrait"
             android:theme="@style/AGP.ActivityTheme" />
+        <activity
+            android:name=".ui.activity.option.WorkOrder_chooseActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AGP.ActivityTheme" />
+        <activity
+            android:name="com.authentication.activity.HXUHFActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AGP.ActivityTheme">
+        </activity>
+        <activity
+            android:name=".ui.activity.UHFActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AGP.ActivityTheme" />
+        <activity
+            android:name=".ui.activity.UdstockLineCheckedActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AGP.ActivityTheme" />
+        <activity
+            android:name=".ui.activity.option.Dept_chooseActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AGP.ActivityTheme" />
     </application>
 
 

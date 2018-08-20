@@ -32,12 +32,15 @@ import com.hsk.hxqh.agp_eam.model.INVUSEEntity;
 import com.hsk.hxqh.agp_eam.model.INVUSELINE;
 import com.hsk.hxqh.agp_eam.model.LOCATIONS;
 import com.hsk.hxqh.agp_eam.model.PERSON;
+import com.hsk.hxqh.agp_eam.model.WORKORDER;
 import com.hsk.hxqh.agp_eam.ui.activity.BaseActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.LabtransDetailsActivity;
+import com.hsk.hxqh.agp_eam.ui.activity.WorkOederListActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.option.Asset_chooseActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.option.INVBALANCES_chooseActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.option.Inventory_chooseActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.option.Location_chooseActivity;
+import com.hsk.hxqh.agp_eam.ui.activity.option.WorkOrder_chooseActivity;
 import com.hsk.hxqh.agp_eam.unit.AccountUtils;
 import com.hsk.hxqh.agp_eam.unit.DateSelect;
 
@@ -144,9 +147,9 @@ public class InvuselineAddNewActivity extends BaseActivity{
             }else if (type.equalsIgnoreCase("MT")){
                 usetype.setText("TRANSFER");
                 conversion.setText("1.00");
-                conLayout.setVisibility(View.VISIBLE);
                 linearLayout.setVisibility(View.VISIBLE);
                 titleTextView.setText(R.string.invuse_transfer);
+
             }
         }
         if (invuseline!=null){
@@ -229,10 +232,12 @@ public class InvuselineAddNewActivity extends BaseActivity{
         @Override
         public void onClick(View v) {
             if (add!=null){
-                optionlist = new String[]{"add"};
+                optionlist = new String[]{getString(R.string.xinjian)};
+            }else {
+                optionlist = new String[]{getString(R.string.update),getString(R.string.delete)};
             }
             final NormalListDialog normalListDialog = new NormalListDialog(InvuselineAddNewActivity.this, optionlist);
-            normalListDialog.title("Option")
+            normalListDialog.title(getString(R.string.option))
                     .showAnim(mBasIn)//
                     .dismissAnim(mBasOut)//
                     .show();
@@ -249,6 +254,7 @@ public class InvuselineAddNewActivity extends BaseActivity{
                                 invuseline.setTYPE("update");
                                 invuseline.setFLAG("U");
                             }
+                            invuseline.setQUANTITY(quantity.getText().toString());
                             Intent intent = getIntent();
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("invuseline",invuseline);
@@ -340,6 +346,13 @@ public class InvuselineAddNewActivity extends BaseActivity{
                     ASSET asset = (ASSET) bundle.get("asset");
                     invuseline.setASSETNUM(asset.getASSETNUM());
                     assetnum.setText(asset.getASSETNUM());
+                }
+                break;
+            case 150:
+                if (data!=null){
+                    WORKORDER workorder = (WORKORDER) data.getExtras().get("workorder");
+                    invuseline.setWONUM(workorder.getWONUM());
+                    wonum.setText(workorder.getWONUM());
                 }
                 break;
             case 160:
@@ -488,8 +501,8 @@ public class InvuselineAddNewActivity extends BaseActivity{
     View.OnClickListener  wonumOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            //Intent intent = new Intent(baseActivity, WorkOederListActivity.class);
-            //baseActivity.startActivityForResult(intent,item.getINDEX());
+            Intent intent = new Intent(InvuselineAddNewActivity.this, WorkOrder_chooseActivity.class);
+            startActivityForResult(intent,0);
         }
     };
     View.OnClickListener actualdateOnClickListener  = new View.OnClickListener() {

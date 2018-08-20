@@ -126,7 +126,7 @@ public class UdstockDetailsActivity extends BaseActivity {
     protected void initView() {
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backImageViewOnClickListener);
-        titleTextView.setText(R.string.invuse_item);
+        titleTextView.setText(R.string.udstock);
         moreImg.setVisibility(View.VISIBLE);
         moreImg.setOnClickListener(moreImgOnClickListener);
 //        submitBtn.setVisibility(View.GONE);

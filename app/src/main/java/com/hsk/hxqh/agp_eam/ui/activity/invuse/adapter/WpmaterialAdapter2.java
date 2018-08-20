@@ -51,26 +51,11 @@ public class WpmaterialAdapter2 extends BaseQuickAdapter<WPMATERIAL> {
         helper.setText(R.id.wpmaterial_requestby,item.getREQUESTBY());
         helper.setText(R.id.wpmaterial_requiredate,item.getREQUIREDATE());
         helper.setText(R.id.wpmaterial_issueto,item.getISSUETO());
+        helper.setText(R.id.wpmaterial_unitcost,item.getUNITCOST());
+        helper.setText(R.id.wpmaterial_linecost,item.getLINECOST());
         helper.setVisible(R.id.wpmaterial_all,false);
         helper.setVisible(R.id.title_id,false);
         helper.setVisible(R.id.button_layout_id,false);
-        switch (helper.getPosition()%5){
-            case 0:
-                helper.setBackgroundRes(R.id.wpmaterial_itemnum_id,R.drawable.design_0_point);
-                break;
-            case 1:
-                helper.setBackgroundRes(R.id.wpmaterial_itemnum_id,R.drawable.design_1_point);
-                break;
-            case 2:
-                helper.setBackgroundRes(R.id.wpmaterial_itemnum_id,R.drawable.design_2_point);
-                break;
-            case 3:
-                helper.setBackgroundRes(R.id.wpmaterial_itemnum_id,R.drawable.design_3_point);
-                break;
-            case 4:
-                helper.setBackgroundRes(R.id.wpmaterial_itemnum_id,R.drawable.design_4_point);
-                break;
-        }
         if (item.getFLAG()!= null&&!item.getFLAG().equalsIgnoreCase("D")){
             helper.setOnClickListener(R.id.drop_down,new OnItemChildClickListener(){
                 public  boolean flag = false;

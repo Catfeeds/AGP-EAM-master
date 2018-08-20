@@ -2,6 +2,7 @@ package com.hsk.hxqh.agp_eam.ui.activity;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -21,9 +22,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.flyco.animation.BaseAnimatorSet;
+import com.flyco.animation.BounceEnter.BounceTopEnter;
+import com.flyco.animation.SlideExit.SlideBottomExit;
+import com.flyco.dialog.listener.OnBtnEditClickL;
+import com.flyco.dialog.widget.NormalEditTextDialog;
 import com.hsk.hxqh.agp_eam.R;
 import com.hsk.hxqh.agp_eam.api.HttpManager;
 import com.hsk.hxqh.agp_eam.api.HttpRequestHandler;
+import com.hsk.hxqh.agp_eam.config.Constants;
 import com.hsk.hxqh.agp_eam.dialog.FlippingLoadingDialog;
 import com.hsk.hxqh.agp_eam.manager.AppManager;
 import com.hsk.hxqh.agp_eam.unit.AccountUtils;
@@ -67,6 +74,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     String[] cities;
 
     String[] locals;
+    private BaseAnimatorSet mBasIn;
+    private BaseAnimatorSet mBasOut;
 
 
     @Override
@@ -88,6 +97,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         findViewById();
         initView();
+        mBasIn = new BounceTopEnter();
+        mBasOut = new SlideBottomExit();
     }
 
     @Override
@@ -109,15 +120,47 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             mUsername.setText(AccountUtils.getUserName(LoginActivity.this));
             mPassword.setText(AccountUtils.getUserPassword(LoginActivity.this));
         }
+        if (AccountUtils.getIpAddress(LoginActivity.this) == null || AccountUtils.getIpAddress(LoginActivity.this).equals("")) {
+            AccountUtils.setIpAddress(LoginActivity.this, Constants.HTTP_API_IP);
+        }
         checkBox.setOnCheckedChangeListener(cheBoxOnCheckedChangListener);
         langlange_setting.setOnClickListener(langlange_settingOnClickListener);
         mLogin.setOnClickListener(this);
 
         versionName.setText(getVersion());
+        versionName.setOnClickListener(ipOnClickListener);
 
 //        if (!mUsername.getText().toString().equals("") && !mPassword.getText().toString().equals("")) {
 //            mLogin.performClick();
 //        }
+    }
+    private View.OnClickListener ipOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            setIP();
+        }
+    };
+    private void setIP() {
+        final NormalEditTextDialog editTextDialog = new NormalEditTextDialog(LoginActivity.this);
+        editTextDialog.title("Configure IP")
+                .content(AccountUtils.getIpAddress(LoginActivity.this))
+                .showAnim(mBasIn)//
+                .dismissAnim(mBasOut)//
+                .show();
+        editTextDialog.setOnBtnClickL(
+                new OnBtnEditClickL() {
+                    @Override
+                    public void onBtnClick(String text) {
+                        editTextDialog.dismiss();
+                    }
+                }, new OnBtnEditClickL() {
+                    @Override
+                    public void onBtnClick(String text) {
+                        AccountUtils.setIpAddress(LoginActivity.this, text);
+                        editTextDialog.dismiss();
+                    }
+                }
+        );
     }
 
     private View.OnClickListener langlange_settingOnClickListener = new View.OnClickListener() {
@@ -180,7 +223,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     @Override
                     public void onSuccess(String data) {
 
-                        MessageUtils.showMiddleToast(LoginActivity.this, "登录成功");
+                        MessageUtils.showMiddleToast(LoginActivity.this, getString(R.string.login_successful_hint));
                         mLoadingDialog.dismiss();
 //                        AccountUtils.setIpAddress(LoginActivity.this,adress);
                         if (isRemember) {

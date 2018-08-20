@@ -34,6 +34,8 @@ import com.hsk.hxqh.agp_eam.api.HttpRequestHandler;
 import com.hsk.hxqh.agp_eam.api.JsonUtils;
 import com.hsk.hxqh.agp_eam.bean.Results;
 import com.hsk.hxqh.agp_eam.model.PO;
+import com.hsk.hxqh.agp_eam.ui.activity.invuse.InvuseListActivity;
+import com.hsk.hxqh.agp_eam.ui.widget.BaseViewHolder;
 import com.hsk.hxqh.agp_eam.ui.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
@@ -154,7 +156,7 @@ public class PoListActivity extends BaseActivity implements SwipeRefreshLayout.O
         @Override
         public void onClick(View v) {
             final NormalListDialog dialog = new NormalListDialog(PoListActivity.this, new String[]{getString(R.string.bianhao),getString(R.string.INVUSE_DESCRIPTION)});
-            dialog.title(getString(R.string.search_text))
+            dialog.title(getString(R.string.option))
                     .showAnim(mBasIn)
                     .dismissAnim(mBasOut)
                     .show();
@@ -182,7 +184,7 @@ public class PoListActivity extends BaseActivity implements SwipeRefreshLayout.O
 
     @Override
     public void onLoad() {
-       /* page++;
+/*        page++;
         getData(searchText);*/
        refresh_layout.setLoading(false);
     }
@@ -248,13 +250,14 @@ public class PoListActivity extends BaseActivity implements SwipeRefreshLayout.O
                         if (page == 1) {
                             items = new ArrayList<PO>();
                             initAdapter(items);
-                        }else {
-                            itemAdapter.openLoadMore(page,true);
                         }
                         for (int i = 0; i < item.size(); i++) {
                             items.add(item.get(i));
                         }
+                        int postion = itemAdapter.getItemCount();
                         addData(item);
+                        BaseViewHolder baseViewHolder = new BaseViewHolder(PoListActivity.this, recyclerView);
+                        itemAdapter.onBindViewHolder(baseViewHolder,postion);
                     }
                     nodatalayout.setVisibility(View.GONE);
 

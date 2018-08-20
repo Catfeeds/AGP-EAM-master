@@ -28,10 +28,16 @@ import com.hsk.hxqh.agp_eam.model.ITEM;
 import com.hsk.hxqh.agp_eam.model.UDSTOCK;
 import com.hsk.hxqh.agp_eam.model.UDSTOCKLINE;
 import com.hsk.hxqh.agp_eam.ui.widget.SwipeRefreshLayout;
+import com.hsk.hxqh.agp_eam.unit.UHFReader;
 import com.j256.ormlite.stmt.query.In;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import android_serialport_api.SerialPortManager;
+import android_serialport_api.UHFHXAPI;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 
 /**
@@ -56,8 +62,11 @@ public class UdstockLineActivity extends BaseActivity implements SwipeRefreshLay
     private static final int STOCKTAKINGDETAIL_CODE = 1111;
     private PopupWindow popupWindow;
     private LinearLayout udstocklinescanLayout;
+    private LinearLayout udstocklinescanuhfLayout,udstocklinechecked,udstocklinedifference;
     private boolean isExistStockline;
     private UDSTOCKLINE udstockline;
+    private String uhfString;
+    UHFHXAPI uhfhxapi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,6 +179,21 @@ public class UdstockLineActivity extends BaseActivity implements SwipeRefreshLay
 
         udstocklinescanLayout = (LinearLayout) contentView.findViewById(R.id.udstockline_id);
         udstocklinescanLayout.setOnClickListener(scanButtonOnClickListener);
+        udstocklinescanuhfLayout =(LinearLayout) contentView.findViewById(R.id.udstocklineuhf_id);
+        udstocklinescanuhfLayout.setOnClickListener(uhfButtonOnClickListener);
+        udstocklinechecked = (LinearLayout) contentView.findViewById(R.id.udstocklinechecked_id);
+        udstocklinechecked.setVisibility(View.VISIBLE);
+        udstocklinechecked.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+                Intent intent = new Intent(UdstockLineActivity.this, UdstockLineCheckedActivity.class);
+                intent.putExtra("udstock",udstock);
+                startActivity(intent);
+
+            }
+        });
+
     }
     /**
      * 二维码扫描
@@ -177,9 +201,33 @@ public class UdstockLineActivity extends BaseActivity implements SwipeRefreshLay
     private View.OnClickListener scanButtonOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-                Intent intent = new Intent(UdstockLineActivity.this, MipcaActivityCapture.class);
+            popupWindow.dismiss();
+            Intent intent = new Intent(UdstockLineActivity.this, MipcaActivityCapture.class);
                 intent.putExtra("mark", 1); //扫码标识
                 startActivityForResult(intent, STOCKTAKING_CODE);
+        }
+    };
+    private View.OnClickListener uhfButtonOnClickListener  = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            popupWindow.dismiss();
+            SerialPortManager.getInstance().openSerialPort();
+            uhfhxapi = new UHFHXAPI();
+            UHFReader uhfReader = new UHFReader();
+            uhfString = uhfReader.reader(uhfhxapi);
+            if (!uhfString.contains("fail")){
+                String[] results = uhfString.split("a1a");
+                if (udstock.getSTOREROOM().equals(results[0])){
+                    udstockLineAdapter.removeAll(udstockLineAdapter.getData());
+                    getData(results[1]);
+                }else {
+                    Toast.makeText(UdstockLineActivity.this, "It's not this storeroom",LENGTH_SHORT).show();
+                }
+
+            }else{
+               Toast.makeText(UdstockLineActivity.this, uhfString + "\nPlease try again!",LENGTH_SHORT).show();
+            }
+            popupWindow.dismiss();
         }
     };
     /**
@@ -187,6 +235,51 @@ public class UdstockLineActivity extends BaseActivity implements SwipeRefreshLay
      */
     private void getData() {
         HttpManager.getData(UdstockLineActivity.this, HttpManager.getUdstocklineUrl(udstock.getSTOCKNUM(),page, 20), new HttpRequestHandler<Results>() {
+            @Override
+            public void onSuccess(Results results) {
+                Log.i(TAG, "data=" + results);
+            }
+
+            @Override
+            public void onSuccess(Results results, int totalPages, int currentPage) {
+                ArrayList<UDSTOCKLINE> item = JsonUtils.parsingUDSTOCKLINE(UdstockLineActivity.this, results.getResultlist());
+                refresh_layout.setRefreshing(false);
+                refresh_layout.setLoading(false);
+                if (item == null || item.isEmpty()) {
+                    nodatalayout.setVisibility(View.VISIBLE);
+                } else {
+                    List<UDSTOCKLINE> udstocklineList = new ArrayList<>();
+                    if (item != null || item.size() != 0) {
+                        if (page == 1) {
+                            assetArrayList = new ArrayList<UDSTOCKLINE>();
+                            initAdapter(assetArrayList);
+                        }
+                        for (int i = 0; i < item.size(); i++) {
+                            if ("Y".equalsIgnoreCase(item.get(i).getISCHECK())){
+                                udstocklineList.add(item.get(i));
+                            }else {
+                                assetArrayList.add(item.get(i));
+                            }
+                        }
+                        assetArrayList.addAll(udstocklineList);
+                        addData(assetArrayList);
+                    }
+                    nodatalayout.setVisibility(View.GONE);
+
+                    initAdapter(assetArrayList);
+                }
+            }
+
+            @Override
+            public void onFailure(String error) {
+                refresh_layout.setRefreshing(false);
+                nodatalayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+    }
+    private void getData(String binnum) {
+        HttpManager.getData(UdstockLineActivity.this, HttpManager.getUdstocklineUrl(udstock.getSTOCKNUM(),binnum), new HttpRequestHandler<Results>() {
             @Override
             public void onSuccess(Results results) {
                 Log.i(TAG, "data=" + results);
@@ -388,5 +481,14 @@ public class UdstockLineActivity extends BaseActivity implements SwipeRefreshLay
         bundle.putInt("position",position);
         intent.putExtras(bundle);
         startActivityForResult(intent,STOCKTAKINGDETAIL_CODE);
+    }
+
+    @Override
+    protected void onPause() {
+        SerialPortManager.getInstance().closeSerialPort();
+        if (uhfhxapi!=null){
+            uhfhxapi.close();
+        }
+        super.onPause();
     }
 }

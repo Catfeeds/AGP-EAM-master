@@ -215,7 +215,8 @@
                     android:padding="@dimen/dimen_10">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="@string/invbalances_physcntdate"
                         android:textColor="@color/light_black"
@@ -223,10 +224,10 @@
 
                     <TextView
                         android:id="@+id/invbalances_physcntdate"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_weight="3"
+                        android:layout_weight="1"
                         android:background="@color/sb__transparent"
                         android:gravity="right"
                         android:hint="@string/have_not_data"

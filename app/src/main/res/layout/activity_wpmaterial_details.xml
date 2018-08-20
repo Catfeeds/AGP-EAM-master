@@ -87,7 +87,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/wpmaterial_itemnum"
+                            android:text="@string/item_itemnum"
                             android:textColor="@color/light_black"
                             android:textSize="@dimen/dimens_16sp" />
 
@@ -192,10 +192,12 @@
                         android:background="@drawable/line"></View>
 
                     <LinearLayout
+                        android:id="@+id/unitcostLinearLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
+                        android:visibility="visible"
                         android:padding="@dimen/dimen_10">
 
                         <TextView
@@ -226,10 +228,12 @@
                         android:background="@drawable/line"></View>
 
                     <LinearLayout
+                        android:id="@+id/linecostLinearLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
+                        android:visibility="visible"
                         android:padding="@dimen/dimen_10">
 
                         <TextView
@@ -265,6 +269,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
+                        android:visibility="visible"
                         android:padding="@dimen/dimen_10">
 
                         <TextView
@@ -431,6 +436,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         android:padding="@dimen/dimen_10">
 
                         <TextView

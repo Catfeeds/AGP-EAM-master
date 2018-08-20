@@ -51,6 +51,15 @@ public class WORKORDER implements Serializable {
     public String CREATEBY;
     public String UDTEMPMATERIAL;
     public String INVONAME;
+    public String WORKORDERUDTDES;
+
+    public String getWORKORDERUDTDES() {
+        return WORKORDERUDTDES;
+    }
+
+    public void setWORKORDERUDTDES(String WORKORDERUDTDES) {
+        this.WORKORDERUDTDES = WORKORDERUDTDES;
+    }
 
     public String getINVONAME() {
         return INVONAME;

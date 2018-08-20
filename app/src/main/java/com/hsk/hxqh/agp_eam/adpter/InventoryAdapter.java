@@ -35,9 +35,8 @@ public class InventoryAdapter extends BaseQuickAdapter<INVENTORY> {
         helper.setText(R.id.INVUSENUM, item.getITEMNUM());
         helper.setText(R.id.DESCRIPTION, item.getITEMNUM_DEC());
         helper.setText(R.id.FROMSTORELOC, item.getLOCATION());
+        helper.setText(R.id.item_location_desc_text,item.getLOCATION_DEC());
         helper.setText(R.id.INVUSELOCATIONSDES, item.getCURBALTOTAL());
-
-
     }
 
 

@@ -49,7 +49,7 @@ public class UdstocklineDetailActivity extends BaseActivity{
     private TextView orderunitView;
     private TextView quantity1View;
     private EditText quantity2View;
-    private TextView lotnumView;
+    private TextView lotnumView,binnumView;
     private TextView differenceView;
     private EditText reasonsView;
     private Button certain;
@@ -59,8 +59,6 @@ public class UdstocklineDetailActivity extends BaseActivity{
     private BaseAnimatorSet mBasOut;
     private  String json;
     private LinearLayout container;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,9 +84,8 @@ public class UdstocklineDetailActivity extends BaseActivity{
         orderunitView = (TextView) findViewById(R.id.udstockline_orderunit);
         certain = (Button)findViewById(R.id.certain_id);
         container = (LinearLayout) findViewById(R.id.container);
+        binnumView = (TextView) findViewById(R.id.udstockline_binnum);
     }
-
-
     @SuppressLint("ResourceAsColor")
     @Override
     protected void initView() {
@@ -108,6 +105,8 @@ public class UdstocklineDetailActivity extends BaseActivity{
         certain.setOnClickListener(certainOnClickListener);
         orderunitView.setText(udstockline.getUDSTOCKLINEITEISS());
         quantity2View.setText(udstockline.getQUANTITY2());
+        reasonsView.setText(udstockline.getREASON());
+        binnumView.setText(udstockline.getBINNUM());
 
     }
 
@@ -138,7 +137,8 @@ public class UdstocklineDetailActivity extends BaseActivity{
      */
     private void submitDataInfo() {
         final NormalDialog dialog = new NormalDialog(UdstocklineDetailActivity.this);
-        dialog.content("Sure to save?")//
+        dialog.title(getString(R.string.tip)).btnText(getString(R.string.cancel),getString(R.string.confirm));
+        dialog.content(getString(R.string.suretosave))//
                 .showAnim(mBasIn)//
                 .dismissAnim(mBasOut)//
                 .show();
@@ -152,7 +152,6 @@ public class UdstocklineDetailActivity extends BaseActivity{
                 new OnBtnClickL() {
                     @Override
                     public void onBtnClick() {
-                        showProgressDialog("Waiting...");
                         startAsyncTask();
                         dialog.dismiss();
                     }
@@ -165,12 +164,18 @@ public class UdstocklineDetailActivity extends BaseActivity{
           udstockline.setDIFFERENCE((Integer.parseInt(num2)-Integer.parseInt(num1)) + "");
       }
         udstockline.setQUANTITY2(quantity2View.getText().toString());
-        udstockline.setISCHECK("1");
-        json = JsonUtils.submitUdstocklineData(udstockline);
-        new AsyncTask<String,String,String>(){
 
-            @Override
-            protected String doInBackground(String... strings) {
+        udstockline.setREASON(reasonsView.getText().toString());
+        json = JsonUtils.submitUdstocklineData(udstockline);
+        if (num1!=num2 && reasonsView.getText().toString().equals("")){
+            Toast.makeText(this, getString(R.string.udstockline_reason),Toast.LENGTH_SHORT).show();
+        }else {
+            showProgressDialog("Waiting...");
+            udstockline.setISCHECK("1");
+            new AsyncTask<String,String,String>(){
+
+                @Override
+                protected String doInBackground(String... strings) {
 
 
                     String s = "";
@@ -178,28 +183,31 @@ public class UdstocklineDetailActivity extends BaseActivity{
                     s= result.errorMsg;
                     return s;
 
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                if (s == null || s.equalsIgnoreCase("")) {
-                    Toast.makeText(UdstocklineDetailActivity.this, "Confim fail", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(UdstocklineDetailActivity.this, s, Toast.LENGTH_SHORT).show();
-                    if (s.equalsIgnoreCase("成功")){
-                        udstockline.setISCHECK("Y");
-                        Intent intent = getIntent();
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("udstockline",udstockline);
-                        bundle.putInt("position",position);
-                        intent.putExtras(bundle);
-                        setResult(UDSTOCKLINE_CODE,intent);
-                        finish();
-                    }
                 }
-                closeProgressDialog();
-            }
-        }.execute();
+
+                @Override
+                protected void onPostExecute(String s) {
+                    super.onPostExecute(s);
+                    if (s == null || s.equalsIgnoreCase("")) {
+                        Toast.makeText(UdstocklineDetailActivity.this, "Confim fail", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(UdstocklineDetailActivity.this, s, Toast.LENGTH_SHORT).show();
+                        if (s.equalsIgnoreCase("成功")){
+                            udstockline.setISCHECK("Y");
+                            Intent intent = getIntent();
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("udstockline",udstockline);
+                            bundle.putInt("position",position);
+                            intent.putExtras(bundle);
+                            setResult(UDSTOCKLINE_CODE,intent);
+                            finish();
+                        }
+                    }
+                    closeProgressDialog();
+                }
+            }.execute();
+
+        }
+
     }
 }

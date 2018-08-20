@@ -65,6 +65,7 @@ import com.hsk.hxqh.agp_eam.ui.activity.option.MATUSETRANS_chooseActivity;
 import com.hsk.hxqh.agp_eam.ui.widget.SwipeRefreshLayout;
 import com.hsk.hxqh.agp_eam.unit.AccountUtils;
 import com.hsk.hxqh.agp_eam.unit.ArrayUtil;
+import com.hsk.hxqh.agp_eam.unit.TestUtil;
 import com.hsk.hxqh.agp_eam.webserviceclient.AndroidClientService;
 import com.j256.ormlite.stmt.query.In;
 
@@ -123,7 +124,7 @@ public class InvuseDetailActivity extends BaseActivity implements SwipeRefreshLa
     private ProgressDialog mProgressDialog;
     private String type;
     private RelativeLayout relativeLayout;
-    private TextView subject;
+    private TextView subject,numdesc;
     private TextView udtowarehouse;
     private TextView udinvowner;
     private LinearLayout mtLinearLayout;
@@ -154,6 +155,7 @@ public class InvuseDetailActivity extends BaseActivity implements SwipeRefreshLa
         Bundle bundle =  getIntent().getExtras();
         INVUSELINE invuseline =(INVUSELINE) bundle.get("INVUSELINE");
         invuseEntity =(INVUSEEntity) bundle.get("item");
+        getINVUSE();
         type = bundle.get("type").toString();
         if(type.equals("MT")){
             procsessname = "WLDB";
@@ -192,6 +194,7 @@ public class InvuseDetailActivity extends BaseActivity implements SwipeRefreshLa
         mtLinearLayout = (LinearLayout) findViewById(R.id.invuse_mt_spid);
         status = (TextView) findViewById(R.id.status_text_id);
         spinner = (Spinner) findViewById(R.id.spnner);
+        numdesc = (TextView) findViewById(R.id.ordername);
     }
 
 
@@ -206,14 +209,7 @@ public class InvuseDetailActivity extends BaseActivity implements SwipeRefreshLa
         }
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backImageViewOnClickListener);
-        if (type.equals("MI")){
-            titleTextView.setText(R.string.outbound);
-        }else if (type.equals("MR"))
-        {
-            titleTextView.setText(R.string.refund);
-        }else {
-            titleTextView.setText(R.string.invuse_transfer);
-        }
+
         if (invuseEntity!=null){
             invusemi.setText(invuseEntity.getINVUSENUM());
             description.setText(invuseEntity.getDESCRIPTION());
@@ -246,6 +242,18 @@ public class InvuseDetailActivity extends BaseActivity implements SwipeRefreshLa
         initAdapter(new ArrayList<INVUSELINE>());
         relativeLayout.setVisibility(View.VISIBLE);
         quit.setOnClickListener(backImageViewOnClickListener);
+        if (type.equals("MI")){
+            titleTextView.setText(R.string.outbound);
+        }else if (type.equals("MR"))
+        {
+            titleTextView.setText(R.string.refund);
+            numdesc.setText(R.string.refund);
+        }else {
+            titleTextView.setText(R.string.invuse_transfer);
+            numdesc.setText(R.string.invuse_transfer);
+            TextView textView = (TextView) findViewById(R.id.yuankufang);
+            textView.setText(R.string.fromstoreroom);
+        }
 
     }
 
@@ -258,6 +266,7 @@ public class InvuseDetailActivity extends BaseActivity implements SwipeRefreshLa
                     .showAnim(mBasIn)//
                     .dismissAnim(mBasOut)//
                     .show();
+            normalListDialog.setCanceledOnTouchOutside(false);
             normalListDialog.setOnOperItemClickL(new OnOperItemClickL() {
                 @Override
                 public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -317,7 +326,7 @@ public class InvuseDetailActivity extends BaseActivity implements SwipeRefreshLa
             addInvuseLineList = addInvusemtLineList;
         }
         final NormalListDialog normalListDialog = new NormalListDialog(InvuseDetailActivity.this, addInvuseLineList);
-        normalListDialog.title("新建物资出库行")
+        normalListDialog.title(getString(R.string.option))
                 .showAnim(mBasIn)//
                 .dismissAnim(mBasOut)//
                 .show();
@@ -601,9 +610,9 @@ public class InvuseDetailActivity extends BaseActivity implements SwipeRefreshLa
             protected void onPostExecute(WebResult workResult) {
                 super.onPostExecute(workResult);
                 if (workResult == null) {
-                    Toast.makeText(InvuseDetailActivity.this, "false", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InvuseDetailActivity.this, getString(R.string.fail), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(InvuseDetailActivity.this, workResult.errorMsg, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InvuseDetailActivity.this, getString(R.string.success), Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 closeProgressDialog();
@@ -616,6 +625,8 @@ public class InvuseDetailActivity extends BaseActivity implements SwipeRefreshLa
      */
     private void submitDataInfo() {
         final NormalDialog dialog = new NormalDialog(InvuseDetailActivity.this);
+        dialog.title(getString(R.string.tip)).btnText(getString(R.string.cancel),getString(R.string.queren));
+
         dialog.content(getString(R.string.suretosave))//
                 .showAnim(mBasIn)//
                 .dismissAnim(mBasOut)//
@@ -722,7 +733,7 @@ public class InvuseDetailActivity extends BaseActivity implements SwipeRefreshLa
             protected void onPostExecute(WebResult s) {
                 super.onPostExecute(s);
                 if (s != null && s.errorMsg != null && s.errorMsg.equals("工作流启动成功")) {
-                    Toast.makeText(InvuseDetailActivity.this, s.errorMsg, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InvuseDetailActivity.this, getString(R.string.success), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(InvuseDetailActivity.this, getString(R.string.fail), Toast.LENGTH_SHORT).show();
                 }
@@ -849,6 +860,27 @@ public class InvuseDetailActivity extends BaseActivity implements SwipeRefreshLa
     public void getSubjectList(){
         List list = SUBJECT.list;
         adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,list);
+    }
+    public void getINVUSE(){
+      HttpManager.getData(this, HttpManager.getINVUSEUrl(invuseEntity.getINVUSENUM(), "", 1, 20, type), new HttpRequestHandler<Results>() {
+          @Override
+          public void onSuccess(Results data) {
+
+          }
+
+          @Override
+          public void onSuccess(Results data, int totalPages, int currentPage) {
+              ArrayList<INVUSEEntity> invuseEntities = JsonUtils.parsingINVUSEEntity(InvuseDetailActivity.this, data.getResultlist());
+              if (invuseEntities!=null && !invuseEntities.isEmpty()){
+                  invuseEntity = invuseEntities.get(0);
+              }
+          }
+
+          @Override
+          public void onFailure(String error) {
+
+          }
+      });
     }
     class SpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
 

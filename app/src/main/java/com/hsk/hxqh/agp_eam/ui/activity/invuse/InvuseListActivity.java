@@ -37,6 +37,7 @@ import com.hsk.hxqh.agp_eam.api.HttpManager;
 import com.hsk.hxqh.agp_eam.api.HttpRequestHandler;
 import com.hsk.hxqh.agp_eam.api.JsonUtils;
 import com.hsk.hxqh.agp_eam.bean.Results;
+import com.hsk.hxqh.agp_eam.model.INVENTORY;
 import com.hsk.hxqh.agp_eam.model.INVUSEEntity;
 import com.hsk.hxqh.agp_eam.model.INVUSEEntity;
 import com.hsk.hxqh.agp_eam.model.ITEM;
@@ -46,6 +47,7 @@ import com.hsk.hxqh.agp_eam.ui.activity.ItemListActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.MipcaActivityCapture;
 import com.hsk.hxqh.agp_eam.ui.activity.WorkOrderAddNewActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.invuse.adapter.InvuseAdapter;
+import com.hsk.hxqh.agp_eam.ui.widget.BaseViewHolder;
 import com.hsk.hxqh.agp_eam.ui.widget.SwipeRefreshLayout;
 import com.hsk.hxqh.agp_eam.unit.TestUtil;
 
@@ -177,7 +179,6 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
         initDialogItems();
         refresh_layout.setRefreshing(true);
         initAdapter(new ArrayList<INVUSEEntity>());
-        items = new ArrayList<>();
         getData(searchText);
 
     }
@@ -185,7 +186,7 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
         @Override
         public void onClick(View v) {
             final NormalListDialog normalListDialog = new NormalListDialog(InvuseListActivity.this,dialogMenuItems);
-            normalListDialog.title("Option")
+            normalListDialog.title(getString(R.string.option))
                     .showAnim(mBasIn)//
                     .dismissAnim(mBasOut)//
                     .show();
@@ -203,7 +204,7 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
                         case 1://Add
                             normalListDialog.superDismiss();
                             search.setText("");
-                        search.setHint(R.string.description_text);
+                        search.setHint(R.string.asset_description);
                             break;
                         case 2:
                             normalListDialog.superDismiss();
@@ -228,7 +229,7 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
         public void onClick(View v) {
             String [] optionList = {getString(R.string.back),getString(R.string.xinjian)};
             final NormalListDialog normalListDialog = new NormalListDialog(InvuseListActivity.this, optionList);
-            normalListDialog.title("Option")
+            normalListDialog.title(getString(R.string.option))
                     .showAnim(mBasIn)//
                     .dismissAnim(mBasOut)//
                     .show();
@@ -311,7 +312,6 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
      * 获取数据*
      */
     private void getData(String search) {
-
         commonViewModel.getSelectLiveData(InvuseListActivity.this, HttpManager.getINVUSEUrl(search,serchType, page, 20,type), INVUSEEntity.class).observe(InvuseListActivity.this, new Observer<ArrayList<INVUSEEntity>>() {
             @Override
             public void onChanged(ArrayList<INVUSEEntity> item) {
@@ -330,9 +330,9 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
                                 items.add(item.get(i));
                             }
                             addData(item);
+
                         }
                         nodatalayout.setVisibility(View.GONE);
-
                         initAdapter(items);
                     }
                 }else {
@@ -368,13 +368,15 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
      */
     private void addData(final List<INVUSEEntity> list) {
         itemAdapter.addData(list);
+
+
     }
     private void initDialogItems(){
 
         dialogMenuItems.add(new DialogMenuItem(getString(R.string.item_num_title),1));
-        dialogMenuItems.add(new DialogMenuItem(getString(R.string.inventory_itemnum_dec),2));
-        dialogMenuItems.add(new DialogMenuItem(getString(R.string.FROMSTORELOC),3));
-        dialogMenuItems.add(new DialogMenuItem("SCAN",4));
+        dialogMenuItems.add(new DialogMenuItem(getString(R.string.udstock_description),2));
+        dialogMenuItems.add(new DialogMenuItem(getString(R.string.inventory_location),3));
+        dialogMenuItems.add(new DialogMenuItem(getString(R.string.scan),4));
     }
 
     @Override

@@ -24,6 +24,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.authentication.activity.HDUHFActivity;
+import com.authentication.activity.HXUHFActivity;
 import com.flyco.animation.BaseAnimatorSet;
 import com.flyco.animation.BounceEnter.BounceTopEnter;
 import com.flyco.animation.SlideExit.SlideBottomExit;
@@ -36,8 +38,10 @@ import com.hsk.hxqh.agp_eam.api.HttpManager;
 import com.hsk.hxqh.agp_eam.api.HttpRequestHandler;
 import com.hsk.hxqh.agp_eam.api.JsonUtils;
 import com.hsk.hxqh.agp_eam.bean.Results;
+import com.hsk.hxqh.agp_eam.model.INVBALANCES;
 import com.hsk.hxqh.agp_eam.model.ITEM;
 import com.hsk.hxqh.agp_eam.model.UDSTOCKLINE;
+import com.hsk.hxqh.agp_eam.ui.widget.BaseViewHolder;
 import com.hsk.hxqh.agp_eam.ui.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
@@ -50,6 +54,7 @@ import java.util.List;
 
 public class ItemListActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, SwipeRefreshLayout.OnLoadListener{
     public static final  int ITEMSCAN_CODE = 8080;
+    private static final int ITEMUHF_CODE = 8081;
     private static final String TAG = "ItemListActivity";
     private ImageView backImageView;
     private TextView titleTextView;
@@ -96,7 +101,7 @@ public class ItemListActivity extends BaseActivity implements SwipeRefreshLayout
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-        optionList = new String[]{getString(R.string.miaoshu),getString(R.string.bianhao),"SCAN"};
+        optionList = new String[]{getString(R.string.miaoshu),getString(R.string.bianhao),getString(R.string.scan),getString(R.string.uhfscan)};
         //getIntentData();
         findViewById();
         initView();
@@ -166,8 +171,8 @@ public class ItemListActivity extends BaseActivity implements SwipeRefreshLayout
 
     @Override
     public void onLoad() {
-/*        page++;
-        getData(searchText);*/
+        page++;
+        getData(searchText);
     refresh_layout.setLoading(false);
     }
 
@@ -195,12 +200,12 @@ public class ItemListActivity extends BaseActivity implements SwipeRefreshLayout
                             normalListDialog.superDismiss();
                             Log.e(TAG, "onOperItemClick: 我是二维码" );
                             type = "DESC";
-                            search.setHint("物资名称");
+                            search.setHint(getString(R.string.item_description));
                             break;
                         case 1:
                             normalListDialog.superDismiss();
                             type = "ITEMNUM";
-                            search.setHint("物资编码");
+                            search.setHint(getString(R.string.item_itemnum));
                             Log.e(TAG, "onOperItemClick: 我是磁条码");
                             break;
                         case 2:
@@ -208,6 +213,12 @@ public class ItemListActivity extends BaseActivity implements SwipeRefreshLayout
                             Intent intent = new Intent(ItemListActivity.this, MipcaActivityCapture.class);
                             intent.putExtra("mark", 1); //扫码标识
                             startActivityForResult(intent, ITEMSCAN_CODE);
+                            break;
+                        case 3:
+                            normalListDialog.superDismiss();
+                            Intent intent1 = new Intent(ItemListActivity.this, UHFActivity.class);
+                            intent1.putExtra("markUHF",2);
+                            startActivityForResult(intent1,ITEMUHF_CODE);
                             break;
                     }
 //                    normalListDialog.dismiss();
@@ -274,7 +285,10 @@ public class ItemListActivity extends BaseActivity implements SwipeRefreshLayout
                         for (int i = 0; i < item.size(); i++) {
                             items.add(item.get(i));
                         }
+                        int postion = itemAdapter.getItemCount();
                         addData(item);
+                        BaseViewHolder baseViewHolder = new BaseViewHolder(ItemListActivity.this, recyclerView);
+                        itemAdapter.onBindViewHolder(baseViewHolder,1);
                     }
                     nodatalayout.setVisibility(View.GONE);
 
@@ -329,6 +343,15 @@ public class ItemListActivity extends BaseActivity implements SwipeRefreshLayout
                     break;
                 }
                 isExistSN(results);
+                }
+            case ITEMUHF_CODE:
+                if (data!=null){
+                    Bundle bundle=data.getExtras();
+                    INVBALANCES invbalances = (INVBALANCES) bundle.get("invbalance");
+                    if (invbalances==null){
+                        break;
+                    }
+                    isExistSN(invbalances.getITEMNUM());
                 }
                 break;
         }

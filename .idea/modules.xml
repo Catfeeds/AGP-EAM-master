@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/AGP-EAM-master.iml" filepath="$PROJECT_DIR$/AGP-EAM-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/FlycoAnimation_Lib/FlycoAnimation_Lib.iml" filepath="$PROJECT_DIR$/FlycoAnimation_Lib/FlycoAnimation_Lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/FlycoDialog_Lib/FlycoDialog_Lib.iml" filepath="$PROJECT_DIR$/FlycoDialog_Lib/FlycoDialog_Lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RFID/RFID.iml" filepath="$PROJECT_DIR$/RFID/RFID.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/imagepicker/imagepicker.iml" filepath="$PROJECT_DIR$/imagepicker/imagepicker.iml" />
     </modules>

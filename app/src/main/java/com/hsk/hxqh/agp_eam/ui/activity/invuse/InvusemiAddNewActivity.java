@@ -95,7 +95,7 @@ import java.util.List;
  * Created by zzw on 2018/5/24.
  */
 /*新建出库单*/
-public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener,SwipeRefreshLayout.OnLoadListener {
 
 
     private static final String TAG = "InvusemiAddNewActivity";
@@ -224,15 +224,20 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
         quit.setOnClickListener(backImageViewOnClickListener);
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backImageViewOnClickListener);
-        titleTextView.setText(R.string.outbound);
+
         invuseEntity= new INVUSEEntity();
         if (type!=null){
             if (type.equals("MR")){
                 invuseEntity.setUSETYPE("RETURN");
+                titleTextView.setText(R.string.refund);
             }else if (type.equals("MI")){
                 invuseEntity.setUSETYPE("ISSUE");
+                titleTextView.setText(R.string.outbound);
             }else if (type.equals("MT")){
                 invuseEntity.setUSETYPE("TRANSFER");
+                titleTextView.setText(R.string.invuse_transfer);
+                TextView textView = (TextView) findViewById(R.id.yuankufang);
+                textView.setText(R.string.fromstoreroom);
             }
         }
         invuseEntity.setSTATUS("ENTERED");
@@ -355,6 +360,7 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
      */
     private void submitDataInfo() {
         final NormalDialog dialog = new NormalDialog(InvusemiAddNewActivity.this);
+        dialog.title(getString(R.string.tip)).btnText(getString(R.string.cancel),getString(R.string.queren));
         dialog.content(getString(R.string.suretosave))//
                 .showAnim(mBasIn)//
                 .dismissAnim(mBasOut)//
@@ -404,7 +410,7 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
         }
 
         if (descriptionTextView.getText().toString().equalsIgnoreCase("")){
-         Toast.makeText(this, getString(R.string.asset_desc)+ getString(R.string.necessary),Toast.LENGTH_SHORT).show();
+         Toast.makeText(this, getString(R.string.checknecessary),Toast.LENGTH_SHORT).show();
         }else {
             showProgressDialog("Waiting...");
             new AsyncTask<String, String, WebResult>() {
@@ -439,7 +445,7 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
                             final String finalJsonline = jsonline;
                             String reviseresultline = AndroidClientService.insertInvuseLine(InvusemiAddNewActivity.this, finalJsonline);
                             if (reviseresultline != null) {
-                                reviseresult.errorMsg = reviseresult.errorMsg + reviseresultline;
+                                reviseresult.errorMsg = reviseresult.errorMsg +"%%"+ reviseresultline + "%%";
                                 for (int i = 0; i < invreservesList.size(); i++) {
                                     boolean flag = false;
                                     double k = 0;
@@ -476,6 +482,7 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
                 @Override
                 protected void onPostExecute(WebResult workResult) {
                     super.onPostExecute(workResult);
+                    String[] results = workResult.errorMsg.split("%%");
                     if (workResult == null) {
                         Toast.makeText(InvusemiAddNewActivity.this, "false", Toast.LENGTH_SHORT).show();
                     } else {
@@ -483,9 +490,9 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
                             itemAdaper.getItem(i).setFLAG("U");
                         }
                         getMatDate();
-                        Toast.makeText(InvusemiAddNewActivity.this, workResult.errorMsg, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(InvusemiAddNewActivity.this,getString(R.string.success), Toast.LENGTH_SHORT).show();
+                        intentToDetail();
                     }
-
                     List list = itemAdaper.getData();
                     closeProgressDialog();
                 }
@@ -979,6 +986,21 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
         List list = SUBJECT.list;
         adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,list);
     }
+
+    @Override
+    public void onLoad() {
+        refresh_layout.setLoading(false);
+    }
+    public void intentToDetail(){
+        Intent intent = new Intent(InvusemiAddNewActivity.this,InvuseDetailActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("item",invuseEntity);
+        bundle.putString("type",type);
+        intent.putExtras(bundle);
+        startActivity(intent);
+        finish();
+    }
+
     class SpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
 
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
@@ -992,3 +1014,5 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
     }
 
 }
+
+

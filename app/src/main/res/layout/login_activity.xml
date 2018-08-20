@@ -51,6 +51,7 @@
                     android:textColor="@android:color/black"
                     android:textColorHint="@android:color/darker_gray"
                     android:textCursorDrawable="@null"
+                    android:singleLine="true"
                     android:textSize="18sp" />
 
 
@@ -70,7 +71,6 @@
                     android:singleLine="true"
                     android:textColor="@android:color/black"
                     android:textColorHint="@android:color/darker_gray"
-
                     android:textCursorDrawable="@null"
                     android:textSize="18sp" />
 
@@ -148,7 +148,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="1.0.0"
+            android:text="1.0.8"
             android:textColor="@color/white"
             android:textSize="14sp" />
 

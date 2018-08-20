@@ -54,7 +54,7 @@ public class MaterialRetreatingEntity extends BaseActivity implements Serializab
     private TextView issuetype;//交易类型
     private TextView enterby;//输入人
     private TextView orderunit;//订购单位
-    private TextView unitcost;//单位成本
+    private TextView unitcost,poline;//单位成本
     private MATRECTRANS matrectrans;
     private Button back;
     private Button option;
@@ -96,6 +96,7 @@ public class MaterialRetreatingEntity extends BaseActivity implements Serializab
         option = (Button) findViewById(R.id.option);
         relativeLayout = (RelativeLayout) findViewById(R.id.button_layout);
         remark = (EditText) findViewById(R.id.matusetrans_remark);
+        poline = (TextView) findViewById(R.id.matusetrans_polinenum);
     }
 
     @Override
@@ -112,8 +113,9 @@ public class MaterialRetreatingEntity extends BaseActivity implements Serializab
         binnum .setText(matrectrans.getTOBIN());
         lotnum .setText(matrectrans.getTOLOT());
         remark.setText(matrectrans.getREMARK());
+        poline.setText(matrectrans.getPOLINENUM());
         backImageView.setBackgroundResource(R.drawable.ic_back);
-        titleTextView.setText(R.string.receive);
+        titleTextView.setText(R.string.receiveline);
         backImageView.setOnClickListener(backOnClickListener);
         back.setOnClickListener(backOnClickListener);
         option.setOnClickListener(optionOnClickListener);
@@ -128,7 +130,8 @@ public class MaterialRetreatingEntity extends BaseActivity implements Serializab
         @Override
         public void onClick(View v) {
             final NormalDialog normalListDialog = new NormalDialog(MaterialRetreatingEntity.this);
-            normalListDialog.content("Sure to save?")//
+            normalListDialog.title(getString(R.string.tip)).btnText(getString(R.string.cancel),getString(R.string.confirm));
+            normalListDialog.content(getString(R.string.suretosave))//
                     .showAnim(mBasIn)//
                     .dismissAnim(mBasOut)//
                     .show();

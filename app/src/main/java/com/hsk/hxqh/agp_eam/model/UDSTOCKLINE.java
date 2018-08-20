@@ -36,6 +36,15 @@ public class UDSTOCKLINE implements Serializable {
     public String DIFFERENCE;//差异数量
     public String REASON;//差异原因
     public String LOTNUM;
+    public String BINNUM;
+
+    public String getBINNUM() {
+        return BINNUM;
+    }
+
+    public void setBINNUM(String BINNUM) {
+        this.BINNUM = BINNUM;
+    }
 
     public String getUDSTOCKLINEITEMODER() {
         return UDSTOCKLINEITEMODER;

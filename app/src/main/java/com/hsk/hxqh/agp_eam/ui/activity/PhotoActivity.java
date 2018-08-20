@@ -269,7 +269,7 @@ public class PhotoActivity extends BaseActivity implements ImageLoadAdapter.OnRe
         //测试环境的附件
         String ip_url = AccountUtils.getIpAddress(PhotoActivity.this);
         String imagesUrl = null;
-        imagesUrl = Constants.HTTP_API_IP;
+        imagesUrl = AccountUtils.getIpAddress(PhotoActivity.this);
        /* if (ip_url.equals("http://eam.mywind.com.cn:9080")) { //正式
             imagesUrl = ZHENGSHI_URL;
         } else if (ip_url.equals("http://qaseamapp.mywind.com.cn:9080")) { //测试
