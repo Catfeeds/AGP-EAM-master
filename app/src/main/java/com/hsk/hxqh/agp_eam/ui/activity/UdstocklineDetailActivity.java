@@ -161,17 +161,16 @@ public class UdstocklineDetailActivity extends BaseActivity{
       String num2 =  quantity2View.getText().toString();
       String num1 = udstockline.getQUANTITY1();
       if (num2 != null && !num2.equals("")){
-          udstockline.setDIFFERENCE((Integer.parseInt(num2)-Integer.parseInt(num1)) + "");
+          udstockline.setDIFFERENCE((Double.parseDouble(num2)-Double.parseDouble(num1)) + "");
       }
         udstockline.setQUANTITY2(quantity2View.getText().toString());
-
         udstockline.setREASON(reasonsView.getText().toString());
-        json = JsonUtils.submitUdstocklineData(udstockline);
-        if (num1!=num2 && reasonsView.getText().toString().equals("")){
+        if (Double.parseDouble(num2)!=Double.parseDouble(num1)&& reasonsView.getText().toString().equals("")){
             Toast.makeText(this, getString(R.string.udstockline_reason),Toast.LENGTH_SHORT).show();
         }else {
-            showProgressDialog("Waiting...");
+            showProgressDialog(".....");
             udstockline.setISCHECK("1");
+            json = JsonUtils.submitUdstocklineData(udstockline);
             new AsyncTask<String,String,String>(){
 
                 @Override
@@ -189,10 +188,10 @@ public class UdstocklineDetailActivity extends BaseActivity{
                 protected void onPostExecute(String s) {
                     super.onPostExecute(s);
                     if (s == null || s.equalsIgnoreCase("")) {
-                        Toast.makeText(UdstocklineDetailActivity.this, "Confim fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UdstocklineDetailActivity.this, getString(R.string.fail), Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(UdstocklineDetailActivity.this, s, Toast.LENGTH_SHORT).show();
                         if (s.equalsIgnoreCase("成功")){
+                            Toast.makeText(UdstocklineDetailActivity.this, getString(R.string.success), Toast.LENGTH_SHORT).show();
                             udstockline.setISCHECK("Y");
                             Intent intent = getIntent();
                             Bundle bundle = new Bundle();
@@ -201,6 +200,9 @@ public class UdstocklineDetailActivity extends BaseActivity{
                             intent.putExtras(bundle);
                             setResult(UDSTOCKLINE_CODE,intent);
                             finish();
+                        }else {
+                            Toast.makeText(UdstocklineDetailActivity.this, s, Toast.LENGTH_SHORT).show();
+
                         }
                     }
                     closeProgressDialog();

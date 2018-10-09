@@ -234,11 +234,11 @@ public class WxDemoActivity extends BaseActivity implements ImagePickerAdapter.O
     private View.OnClickListener submitBtnOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Log.i(TAG, "imageItems=" + imageItems.size());
+            //Log.i(TAG, "imageItems=" + imageItems.size());
             if (imageItems == null || imageItems.size() == 0) {
-                MessageUtils.showMiddleToast(WxDemoActivity.this, "请选择需要上传的图片");
+                MessageUtils.showMiddleToast(WxDemoActivity.this, getString(R.string.check_photo_hint));
             } else {
-                showProgressDialog("提交数据中");
+                showProgressDialog(".....");
                 progressDialog.setCancelable(false);
                 for (int i = 0; i < imageItems.size(); i++) {
                     startAsyncTask(imageItems.get(i).path);

@@ -16,9 +16,11 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +38,7 @@ import com.hsk.hxqh.agp_eam.api.HttpRequestHandler;
 import com.hsk.hxqh.agp_eam.api.JsonUtils;
 import com.hsk.hxqh.agp_eam.bean.Results;
 import com.hsk.hxqh.agp_eam.model.ASSET;
+import com.hsk.hxqh.agp_eam.model.INVENTORY;
 import com.hsk.hxqh.agp_eam.model.INVRESERVE;
 import com.hsk.hxqh.agp_eam.model.ITEM;
 import com.hsk.hxqh.agp_eam.ui.activity.BaseActivity;
@@ -44,8 +47,12 @@ import com.hsk.hxqh.agp_eam.ui.activity.MipcaActivityCapture;
 import com.hsk.hxqh.agp_eam.ui.widget.SwipeRefreshLayout;
 import com.hsk.hxqh.agp_eam.unit.ArrayUtil;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -82,6 +89,46 @@ public class INVRESERVE_chooseActivity extends BaseActivity implements SwipeRefr
 //    private Button confirmBtn;
         private BaseAnimatorSet mBasIn;
     private BaseAnimatorSet mBasOut;
+    private RelativeLayout button_layout;
+    private Button select,ok;
+    private boolean flag = false;
+    private View.OnClickListener selectOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            for (int i = 0;i< assetChooseAdapter.getItemCount();i++){
+                assetChooseAdapter.getItem(i).setCheckBox(flag);
+            }
+            assetChooseAdapter.notifyDataSetChanged();
+            if (flag){
+                flag =false;
+                select.setText(R.string.quanbuxuan);
+            }else {
+                flag = true;
+                select.setText(R.string.quanbuxuan);
+            }
+        }
+    };
+    private View.OnClickListener okOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            ArrayList<INVRESERVE> invreserves = new ArrayList<>();
+            for (int i=0;i<assetChooseAdapter.getItemCount();i++){
+                if (assetChooseAdapter.getItem(i).isCheckBox()){
+                    invreserves.add(assetChooseAdapter.getItem(i));
+                }
+            }
+            Intent intent = getIntent();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("INVRESERVE",invreserves);
+            intent.putExtras(bundle);
+            setResult(130,intent);
+            Map<Integer,Object> objectMap = new HashMap<>();
+            objectMap.put(2,invreserves);
+            EventBus.getDefault().post(objectMap);
+            finish();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,12 +157,21 @@ public class INVRESERVE_chooseActivity extends BaseActivity implements SwipeRefr
         refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         nodatalayout = (LinearLayout) findViewById(R.id.have_not_data_id);
         search = (EditText) findViewById(R.id.search_edit);
+        button_layout = (RelativeLayout) findViewById(R.id.button_layout);
+        select = (Button) findViewById(R.id.back);
+        ok = (Button) findViewById(R.id.option);
+
 //        confirmlayout = (LinearLayout) findViewById(R.id.button_layout);
 //        confirmBtn = (Button) findViewById(R.id.confirm);
     }
 
     @Override
     protected void initView() {
+        button_layout.setVisibility(View.VISIBLE);
+        select.setOnClickListener(selectOnClickListener);
+        select.setText(getString(R.string.quanxuan));
+        ok.setText(R.string.queren);
+        ok.setOnClickListener(okOnClickListener);
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backOnClickListener);
         titleTextView.setText(getString(R.string.reserveditems));
@@ -252,16 +308,17 @@ public class INVRESERVE_chooseActivity extends BaseActivity implements SwipeRefr
      */
     private void initAdapter(final List<INVRESERVE> list) {
         assetChooseAdapter = new Invresvre_chooseAdapter(INVRESERVE_chooseActivity.this, R.layout.list_item, list);
+        assetChooseAdapter.setShowCheckBox(true);
         recyclerView.setAdapter(assetChooseAdapter);
         assetChooseAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = getIntent();
+/*                Intent intent = getIntent();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("INVRESERVE", assetChooseAdapter.getItem(position));
                 intent.putExtras(bundle);
                 setResult(130,intent);
-                finish();
+                finish();*/
 //                startActivityForResult(intent, 0);
             }
         });
@@ -313,7 +370,7 @@ public class INVRESERVE_chooseActivity extends BaseActivity implements SwipeRefr
                 setResult(130, intent);
                 finish();
             } else {
-                Toast.makeText(INVRESERVE_chooseActivity.this, "There is no such item", Toast.LENGTH_SHORT).show();
+                Toast.makeText(INVRESERVE_chooseActivity.this, getString(R.string.have_not_data_txt), Toast.LENGTH_SHORT).show();
 
             }
         }

@@ -35,6 +35,7 @@ import com.hsk.hxqh.agp_eam.api.HttpManager;
 import com.hsk.hxqh.agp_eam.api.HttpRequestHandler;
 import com.hsk.hxqh.agp_eam.api.JsonUtils;
 import com.hsk.hxqh.agp_eam.bean.Results;
+import com.hsk.hxqh.agp_eam.model.INVBALANCES;
 import com.hsk.hxqh.agp_eam.model.INVENTORY;
 import com.hsk.hxqh.agp_eam.model.ITEM;
 import com.hsk.hxqh.agp_eam.model.LOCATIONS;
@@ -206,19 +207,23 @@ private     ArrayList<INVENTORY> inventories;
                             search.setHint(R.string.udstock_storeroom);
                             break;
                         case 3:
-                            normalListDialog.superDismiss();
+/*                            normalListDialog.superDismiss();
                             UHFReader uhfReader = new UHFReader();
                             UHFHXAPI uhfhxapi = new UHFHXAPI();
                             String uhfString = uhfReader.reader(uhfhxapi);
-                            if (!uhfString.contains("fail")){
-                                String[] results = uhfString.split("a1a");
-                                type = "INVNUM";
+                            uhfString = uhfString.toUpperCase();
+                            if (!uhfString.contains("FAIL")){
+                                String[] results = uhfString.split("FF");
+                                type = "LOCATION";
                                 itemAdapter.removeAll(itemAdapter.getData());
-                                getData(results[0]);
+                                getData("="+results[0]);
                             }else{
                                 Toast.makeText(InventoryListActivity.this, uhfString + "\nPlace try again",LENGTH_SHORT).show();
-                            }
-
+                            }*/
+                            normalListDialog.superDismiss();
+                            Intent intent1 = new Intent(InventoryListActivity.this,  UHFActivity.class);
+                            intent1.putExtra("markUHF",2);
+                            startActivityForResult(intent1,0);
                             break;
                         case 2:
                             normalListDialog.superDismiss();
@@ -331,6 +336,52 @@ private     ArrayList<INVENTORY> inventories;
         });
 
     }
+    private void getData(String search,String location) {
+        HttpManager.getDataPagingInfo(InventoryListActivity.this, HttpManager.getInventoryUrl(location,search, page, 20,1), new HttpRequestHandler<Results>() {
+            @Override
+            public void onSuccess(Results results) {
+                Log.i(TAG, "data=" + results);
+            }
+
+            @Override
+            public void onSuccess(Results results, int totalPages, int currentPage) {
+                Log.e("库存", "onSuccess: "+results.toString() );
+                ArrayList<INVENTORY> item = JsonUtils.parsingINVENTORY(InventoryListActivity.this, results.getResultlist());
+                refresh_layout.setRefreshing(false);
+                refresh_layout.setLoading(false);
+                if (item == null || item.isEmpty()) {
+                    nodatalayout.setVisibility(View.VISIBLE);
+                } else {
+
+                    if (item != null || item.size() != 0) {
+                        if (page == 1) {
+                            items = new ArrayList<INVENTORY>();
+                            initAdapter(items);
+                        }
+                        for (int i = 0; i < item.size(); i++) {
+                            items.add(item.get(i));
+                        }
+                        int postion = itemAdapter.getItemCount();
+                        addData(item);
+                        BaseViewHolder baseViewHolder = new BaseViewHolder(InventoryListActivity.this, recyclerView);
+                        itemAdapter.onBindViewHolder(baseViewHolder,postion);
+                    }
+                    nodatalayout.setVisibility(View.GONE);
+
+                    initAdapter(items);
+                    type = "";
+                }
+            }
+
+            @Override
+            public void onFailure(String error) {
+                refresh_layout.setRefreshing(false);
+                nodatalayout.setVisibility(View.VISIBLE);
+                type = "";
+            }
+        });
+
+    }
 
 
     /**
@@ -377,6 +428,13 @@ private     ArrayList<INVENTORY> inventories;
             LOCATIONS locations = (LOCATIONS) data.getExtras().get("location");
             search.setText(locations.getLOCATION());
             searchText = locations.getLOCATION();
+        }else if (resultCode==160){
+            type = "ITEMNUM";
+            INVBALANCES invbalances = (INVBALANCES) data.getExtras().get("invbalance");
+            if (invbalances!=null){
+                itemAdapter.removeAll(itemAdapter.getData());
+                getData(invbalances.getITEMNUM(),invbalances.getLOCATION());
+            }
         }
     }
     /**
@@ -393,7 +451,7 @@ private     ArrayList<INVENTORY> inventories;
                 ArrayList<INVENTORY> item = JsonUtils.parsingINVENTORY(InventoryListActivity.this, results.getResultlist());
                 if (item == null || item.isEmpty()) {
                     isExistItem = false;
-                    Toast.makeText(InventoryListActivity.this,"There is no such item",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InventoryListActivity.this,getString(R.string.have_not_data_txt),Toast.LENGTH_SHORT).show();
                 } else {
                     inventoryScan = item.get(0);
                     boolean flag = false;

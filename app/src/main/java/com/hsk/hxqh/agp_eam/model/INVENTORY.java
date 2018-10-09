@@ -20,6 +20,15 @@ public class INVENTORY implements Serializable {
     public String ROTATING;//固定资产
     public String SITEID;//地点
     public String ITEMSETID;//物资地点itemsetid
+    public boolean checkBox;
+
+    public boolean isCheckBox() {
+        return checkBox;
+    }
+
+    public void setCheckBox(boolean checkBox) {
+        this.checkBox = checkBox;
+    }
 
     public void setSITEID(String SITEID) {
         this.SITEID = SITEID;

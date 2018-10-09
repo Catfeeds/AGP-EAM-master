@@ -29,6 +29,15 @@ public class MATUSETRANS implements Serializable {
    public String INVUSELINEID;
     public String INVUSEID;
     public String QUANTITY;
+    private boolean CheckBox;
+
+    public boolean isCheckBox() {
+        return CheckBox;
+    }
+
+    public void setCheckBox(boolean checkBox) {
+        CheckBox = checkBox;
+    }
 
     public String getQUANTITY() {
         return QUANTITY;

@@ -301,17 +301,21 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
         }
         switch (resultCode){
             case 100:
-                MATRECTRANS matrectrans = (MATRECTRANS) data.getExtras().get("matrectrans");
-                matrectrans.setFLAG("I");
-                matrectrans.setPONUM(po.getPONUM());
-                matrectrans.setQUANTITY( matrectrans.getORDERQTYBackup());
-                matrectrans.setRECEIPTQUANTITY( matrectrans.getORDERQTYBackup());
-                matrectrans.setTOSTORELOC(po.getUDSTATION());
-                matrectrans.setENTERBY(AccountUtils.getpersonId(this));
-                matrectrans.setISSUETYPE("RECEIPT");
-                matrectrans.setQTYREQUESTED(matrectrans.getRECEIVEDQTY());
-                matrectransAdapter.add(matrectrans);
-                changegoolsDate();
+                ArrayList<MATRECTRANS> matrectranslist = (ArrayList<MATRECTRANS>) data.getExtras().get("itemlist");
+                if (matrectranslist!=null && !matrectranslist.isEmpty()){
+                    for (MATRECTRANS matrectrans:matrectranslist) {
+                        matrectrans.setFLAG("I");
+                        matrectrans.setPONUM(po.getPONUM());
+                        matrectrans.setQUANTITY( matrectrans.getORDERQTYBackup());
+                        matrectrans.setRECEIPTQUANTITY( matrectrans.getORDERQTYBackup());
+                        matrectrans.setTOSTORELOC(po.getUDSTATION());
+                        matrectrans.setENTERBY(AccountUtils.getpersonId(this));
+                        matrectrans.setISSUETYPE("RECEIPT");
+                        matrectrans.setQTYREQUESTED(matrectrans.getRECEIVEDQTY());
+                        matrectransAdapter.add(matrectrans);
+                        changegoolsDate();
+                    }
+                }
                 break;
             case 10:
                 MATRECTRANS matrectrans1 = (MATRECTRANS) data.getExtras().get("matrectrans");
@@ -343,7 +347,7 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
             }
         }
         if (!flag){
-            Toast.makeText(this, "There is no such item",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.have_not_data_txt),Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -457,7 +461,6 @@ public class PodetailActivity extends BaseActivity implements SwipeRefreshLayout
                 closeProgressDialog();
             }
         }.execute();
-        closeProgressDialog();
     }
     public void changegoolsDate(){
         if(matrectransAdapter.getItemCount()>0){

@@ -2,8 +2,10 @@ package com.hsk.hxqh.agp_eam.ui.activity.option;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,9 +18,11 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,14 +40,21 @@ import com.hsk.hxqh.agp_eam.api.JsonUtils;
 import com.hsk.hxqh.agp_eam.bean.Results;
 import com.hsk.hxqh.agp_eam.model.INVENTORY;
 import com.hsk.hxqh.agp_eam.ui.activity.BaseActivity;
+import com.hsk.hxqh.agp_eam.ui.activity.ItemListActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.MipcaActivityCapture;
 import com.hsk.hxqh.agp_eam.ui.activity.UdstockLineActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.invuse.InvuseListActivity;
+import com.hsk.hxqh.agp_eam.ui.widget.BaseViewHolder;
 import com.hsk.hxqh.agp_eam.ui.widget.SwipeRefreshLayout;
 import com.hsk.hxqh.agp_eam.unit.UHFReader;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 import android_serialport_api.SerialPortManager;
 import android_serialport_api.UHFHXAPI;
@@ -82,16 +93,21 @@ public class Inventory_chooseActivity extends BaseActivity implements SwipeRefre
     private BaseAnimatorSet mBasOut;
     private UHFHXAPI uhfhxapi;
     private String uhfString;
+    private boolean showCheckBox;
 //    private BaseAnimatorSet mBasIn;
 //    private BaseAnimatorSet mBasOut;
 //    private LinearLayout confirmlayout;
 //    private Button confirmBtn;
+    private RelativeLayout buttonLiner;
+    private Button select,ok;
+    private boolean flag  = true;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+        getIntentDate();
         findViewById();
         initView();
         mBasIn = new BounceTopEnter();
@@ -99,8 +115,9 @@ public class Inventory_chooseActivity extends BaseActivity implements SwipeRefre
     }
 
     private String getIntentDate() {
-        searchText = getIntent().getStringExtra("location");
-        return searchText;
+        String search = getIntent().getStringExtra("location");
+        showCheckBox = getIntent().getBooleanExtra("showCheckBox",false);
+        return search;
     }
 
     @Override
@@ -112,12 +129,23 @@ public class Inventory_chooseActivity extends BaseActivity implements SwipeRefre
         refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         nodatalayout = (LinearLayout) findViewById(R.id.have_not_data_id);
         search = (EditText) findViewById(R.id.search_edit);
+        buttonLiner = (RelativeLayout) findViewById(R.id.button_layout);
+        select = (Button) findViewById(R.id.back);
+        ok = (Button) findViewById(R.id.option);
+
 //        confirmlayout = (LinearLayout) findViewById(R.id.button_layout);
 //        confirmBtn = (Button) findViewById(R.id.confirm);
     }
 
     @Override
     protected void initView() {
+        if (showCheckBox){
+            buttonLiner.setVisibility(View.VISIBLE);
+            select.setText(R.string.quanxuan);
+            ok.setText(R.string.queren);
+            select.setOnClickListener(selectOnClickListener);
+            ok.setOnClickListener(okOnClickListener);
+        }
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backOnClickListener);
         menuImageView.setVisibility(View.VISIBLE);
@@ -150,6 +178,42 @@ public class Inventory_chooseActivity extends BaseActivity implements SwipeRefre
 //        mBasOut = new SlideBottomExit();
 
     }
+    private View.OnClickListener selectOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+                for (int i = 0;i< inventory_chooseAdapter.getItemCount();i++){
+                    inventory_chooseAdapter.getItem(i).setCheckBox(flag);
+                }
+                inventory_chooseAdapter.notifyDataSetChanged();
+                if (flag){
+                    flag =false;
+                    select.setText(R.string.quanbuxuan);
+                }else {
+                    flag = true;
+                    select.setText(R.string.quanxuan);
+                }
+        }
+    };
+    private View.OnClickListener okOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            ArrayList<INVENTORY> inventoryArrayList = new ArrayList<>();
+            for (int i=0;i<inventory_chooseAdapter.getItemCount();i++){
+                if (inventory_chooseAdapter.getItem(i).isCheckBox()){
+                    inventoryArrayList.add(inventory_chooseAdapter.getItem(i));
+                }
+            }
+            Map<Integer,Object> objectMap = new HashMap<>();
+            objectMap.put(1,inventoryArrayList);
+/*            Intent intent = getIntent();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("itemlist",inventoryArrayList);
+            intent.putExtras(bundle);
+            setResult(1,intent);*/
+            EventBus.getDefault().post(objectMap);
+            finish();
+        }
+    };
 
     @Override
     public void onStart() {
@@ -169,7 +233,7 @@ public class Inventory_chooseActivity extends BaseActivity implements SwipeRefre
     private View.OnClickListener menuOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            final NormalListDialog normalListDialog = new NormalListDialog(Inventory_chooseActivity.this, new String[]{getString(R.string.scan),});
+            final NormalListDialog normalListDialog = new NormalListDialog(Inventory_chooseActivity.this, new String[]{getString(R.string.scan),getString(R.string.uhfscan)});
             normalListDialog.title(getString(R.string.option))
                     .showAnim(mBasIn)//
                     .dismissAnim(mBasOut)//
@@ -191,8 +255,9 @@ public class Inventory_chooseActivity extends BaseActivity implements SwipeRefre
                             uhfhxapi = new UHFHXAPI();
                             UHFReader uhfReader = new UHFReader();
                             uhfString = uhfReader.reader(uhfhxapi);
-                            if (!uhfString.contains("fail")){
-                                String[] results = uhfString.split("a1a");
+                            uhfString = uhfString.toUpperCase();
+                            if (!uhfString.contains("FAIL")){
+                                String[] results = uhfString.split("FF");
                                 if (getIntentDate().equals(results[0])){
                                     inventory_chooseAdapter.removeAll(inventory_chooseAdapter.getData());
                                     getData("",getIntentDate(),results[1]);
@@ -260,7 +325,6 @@ public class Inventory_chooseActivity extends BaseActivity implements SwipeRefre
                 if (item == null || item.isEmpty()) {
                     nodatalayout.setVisibility(View.VISIBLE);
                 } else {
-
                     if (item != null || item.size() != 0) {
                         if (page == 1) {
                             InventoryArrayList = new ArrayList<INVENTORY>();
@@ -269,7 +333,10 @@ public class Inventory_chooseActivity extends BaseActivity implements SwipeRefre
                         for (int i = 0; i < item.size(); i++) {
                             InventoryArrayList.add(item.get(i));
                         }
+                        int postion = inventory_chooseAdapter.getItemCount();
                         addData(item);
+                        BaseViewHolder baseViewHolder = new BaseViewHolder(Inventory_chooseActivity.this, recyclerView);
+                        inventory_chooseAdapter.onBindViewHolder(baseViewHolder,postion);
                     }
                     nodatalayout.setVisibility(View.GONE);
 
@@ -332,16 +399,19 @@ public class Inventory_chooseActivity extends BaseActivity implements SwipeRefre
      */
     private void initAdapter(final List<INVENTORY> list) {
         inventory_chooseAdapter = new Inventory_chooseAdapter(Inventory_chooseActivity.this, R.layout.list_item, list);
+        inventory_chooseAdapter.setShowcheckbox(showCheckBox);
         recyclerView.setAdapter(inventory_chooseAdapter);
         inventory_chooseAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = getIntent();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("INVENTORY", InventoryArrayList.get(position));
-                intent.putExtras(bundle);
-                setResult(120,intent);
-                finish();
+                if (!showCheckBox){
+                    Intent intent = getIntent();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("INVENTORY", InventoryArrayList.get(position));
+                    intent.putExtras(bundle);
+                    setResult(120,intent);
+                    finish();
+                }
 //                startActivityForResult(intent, 0);
             }
         });
@@ -380,7 +450,7 @@ public class Inventory_chooseActivity extends BaseActivity implements SwipeRefre
     @Override
     public void onLoad() {
             page++;
-        getData(searchText);
+            getData(searchText);
     }
     @Override
     protected void onPause() {

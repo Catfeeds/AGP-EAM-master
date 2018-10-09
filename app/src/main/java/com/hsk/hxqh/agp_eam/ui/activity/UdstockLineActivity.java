@@ -215,8 +215,9 @@ public class UdstockLineActivity extends BaseActivity implements SwipeRefreshLay
             uhfhxapi = new UHFHXAPI();
             UHFReader uhfReader = new UHFReader();
             uhfString = uhfReader.reader(uhfhxapi);
-            if (!uhfString.contains("fail")){
-                String[] results = uhfString.split("a1a");
+            uhfString = uhfString.toUpperCase();
+            if (!uhfString.contains("FAIL")){
+                String[] results = uhfString.split("FF");
                 if (udstock.getSTOREROOM().equals(results[0])){
                     udstockLineAdapter.removeAll(udstockLineAdapter.getData());
                     getData(results[1]);
@@ -300,11 +301,16 @@ public class UdstockLineActivity extends BaseActivity implements SwipeRefreshLay
                             initAdapter(assetArrayList);
                         }
                         for (int i = 0; i < item.size(); i++) {
-                            if ("Y".equalsIgnoreCase(item.get(i).getISCHECK())){
+                           /* if ("Y".equalsIgnoreCase(item.get(i).getISCHECK())){
                                 udstocklineList.add(item.get(i));
                             }else {
                                 assetArrayList.add(item.get(i));
-                            }
+                            }*/
+                           if (item.get(i).getDIFFERENCE() != null){
+                               udstocklineList.add(item.get(i));
+                           }else {
+                               assetArrayList.add(item.get(i));
+                           }
                         }
                         assetArrayList.addAll(udstocklineList);
                         addData(assetArrayList);
@@ -460,7 +466,7 @@ public class UdstockLineActivity extends BaseActivity implements SwipeRefreshLay
                 ArrayList<UDSTOCKLINE> item = JsonUtils.parsingUDSTOCKLINE(UdstockLineActivity.this,results.getResultlist());
                 if (item == null || item.isEmpty()) {
                     isExistStockline = false;
-                    Toast.makeText(UdstockLineActivity.this,"There is no such item",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UdstockLineActivity.this,getString(R.string.have_not_data_txt),Toast.LENGTH_SHORT).show();
                 } else {
                     udstockLineAdapter.removeAll(udstockLineAdapter.getData());
                     addData(item);

@@ -22,9 +22,17 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="5dp"
             android:padding="5dp">
+            <CheckBox
+                android:id="@+id/check_box_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                />
 
             <TextView
                 android:id="@+id/item_num_title"
+                android:layout_toRightOf="@+id/check_box_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/item_num_title"
@@ -48,6 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/item_num_title"
                 android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/check_box_id"
                 android:text="@string/item_desc_title"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -67,18 +76,18 @@
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
-            <ImageView
+           <!-- <ImageView
                 android:id="@+id/avatar"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop" />-->
 
 
         </RelativeLayout>
-
+        <include layout="@layout/asset_buttom"></include>
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

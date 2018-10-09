@@ -15,9 +15,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hsk.hxqh.agp_eam.R;
@@ -29,6 +31,7 @@ import com.hsk.hxqh.agp_eam.api.HttpRequestHandler;
 import com.hsk.hxqh.agp_eam.api.JsonUtils;
 import com.hsk.hxqh.agp_eam.bean.Results;
 import com.hsk.hxqh.agp_eam.model.ASSET;
+import com.hsk.hxqh.agp_eam.model.INVENTORY;
 import com.hsk.hxqh.agp_eam.model.MATRECTRANS;
 import com.hsk.hxqh.agp_eam.model.MATUSETRANS;
 import com.hsk.hxqh.agp_eam.ui.activity.BaseActivity;
@@ -69,7 +72,42 @@ public class Matrectrans_chooseActivity extends BaseActivity implements SwipeRef
 //    private BaseAnimatorSet mBasOut;
 //    private LinearLayout confirmlayout;
 //    private Button confirmBtn;
-
+    private RelativeLayout buttonLiner;
+    private Button select,ok;
+    private boolean flag  = true;
+    private View.OnClickListener selectOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            for (int i = 0;i< assetChooseAdapter.getItemCount();i++){
+                assetChooseAdapter.getItem(i).setCheckBox(flag);
+            }
+            assetChooseAdapter.notifyDataSetChanged();
+            if (flag){
+                flag =false;
+                select.setText(R.string.quanbuxuan);
+            }else {
+                flag = true;
+                select.setText(R.string.quanxuan);
+            }
+        }
+    };
+    private View.OnClickListener okOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            ArrayList<MATRECTRANS> inventoryArrayList = new ArrayList<>();
+            for (int i=0;i<assetChooseAdapter.getItemCount();i++){
+                if (assetChooseAdapter.getItem(i).isCheckBox()){
+                    inventoryArrayList.add(assetChooseAdapter.getItem(i));
+                }
+            }
+            Intent intent = getIntent();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("itemlist",inventoryArrayList);
+            intent.putExtras(bundle);
+            setResult(100,intent);
+            finish();
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,12 +134,20 @@ public class Matrectrans_chooseActivity extends BaseActivity implements SwipeRef
         refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         nodatalayout = (LinearLayout) findViewById(R.id.have_not_data_id);
         search = (EditText) findViewById(R.id.search_edit);
+        buttonLiner = (RelativeLayout) findViewById(R.id.button_layout);
+        select = (Button) findViewById(R.id.back);
+        ok = (Button) findViewById(R.id.option);
 //        confirmlayout = (LinearLayout) findViewById(R.id.button_layout);
 //        confirmBtn = (Button) findViewById(R.id.confirm);
     }
 
     @Override
     protected void initView() {
+        buttonLiner.setVisibility(View.VISIBLE);
+        select.setText(R.string.quanxuan);
+        ok.setText(R.string.queren);
+        select.setOnClickListener(selectOnClickListener);
+        ok.setOnClickListener(okOnClickListener);
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backOnClickListener);
         titleTextView.setText("");
@@ -215,16 +261,17 @@ public class Matrectrans_chooseActivity extends BaseActivity implements SwipeRef
      */
     private void initAdapter(final List<MATRECTRANS> list) {
         assetChooseAdapter = new Matrectrans_chooseAdapter(Matrectrans_chooseActivity.this, R.layout.list_itemmatchoose, list);
+        assetChooseAdapter.setShowcheckbox(true);
         recyclerView.setAdapter(assetChooseAdapter);
         assetChooseAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = getIntent();
+              /*  Intent intent = getIntent();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("matrectrans",assetChooseAdapter.getItem(position));
                 intent.putExtras(bundle);
                 setResult(100,intent);
-                finish();
+                finish();*/
 //                startAcstivityForResult(intent, 0);
             }
         });

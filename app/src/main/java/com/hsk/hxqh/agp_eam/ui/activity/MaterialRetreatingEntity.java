@@ -53,7 +53,7 @@ public class MaterialRetreatingEntity extends BaseActivity implements Serializab
     private EditText lotnum;//目标批次
     private TextView issuetype;//交易类型
     private TextView enterby;//输入人
-    private TextView orderunit;//订购单位
+    private TextView orderunit,orderunitdesc;//订购单位
     private TextView unitcost,poline;//单位成本
     private MATRECTRANS matrectrans;
     private Button back;
@@ -97,6 +97,7 @@ public class MaterialRetreatingEntity extends BaseActivity implements Serializab
         relativeLayout = (RelativeLayout) findViewById(R.id.button_layout);
         remark = (EditText) findViewById(R.id.matusetrans_remark);
         poline = (TextView) findViewById(R.id.matusetrans_polinenum);
+        orderunitdesc= (TextView) findViewById(R.id.matusetrans_orderunitdesc);
     }
 
     @Override
@@ -114,6 +115,7 @@ public class MaterialRetreatingEntity extends BaseActivity implements Serializab
         lotnum .setText(matrectrans.getTOLOT());
         remark.setText(matrectrans.getREMARK());
         poline.setText(matrectrans.getPOLINENUM());
+        orderunitdesc.setText(matrectrans.getUNITDESC());
         backImageView.setBackgroundResource(R.drawable.ic_back);
         titleTextView.setText(R.string.receiveline);
         backImageView.setOnClickListener(backOnClickListener);

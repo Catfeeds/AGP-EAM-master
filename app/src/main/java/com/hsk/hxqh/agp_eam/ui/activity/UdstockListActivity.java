@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.flyco.animation.BaseAnimatorSet;
 import com.flyco.animation.BounceEnter.BounceTopEnter;
@@ -34,6 +35,7 @@ import com.hsk.hxqh.agp_eam.api.HttpManager;
 import com.hsk.hxqh.agp_eam.api.HttpRequestHandler;
 import com.hsk.hxqh.agp_eam.api.JsonUtils;
 import com.hsk.hxqh.agp_eam.bean.Results;
+import com.hsk.hxqh.agp_eam.model.INVENTORY;
 import com.hsk.hxqh.agp_eam.model.UDSTOCK;
 import com.hsk.hxqh.agp_eam.ui.activity.invuse.InvuseListActivity;
 import com.hsk.hxqh.agp_eam.ui.widget.BaseViewHolder;
@@ -317,8 +319,56 @@ public class UdstockListActivity extends BaseActivity implements SwipeRefreshLay
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == UDSTOCK_CODE){
-           search.setText(data.getExtras().getString("result"));
-            setSearchEdit();
+            if (data!=null){
+                Bundle bundle=data.getExtras();
+                String results = bundle.getString("result");
+                if (results!=null && !results.equals("")){
+                    isExistSN(results);
+                }
+            }
         }
+    }
+    private void isExistSN(final String serialnum) {
+        HttpManager.getDataPagingInfo(this, HttpManager.getUdstockUrl(serialnum,"STOCKNUM",1,20),new HttpRequestHandler<Results>() {
+            @Override
+            public void onSuccess(Results results) {
+            }
+
+            @Override
+            public void onSuccess(Results results, int totalPages, int currentPage) {
+                ArrayList<UDSTOCK> item = JsonUtils.parsingUDSTOCK(UdstockListActivity.this, results.getResultlist());
+                if (item == null || item.isEmpty()) {
+                    Toast.makeText(UdstockListActivity.this,getString(R.string.have_not_data_txt),Toast.LENGTH_SHORT).show();
+                } else {
+                    UDSTOCK udstock = item.get(0);
+                    boolean flag = false;
+                    for (int i =0; i < assetAdapter.getData().size();i++){
+                        String itemnum =   assetAdapter.getItem(i).STOCKNUM;
+                        if (itemnum.equalsIgnoreCase(udstock.getSTOCKNUM().trim())){
+                            flag = true;
+                            startIntent(i,assetAdapter.getItem(i));
+                            break;
+                        }
+                    }
+                    if (flag != true){
+                        assetAdapter.add(udstock);
+                        startIntent(assetAdapter.getItemCount(),udstock);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(String error) {
+            }
+        });
+    }
+    public  void startIntent(int position,UDSTOCK itemintent){
+        Intent intent = new Intent(this,UdstockDetailsActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("udstock",itemintent);
+        bundle.putInt("position",position);
+        intent.putExtras(bundle);
+        startActivityForResult(intent,0);
     }
 }

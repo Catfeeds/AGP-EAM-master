@@ -15,15 +15,24 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true">
 
+
         <RelativeLayout
             android:id="@+id/relativeLayout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="5dp"
             android:padding="5dp">
+            <CheckBox
+                android:id="@+id/check_box_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                />
             <TextView
                 android:id="@+id/item_polinenum_title"
+                android:layout_toRightOf="@+id/check_box_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/item_num_title"
@@ -38,13 +47,15 @@
                 android:layout_toRightOf="@+id/item_polinenum_title"
                 android:hint="@string/hint_item_num_title"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                />
 
             <TextView
                 android:id="@+id/item_num_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/check_box_id"
                 android:layout_below="@+id/item_polinenum_text"
                 android:text="@string/item_num_title"
                 android:textColor="@color/black"
@@ -71,7 +82,9 @@
             android:layout_marginTop="5dp"
             android:text="@string/item_desc_title"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:layout_toRightOf="@+id/check_box_id"
+                />
 
             <TextView
                 android:id="@+id/item_desc_text"
@@ -96,7 +109,9 @@
                 android:layout_marginTop="5dp"
                 android:text="@string/item_orderqty"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:layout_toRightOf="@+id/check_box_id"
+                />
 
             <TextView
                 android:id="@+id/item_orderqty_text"
@@ -120,7 +135,9 @@
                 android:layout_marginTop="5dp"
                 android:text="@string/item_RECEIVEDQTY"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:layout_toRightOf="@+id/check_box_id"
+                />
 
             <TextView
                 android:id="@+id/item_recrivedqty_text"

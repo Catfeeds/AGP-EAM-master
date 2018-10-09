@@ -60,6 +60,24 @@ private String FLAG  = "U";
       private String ISSUETYPE;
       private String RECEIPTQUANTITY;
       private String MATRECTRANSID;
+      private String UNITDESC;
+      private boolean CheckBox;
+
+    public boolean isCheckBox() {
+        return CheckBox;
+    }
+
+    public void setCheckBox(boolean checkBox) {
+        CheckBox = checkBox;
+    }
+
+    public String getUNITDESC() {
+        return UNITDESC;
+    }
+
+    public void setUNITDESC(String UNITDESC) {
+        this.UNITDESC = UNITDESC;
+    }
 
     public String getMATRECTRANSID() {
         return MATRECTRANSID;

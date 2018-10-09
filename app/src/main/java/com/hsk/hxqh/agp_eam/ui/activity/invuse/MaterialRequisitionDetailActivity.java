@@ -2,6 +2,7 @@ package com.hsk.hxqh.agp_eam.ui.activity.invuse;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -41,6 +42,7 @@ import com.hsk.hxqh.agp_eam.api.HttpRequestHandler;
 import com.hsk.hxqh.agp_eam.api.JsonUtils;
 import com.hsk.hxqh.agp_eam.bean.Results;
 import com.hsk.hxqh.agp_eam.config.Constants;
+import com.hsk.hxqh.agp_eam.model.INVENTORY;
 import com.hsk.hxqh.agp_eam.model.INVUSEEntity;
 import com.hsk.hxqh.agp_eam.model.INVUSELINE;
 import com.hsk.hxqh.agp_eam.model.LOCATIONS;
@@ -57,17 +59,25 @@ import com.hsk.hxqh.agp_eam.ui.activity.WpmaterialDetailsActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.WxDemoActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.invuse.adapter.WpmaterialAdapter2;
 import com.hsk.hxqh.agp_eam.ui.activity.option.Dept_chooseActivity;
+import com.hsk.hxqh.agp_eam.ui.activity.option.INVRESERVE_chooseActivity;
+import com.hsk.hxqh.agp_eam.ui.activity.option.Inventory_chooseActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.option.Location_chooseActivity;
+import com.hsk.hxqh.agp_eam.ui.activity.option.MATUSETRANS_chooseActivity;
 import com.hsk.hxqh.agp_eam.ui.widget.SwipeRefreshLayout;
 import com.hsk.hxqh.agp_eam.unit.AccountUtils;
 import com.hsk.hxqh.agp_eam.unit.ArrayUtil;
 import com.hsk.hxqh.agp_eam.webserviceclient.AndroidClientService;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
@@ -133,6 +143,7 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
 //
         mBasIn = new BounceTopEnter();
         mBasOut = new SlideBottomExit();
+        EventBus.getDefault().register(this);
     }
     @Override
     protected void findViewById() {
@@ -325,16 +336,7 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
                             break;
                         case 3:
                             normalListDialog.superDismiss();
-                            if (workorder.getSTATUS().equalsIgnoreCase("WAPPR")){
-                                Intent intent1 = new Intent(MaterialRequisitionDetailActivity.this,MatWpmaterialDetailsActivity.class );
-                                Bundle bundle = new Bundle();
-                                bundle.putSerializable("workorder",workorder);
-                                bundle.putString("flag","I");
-                                intent1.putExtras(bundle);
-                                startActivityForResult(intent1,wpmaterialAdapter.getItemCount());
-                            }else {
-                                Toast.makeText(MaterialRequisitionDetailActivity.this, "The Status is not WAPPR",Toast.LENGTH_SHORT).show();
-                            }
+                            getMaterialLine();
                             break;
                         case 4:
                             normalListDialog.superDismiss();
@@ -350,6 +352,44 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
             });
         }
     };
+
+    private void getMaterialLine() {
+        final NormalListDialog normalListDialog = new NormalListDialog(this, new String[]{getString(R.string.xinjian ),getString(R.string.selectitem)});
+        normalListDialog.title(getString(R.string.option))
+                .showAnim(mBasIn)//
+                .dismissAnim(mBasOut)//
+                .show();
+        normalListDialog.setOnOperItemClickL(new OnOperItemClickL() {
+            @Override
+            public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                switch (position){
+
+                    case 0://新建
+                        normalListDialog.superDismiss();
+                        if (workorder.getSTATUS().equalsIgnoreCase("WAPPR")){
+                            Intent intent1 = new Intent(MaterialRequisitionDetailActivity.this,MatWpmaterialDetailsActivity.class );
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("workorder",workorder);
+                            bundle.putString("flag","I");
+                            intent1.putExtras(bundle);
+                            startActivityForResult(intent1,wpmaterialAdapter.getItemCount());
+                        }else {
+                            Toast.makeText(MaterialRequisitionDetailActivity.this, "The Status is not WAPPR",Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                    case 1:
+                        normalListDialog.superDismiss();
+                        Intent invIntent = new Intent(MaterialRequisitionDetailActivity.this, Inventory_chooseActivity.class);
+                        invIntent.putExtra("location",workorder.getLOCATION());
+                        invIntent.putExtra("showCheckBox",true);
+                        startActivityForResult(invIntent,0);
+                        break;
+                }
+//                    normalListDialog.dismiss();
+            }
+        });
+    }
 
 
     private View.OnClickListener backImageViewOnClickListener = new View.OnClickListener() {
@@ -394,12 +434,33 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
                 }
             break;
             case 110:
-                UDDEPT locations = (UDDEPT) data.getExtras().get("location");
+                UDDEPT locations = (UDDEPT) data.getExtras().get("dept");
                 if (locations!=null){
                     dep.setText(locations.getDEPTNUM());
                     workorder.setUDTEMPMATERIAL(locations.getDEPTNUM());
                     workorder.setUDSTATIONNUM(locations.getDEPTNUM());
                 }
+                break;
+            case 1:
+                ArrayList<INVENTORY> inventories = (ArrayList<INVENTORY>) data.getExtras().get("itemlist");
+                if (inventories!=null && !inventories.isEmpty()){
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    String date = simpleDateFormat.format(new Date());
+                    for(int i = 0;i<inventories.size();i++) {
+                        WPMATERIAL wpmaterial1;
+                        wpmaterial1 = new WPMATERIAL();
+                        wpmaterial1.setITEMQTY("1.00");
+                        wpmaterial1.setLINETYPE("ITEM");
+                        wpmaterial1.setREQUESTBY(AccountUtils.getpersonId(this));
+                        wpmaterial1.setLOCATION(workorder.getLOCATION());
+                        wpmaterial1.setREQUIREDATE(simpleDateFormat.format(new Date()));
+                        wpmaterial1.setFLAG("I");
+                        wpmaterial1.setWONUM(workorder.getWONUM());
+                        wpmaterial1.setITEMNUM(inventories.get(i).getITEMNUM());
+                        wpmaterial1.setDESCRIPTION(inventories.get(i).getITEMNUM_DEC());
+                        wpmaterialAdapter.add(wpmaterial1);
+                    }
+                    }
                 break;
         }
     }
@@ -534,6 +595,7 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
 
     private void deleteWO() {
         final NormalDialog dialog = new NormalDialog(this);
+        dialog.title(getString(R.string.tip)).btnText(getString(R.string.cancel),getString(R.string.queren));
         dialog.content(getString(R.string.suretosdelete))//
                 .showAnim(mBasIn)//
                 .dismissAnim(mBasOut)//
@@ -625,4 +687,29 @@ public class MaterialRequisitionDetailActivity extends BaseActivity implements S
         });
 
     }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void invEventBus(Map<Integer,Object> map){
+        ArrayList<INVENTORY> inventories = (ArrayList<INVENTORY>) map.get(1);
+        if (inventories!=null && !inventories.isEmpty()){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String date = simpleDateFormat.format(new Date());
+            for(int i = 0;i<inventories.size();i++) {
+                WPMATERIAL wpmaterial1;
+                wpmaterial1 = new WPMATERIAL();
+                wpmaterial1.setITEMQTY("1.00");
+                wpmaterial1.setLINETYPE("ITEM");
+                wpmaterial1.setUNITCOST("0.00");
+                wpmaterial1.setLINECOST("0.00");
+                wpmaterial1.setREQUESTBY(AccountUtils.getpersonId(this));
+                wpmaterial1.setLOCATION(workorder.getLOCATION());
+                wpmaterial1.setREQUIREDATE(simpleDateFormat.format(new Date()));
+                wpmaterial1.setFLAG("I");
+                wpmaterial1.setWONUM(workorder.getWONUM());
+                wpmaterial1.setITEMNUM(inventories.get(i).getITEMNUM());
+                wpmaterial1.setDESCRIPTION(inventories.get(i).getITEMNUM_DEC());
+                wpmaterialAdapter.add(wpmaterial1);
+            }
+        }
+    }
+
 }

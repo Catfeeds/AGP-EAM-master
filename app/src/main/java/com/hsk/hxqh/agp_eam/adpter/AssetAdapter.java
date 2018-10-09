@@ -36,7 +36,6 @@ public class AssetAdapter extends BaseQuickAdapter<ASSET> {
         helper.setText(R.id.item_location_text, item.getLOCATION());
         helper.setText(R.id.item_locdesc_text, item.getLOCDESC());
         helper.setText(R.id.item_udmodule_text, item.getUDMODULE());
-
         switch (helper.getPosition()%5){
             case 0:
                 helper.setBackgroundRes(R.id.item_num_text,R.drawable.design_0_point);

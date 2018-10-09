@@ -49,9 +49,14 @@ import com.hsk.hxqh.agp_eam.ui.activity.WorkOrderAddNewActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.invuse.adapter.InvuseAdapter;
 import com.hsk.hxqh.agp_eam.ui.widget.BaseViewHolder;
 import com.hsk.hxqh.agp_eam.ui.widget.SwipeRefreshLayout;
+import com.hsk.hxqh.agp_eam.unit.DateSelect;
+import com.hsk.hxqh.agp_eam.unit.DateTimeSelect;
 import com.hsk.hxqh.agp_eam.unit.TestUtil;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -186,7 +191,7 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
         @Override
         public void onClick(View v) {
             final NormalListDialog normalListDialog = new NormalListDialog(InvuseListActivity.this,dialogMenuItems);
-            normalListDialog.title(getString(R.string.option))
+            normalListDialog.title(getString(R.string.chaxuntj))
                     .showAnim(mBasIn)//
                     .dismissAnim(mBasOut)//
                     .show();
@@ -203,8 +208,9 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
                             break;
                         case 1://Add
                             normalListDialog.superDismiss();
+                            serchType = "DESCRIPTION";
                             search.setText("");
-                        search.setHint(R.string.asset_description);
+                            search.setHint(R.string.asset_description);
                             break;
                         case 2:
                             normalListDialog.superDismiss();
@@ -217,6 +223,13 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
                             Intent intent = new Intent(InvuseListActivity.this,  MipcaActivityCapture.class);
                             intent.putExtra("mark", 1); //扫码标识
                             startActivityForResult(intent, INVUSESCAN_CODE);
+                            break;
+                        case 4:
+                            normalListDialog.superDismiss();
+                            serchType = "UDCREATEDATE";
+                            search.setText("");
+                            search.setHint(R.string.createdate_text);
+                            new MyDateSelect(InvuseListActivity.this, search).showDialog();
                             break;
                     }
 //                    normalListDialog.dismiss();
@@ -330,7 +343,6 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
                                 items.add(item.get(i));
                             }
                             addData(item);
-
                         }
                         nodatalayout.setVisibility(View.GONE);
                         initAdapter(items);
@@ -377,6 +389,7 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
         dialogMenuItems.add(new DialogMenuItem(getString(R.string.udstock_description),2));
         dialogMenuItems.add(new DialogMenuItem(getString(R.string.inventory_location),3));
         dialogMenuItems.add(new DialogMenuItem(getString(R.string.scan),4));
+        dialogMenuItems.add(new DialogMenuItem(getString(R.string.createdate_text),5));
     }
 
     @Override
@@ -391,7 +404,6 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
                         if (results==null || results.equals("")){
                             break;
                         }
-
                         isExistSN(results);
                     }
                     break;
@@ -411,7 +423,7 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
                     refresh_layout.setLoading(false);
                     if (item == null || item.isEmpty()) {
                         nodatalayout.setVisibility(View.VISIBLE);
-                        Toast.makeText(InvuseListActivity.this,"There is no such item",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(InvuseListActivity.this,getString(R.string.have_not_data_txt),Toast.LENGTH_SHORT).show();
                     } else {
                         INVUSEEntity invuseEntity = item.get(0);
                         boolean flag = false;
@@ -425,7 +437,6 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
                                 bundle.putString("type",type);
                                 intent.putExtras(bundle);
                                 startActivityForResult(intent, 0);
-
                                 break;
                             }
                         }
@@ -445,5 +456,29 @@ public class InvuseListActivity  extends BaseActivity implements SwipeRefreshLay
                 }
             }
         });
+    }
+    private class MyDateSelect extends DateSelect{
+
+        public MyDateSelect(Context context, TextView textView) {
+            super(context, textView);
+        }
+        @Override
+        public void updateLabel(View view) {
+            StringBuffer sb = super.sb;
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            Date date = null;
+            try {
+                date = simpleDateFormat.parse(sb.toString());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            itemAdapter.removeAll(items);
+            items = new ArrayList<INVUSEEntity>();
+            nodatalayout.setVisibility(View.GONE);
+            refresh_layout.setRefreshing(true);
+            page = 1;
+            getData(dateFormat.format(date));
+        }
     }
 }

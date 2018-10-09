@@ -211,7 +211,7 @@ public class MatWpmaterialDetailsActivity extends BaseActivity {
             Intent intent = new Intent(MatWpmaterialDetailsActivity.this, Inventory_chooseActivity.class);
             Bundle bundle = new Bundle();
             if (workorder!=null){
-                bundle.putSerializable("location",workorder.getLOCATION());
+                bundle.putSerializable("location",workorder.getUDTEMPMATERIAL());
             }else {
                 bundle.putSerializable("location","");
             }

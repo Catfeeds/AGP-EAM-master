@@ -24,7 +24,7 @@ public class INVUSELINE implements Serializable{
     private String FROMLOT	;//原批次
     private String QUANTITY;//	数量
     private String ISS;//	发放单位
-    private String UNITDES;//	发放单位描述
+    private String UNITDESC;//	发放单位描述
     private String DISPLAYUNITCOST;//	单位成本
     private String DISPLAYLINECOST;//	行成本
     private String WONUM;//	工单
@@ -38,7 +38,6 @@ public class INVUSELINE implements Serializable{
     private String INVMEASUREMENT;//发放单位
     private String PONUM;//工单
     private String REQUESTNUM;
-
     private String SHE;//货架寿命
     private String TASKID; //任务
     private String USE;//截止日期
@@ -243,12 +242,12 @@ public class INVUSELINE implements Serializable{
         this.ISS = ISS;
     }
 
-    public String getUNITDES() {
-        return UNITDES;
+    public String getUNITDESC() {
+        return UNITDESC;
     }
 
-    public void setUNITDES(String UNITDES) {
-        this.UNITDES = UNITDES;
+    public void setUNITDESC(String UNITDES) {
+        this.UNITDESC = UNITDES;
     }
 
     public String getDISPLAYUNITCOST() {

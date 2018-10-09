@@ -36,6 +36,7 @@ import com.hsk.hxqh.agp_eam.api.HttpManager;
 import com.hsk.hxqh.agp_eam.api.HttpRequestHandler;
 import com.hsk.hxqh.agp_eam.api.JsonUtils;
 import com.hsk.hxqh.agp_eam.bean.Results;
+import com.hsk.hxqh.agp_eam.model.INVUSEEntity;
 import com.hsk.hxqh.agp_eam.model.ITEM;
 import com.hsk.hxqh.agp_eam.model.WORKORDER;
 import com.hsk.hxqh.agp_eam.model.WPMATERIAL;
@@ -44,9 +45,13 @@ import com.hsk.hxqh.agp_eam.ui.activity.invuse.MaterialRequisitionAddNewActivity
 import com.hsk.hxqh.agp_eam.ui.activity.invuse.MaterialRequisitionDetailActivity;
 import com.hsk.hxqh.agp_eam.ui.widget.BaseViewHolder;
 import com.hsk.hxqh.agp_eam.ui.widget.SwipeRefreshLayout;
+import com.hsk.hxqh.agp_eam.unit.DateSelect;
 import com.j256.ormlite.stmt.query.In;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -125,7 +130,7 @@ public class WorkOederListActivity extends BaseActivity implements SwipeRefreshL
     private View.OnClickListener searchTypeOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            final NormalListDialog normalListDialog = new NormalListDialog(WorkOederListActivity.this, new String[]{getString(R.string.item_num_title),getString(R.string.INVUSE_DESCRIPTION),getString(R.string.udstock_storeroom),getString(R.string.scan)});
+            final NormalListDialog normalListDialog = new NormalListDialog(WorkOederListActivity.this, new String[]{getString(R.string.item_num_title),getString(R.string.INVUSE_DESCRIPTION),getString(R.string.udstock_storeroom),getString(R.string.scan),getString(R.string.createdate_text)});
             normalListDialog.title(getString(R.string.option))
                     .showAnim(mBasIn)//
                     .dismissAnim(mBasOut)//
@@ -145,11 +150,13 @@ public class WorkOederListActivity extends BaseActivity implements SwipeRefreshL
                         case 1://保存
                             normalListDialog.superDismiss();
                         searchType = "DESCRIPTION";
+                            search.setText("");
                         search.setHint(R.string.INVUSE_DESCRIPTION);
                             break;
                         case 2://新建
                             normalListDialog.superDismiss();
                             searchType = "UDTEMPMATERIAL";
+                            search.setText("");
                             search.setHint(R.string.inventory_location);
                             break;
                         case 3://保存
@@ -157,6 +164,13 @@ public class WorkOederListActivity extends BaseActivity implements SwipeRefreshL
                             Intent intent = new Intent(WorkOederListActivity.this,  MipcaActivityCapture.class);
                             intent.putExtra("mark", 1); //扫码标识
                             startActivityForResult(intent,WORKORDER_CODE);
+                            break;
+                        case 4:
+                            normalListDialog.superDismiss();
+                            searchType = "CREATEDATE";
+                            search.setText("");
+                            search.setHint(getString(R.string.createdate_text));
+                            new MyDateSelect(WorkOederListActivity.this, search).showDialog();
                             break;
 
                     }
@@ -395,7 +409,7 @@ public class WorkOederListActivity extends BaseActivity implements SwipeRefreshL
             public void onSuccess(Results results, int totalPages, int currentPage) {
                 ArrayList<WORKORDER> item = JsonUtils.parsingWORKORDER(WorkOederListActivity.this, results.getResultlist());
                 if (item == null || item.isEmpty()) {
-                    Toast.makeText(WorkOederListActivity.this,"There is no such item",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(WorkOederListActivity.this,getString(R.string.have_not_data_txt),Toast.LENGTH_SHORT).show();
                 } else {
                      WORKORDER workorder= item.get(0);
                     boolean flag = false;
@@ -427,5 +441,30 @@ public class WorkOederListActivity extends BaseActivity implements SwipeRefreshL
         bundle.putSerializable("workorder",itemintent);
         intent.putExtras(bundle);
         startActivityForResult(intent,0);
+    }
+    private class MyDateSelect extends DateSelect {
+
+        public MyDateSelect(Context context, TextView textView) {
+            super(context, textView);
+        }
+        @Override
+        public void updateLabel(View view) {
+            StringBuffer sb = super.sb;
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            Date date = null;
+            try {
+                date = simpleDateFormat.parse(sb.toString());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            searchText = dateFormat.format(date);
+            assetAdapter.removeAll(items);
+            items = new ArrayList<WORKORDER>();
+            nodatalayout.setVisibility(View.GONE);
+            refresh_layout.setRefreshing(true);
+            page = 1;
+            getData(dateFormat.format(date));
+        }
     }
 }

@@ -43,6 +43,7 @@ public class InvuseAdapter extends BaseQuickAdapter<INVUSEEntity> {
         helper.setText(R.id.INVUSELOCATIONSDES, item.getINVUSELOCATIONSDES());
         helper.setVisible(R.id.item_location_desc_title,false);
         helper.setVisible(R.id.item_location_desc_text,false);
+        helper.setText(R.id.invuse_createdate_text,item.getUDCREATEDATE());
     }
 
 

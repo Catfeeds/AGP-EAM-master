@@ -258,7 +258,7 @@
             android:theme="@style/AGP.ActivityTheme" />
         <activity
             android:name=".ui.activity.MipcaActivityCapture"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:theme="@style/AGP.ActivityTheme" />
         <activity
             android:name=".ui.activity.UdstocklineDetailActivity"

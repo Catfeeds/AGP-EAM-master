@@ -57,8 +57,18 @@ final class CameraConfigurationManager {
     WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
     Display display = manager.getDefaultDisplay();
     screenResolution = new Point(display.getWidth(), display.getHeight());
+    //screenResolution = new Point(display.getHeight(),display.getWidth());
     Log.d(TAG, "Screen resolution: " + screenResolution);
-    cameraResolution = getCameraResolution(parameters, screenResolution);
+    Point screenResolutionForCamera = new Point();
+    screenResolutionForCamera.x = screenResolution.x;
+    screenResolutionForCamera.y = screenResolution.y;
+// preview size is always something like 480*320, other 320*480
+    if (screenResolution.x > screenResolution.y) {
+      screenResolutionForCamera.x = screenResolution.y;
+      screenResolutionForCamera.y = screenResolution.x;
+    }
+    //cameraResolution = getCameraResolution(parameters, screenResolution);
+    cameraResolution = getCameraResolution(parameters, screenResolutionForCamera);
     Log.d(TAG, "Camera resolution: " + screenResolution);
   }
 
@@ -72,6 +82,7 @@ final class CameraConfigurationManager {
     Camera.Parameters parameters = camera.getParameters();
     Log.d(TAG, "Setting preview size: " + cameraResolution);
     parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
+    //
     setFlash(parameters);
     setZoom(parameters);
     //setSharpness(parameters);
@@ -79,7 +90,13 @@ final class CameraConfigurationManager {
     
 //    camera.setDisplayOrientation(90);
     //����2.1
-    setDisplayOrientation(camera, 90);
+    String model = Build.MODEL;
+    String brand = Build.BRAND;
+    if (model.equals("A370")&&brand.equals("A370")){
+      setDisplayOrientation(camera, 90);
+    }else {
+      setDisplayOrientation(camera, 90);
+    }
     camera.setParameters(parameters);
   }
 

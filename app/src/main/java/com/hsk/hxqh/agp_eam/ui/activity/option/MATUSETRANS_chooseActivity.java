@@ -15,9 +15,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hsk.hxqh.agp_eam.R;
@@ -29,6 +31,7 @@ import com.hsk.hxqh.agp_eam.api.HttpRequestHandler;
 import com.hsk.hxqh.agp_eam.api.JsonUtils;
 import com.hsk.hxqh.agp_eam.bean.Results;
 import com.hsk.hxqh.agp_eam.model.ASSET;
+import com.hsk.hxqh.agp_eam.model.INVRESERVE;
 import com.hsk.hxqh.agp_eam.model.INVUSELINE;
 import com.hsk.hxqh.agp_eam.model.MATUSETRANS;
 import com.hsk.hxqh.agp_eam.ui.activity.BaseActivity;
@@ -64,6 +67,42 @@ public class MATUSETRANS_chooseActivity extends BaseActivity implements SwipeRef
     private String searchText = "";
 //    public ASSET asset;
     public ArrayList<ASSET> assetArrayList = new ArrayList<>();
+    private RelativeLayout button_layout;
+    private Button select,ok;
+    private boolean flag = false;
+    private View.OnClickListener selectOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            for (int i = 0;i< assetChooseAdapter.getItemCount();i++){
+                assetChooseAdapter.getItem(i).setCheckBox(flag);
+            }
+            assetChooseAdapter.notifyDataSetChanged();
+            if (flag){
+                flag =false;
+                select.setText(R.string.quanbuxuan);
+            }else {
+                flag = true;
+                select.setText(getString(R.string.quanxuan));
+            }
+        }
+    };
+    private View.OnClickListener okOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            ArrayList<MATUSETRANS> matusetrans = new ArrayList<>();
+            for (int i=0;i<assetChooseAdapter.getItemCount();i++){
+                if (assetChooseAdapter.getItem(i).isCheckBox()){
+                    matusetrans.add(assetChooseAdapter.getItem(i));
+                }
+            }
+            Intent intent = getIntent();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("MATUSETRANS",matusetrans);
+            intent.putExtras(bundle);
+            setResult(105,intent);
+            finish();
+        }
+    };
 //    public ArrayList<Woactivity> deleteList = new ArrayList<>();
 
 //    private BaseAnimatorSet mBasIn;
@@ -98,12 +137,20 @@ private List<MATUSETRANS> invuselinelist = new ArrayUtil<>();
         refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         nodatalayout = (LinearLayout) findViewById(R.id.have_not_data_id);
         search = (EditText) findViewById(R.id.search_edit);
+        button_layout = (RelativeLayout) findViewById(R.id.button_layout);
+        select = (Button) findViewById(R.id.back);
+        ok = (Button) findViewById(R.id.option);
 //        confirmlayout = (LinearLayout) findViewById(R.id.button_layout);
 //        confirmBtn = (Button) findViewById(R.id.confirm);
     }
 
     @Override
     protected void initView() {
+        button_layout.setVisibility(View.VISIBLE);
+        select.setOnClickListener(selectOnClickListener);
+        select.setText(R.string.quanxuan);
+        ok.setText(R.string.queren);
+        ok.setOnClickListener(okOnClickListener);
         backImageView.setBackgroundResource(R.drawable.ic_back);
         backImageView.setOnClickListener(backOnClickListener);
         titleTextView.setText("");
@@ -214,15 +261,16 @@ private List<MATUSETRANS> invuselinelist = new ArrayUtil<>();
     private void initAdapter(final List<MATUSETRANS> list) {
         assetChooseAdapter = new MATUSETRANS_chooseAdapter(MATUSETRANS_chooseActivity.this, R.layout.list_item, list);
         recyclerView.setAdapter(assetChooseAdapter);
+        assetChooseAdapter.setShowcheckbox(true);
         assetChooseAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = getIntent();
+            /*    Intent intent = getIntent();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("MATUSETRANS", assetChooseAdapter.getItem(position));
                 intent.putExtras(bundle);
                 setResult(105,intent);
-                finish();
+                finish();*/
 //                startActivityForResult(intent, 0);
             }
         });

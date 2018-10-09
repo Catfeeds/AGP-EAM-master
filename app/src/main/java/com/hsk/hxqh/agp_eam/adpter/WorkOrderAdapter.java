@@ -37,6 +37,7 @@ public class WorkOrderAdapter extends BaseQuickAdapter<WORKORDER> {
         helper.setText(R.id.item_location_text, item.getUDTEMPMATERIAL());
         helper.setText(R.id.item_location_desc_text,item.getWORKORDERUDTDES());
         helper.setText(R.id.item_udstatus_text, item.getUDSTATUS());
+        helper.setText(R.id.item_createdate_text,item.getCREATEDATE());
     }
 
 

@@ -2126,7 +2126,9 @@ public class JsonUtils<E> {
                     }
 
                 }
-                list.add(uddept);
+                if (!"01".equals(uddept.getTYPE()) && !"02".equals(uddept.getTYPE())){
+                    list.add(uddept);
+                }
             }
             return list;
         } catch (JSONException e) {

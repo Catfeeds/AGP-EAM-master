@@ -9,4 +9,6 @@
     <string name="photo_crop">图片裁剪</string>
     <string name="origin">原图</string>
     <string name="origin_size">原图(%1$s)</string>
+    <string name="selectImage">选择图片</string>
+    <string name="preview">预览</string>
 </resources>

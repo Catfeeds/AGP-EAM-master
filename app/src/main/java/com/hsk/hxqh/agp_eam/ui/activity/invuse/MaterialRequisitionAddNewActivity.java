@@ -38,11 +38,13 @@ import com.hsk.hxqh.agp_eam.bean.Results;
 import com.hsk.hxqh.agp_eam.config.Constants;
 import com.hsk.hxqh.agp_eam.model.LOCATIONS;
 import com.hsk.hxqh.agp_eam.model.SUBJECT;
+import com.hsk.hxqh.agp_eam.model.UDDEPT;
 import com.hsk.hxqh.agp_eam.model.WORKORDER;
 import com.hsk.hxqh.agp_eam.model.WPMATERIAL;
 import com.hsk.hxqh.agp_eam.model.WebResult;
 import com.hsk.hxqh.agp_eam.ui.activity.BaseActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.invuse.adapter.WpmaterialAdapter2;
+import com.hsk.hxqh.agp_eam.ui.activity.option.Dept_chooseActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.option.Location_chooseActivity;
 import com.hsk.hxqh.agp_eam.ui.widget.SwipeRefreshLayout;
 import com.hsk.hxqh.agp_eam.unit.AccountUtils;
@@ -205,7 +207,7 @@ public class MaterialRequisitionAddNewActivity extends BaseActivity implements S
     private View.OnClickListener udstationnumOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(MaterialRequisitionAddNewActivity.this,  Location_chooseActivity.class);
+            Intent intent = new Intent(MaterialRequisitionAddNewActivity.this,  Dept_chooseActivity.class);
             Bundle bundle = new Bundle();
             bundle.putString("type","STOREROOM");
             bundle.putString("from","udstationnum");
@@ -295,17 +297,18 @@ public class MaterialRequisitionAddNewActivity extends BaseActivity implements S
         switch (resultCode){
             case 110:
                 Bundle bundle =data.getExtras();
-                LOCATIONS locations = (LOCATIONS) bundle.get("location");
-               String from = bundle.getString("from");
+                String from = bundle.getString("from");
                 if (from!=null && from.equalsIgnoreCase("location")){
+                    LOCATIONS locations = (LOCATIONS) bundle.get("location");
                     fromstoreloc.setText(locations.getLOCATION());
                     invowner.setText(locations.getINVOWNER());
                     workorder.setINVONAME(locations.getINVOWNER());
                     workorder.setLOCATION(locations.getLOCATION());
                 }else {
-                    dep.setText(locations.getLOCATION());
-                    workorder.setUDTEMPMATERIAL(locations.getLOCATION());
-                    workorder.setUDSTATIONNUM(locations.getLOCATION());
+                    UDDEPT uddept = (UDDEPT) bundle.get("dept");
+                    dep.setText(uddept.getDEPTNUM());
+                    workorder.setUDTEMPMATERIAL(uddept.getDEPTNUM());
+                    workorder.setUDSTATIONNUM(uddept.getDEPTNUM());
                 }
                 break;
             case 100:

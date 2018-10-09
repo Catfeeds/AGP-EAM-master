@@ -69,6 +69,7 @@ import com.hsk.hxqh.agp_eam.ui.activity.WorkOrderAddNewActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.invuse.adapter.InvuseLineAddAdaper;
 import com.hsk.hxqh.agp_eam.ui.activity.option.INVBALANCES_chooseActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.option.INVRESERVE_chooseActivity;
+import com.hsk.hxqh.agp_eam.ui.activity.option.Inventory_chooseActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.option.Location_chooseActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.option.MATUSETRANS_chooseActivity;
 import com.hsk.hxqh.agp_eam.ui.activity.option.Person_chooseActivity;
@@ -141,6 +142,7 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
     private ArrayAdapter<String> adapter;
     private Spinner spinner;
     private boolean isfirst =true;
+    private String usetype;
 
     public  ArrayUtil<INVRESERVE> getInvreservesList() {
         return invreservesList;
@@ -158,7 +160,6 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
         initView();
         mBasIn = new BounceTopEnter();
         mBasOut = new SlideBottomExit();
-        getDefLoc();
         fromstoreroomTextView.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -176,6 +177,7 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
             getInvesrverData("");
             }
         });
+        getDefLoc();
     }
 
     @Override
@@ -229,13 +231,16 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
         if (type!=null){
             if (type.equals("MR")){
                 invuseEntity.setUSETYPE("RETURN");
+                usetype= "RETURN";
                 titleTextView.setText(R.string.refund);
             }else if (type.equals("MI")){
                 invuseEntity.setUSETYPE("ISSUE");
                 titleTextView.setText(R.string.outbound);
+                usetype = "ISSUE";
             }else if (type.equals("MT")){
                 invuseEntity.setUSETYPE("TRANSFER");
                 titleTextView.setText(R.string.invuse_transfer);
+                usetype= "TRANSFER";
                 TextView textView = (TextView) findViewById(R.id.yuankufang);
                 textView.setText(R.string.fromstoreroom);
             }
@@ -425,6 +430,7 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
                     String jsonline = "";
                     Gson g = new GsonBuilder().serializeNulls().create();
                     if (reviseresult != null && reviseresult.errorMsg.equals("成功")) {
+                        reviseresult.errorMsg = reviseresult.errorMsg + "==";
                         if (invuseEntity.getINVUSENUM()==null || invuseEntity.getINVUSENUM().equalsIgnoreCase("")) {
                             invuseEntity.setINVUSENUM(type + reviseresult.wonum);
                             INVUSELINE invuseline;
@@ -445,7 +451,7 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
                             final String finalJsonline = jsonline;
                             String reviseresultline = AndroidClientService.insertInvuseLine(InvusemiAddNewActivity.this, finalJsonline);
                             if (reviseresultline != null) {
-                                reviseresult.errorMsg = reviseresult.errorMsg +"%%"+ reviseresultline + "%%";
+                                reviseresult.errorMsg = reviseresult.errorMsg +reviseresultline + "==";
                                 for (int i = 0; i < invreservesList.size(); i++) {
                                     boolean flag = false;
                                     double k = 0;
@@ -482,9 +488,9 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
                 @Override
                 protected void onPostExecute(WebResult workResult) {
                     super.onPostExecute(workResult);
-                    String[] results = workResult.errorMsg.split("%%");
+                    String[] results = workResult.errorMsg.split("==");
                     if (workResult == null) {
-                        Toast.makeText(InvusemiAddNewActivity.this, "false", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(InvusemiAddNewActivity.this, getString(R.string.fail), Toast.LENGTH_SHORT).show();
                     } else {
                         for (int i = 0;i < itemAdaper.getItemCount();i++){
                             itemAdaper.getItem(i).setFLAG("U");
@@ -502,15 +508,15 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
     }
     public void getaddInvuseLine(){
         String newline = getString(R.string.newline);
-        String[] addInvuseLineMIList = {getString(R.string.reserveditems),newline};
-        String[] addInvuseLineMRList = {getString(R.string.returnitems),newline};
+        String[] addInvuseLineMIList = {getString(R.string.reserveditems),newline,getString(R.string.selectitem)};
+        String[] addInvuseLineMRList = {getString(R.string.returnitems)};
         String[] optionList2;
         if (type.equalsIgnoreCase("MI")){
             optionList2 = addInvuseLineMIList;
         }else if (type.equalsIgnoreCase("MR")){
             optionList2 = addInvuseLineMRList;
         }else {
-            optionList2 = new String[]{getString(R.string.newline)};
+            optionList2 = new String[]{getString(R.string.newline),getString(R.string.selectitem)};
         }
 
         final NormalListDialog normalListDialog = new NormalListDialog(InvusemiAddNewActivity.this, optionList2);
@@ -522,14 +528,14 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
             @Override
             public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (type.equalsIgnoreCase("MT")){
-                    position = 1;
+                    position += 1;
                 }
 //                    linetypeTextView.setText(linetypeList[position]);
                 switch (position){
                     case 0://
                         normalListDialog.superDismiss();
                         if (fromstoreroomTextView.getText().toString().isEmpty()){
-                            Toast.makeText(InvusemiAddNewActivity.this,"The FromBin is Empty",Toast.LENGTH_LONG).show();
+                            Toast.makeText(InvusemiAddNewActivity.this,getString(R.string.notnull),Toast.LENGTH_LONG).show();
                         }else {
                             INVUSELINE invuseline = new INVUSELINE();
                             if (type!=null){
@@ -557,7 +563,7 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
                     case 1:
                         normalListDialog.superDismiss();
                         if (fromstoreroomTextView.getText().toString().isEmpty()){
-                            Toast.makeText(InvusemiAddNewActivity.this,"The FromBin is Empty",Toast.LENGTH_LONG).show();
+                            Toast.makeText(InvusemiAddNewActivity.this,getString(R.string.notnull),Toast.LENGTH_LONG).show();
                         }else {
                             INVUSELINE invuseline = new INVUSELINE();
                             if (type!=null){
@@ -584,6 +590,13 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
                             }
                         }
 
+                        break;
+                    case 2:
+                        normalListDialog.superDismiss();
+                        Intent invIntent = new Intent(InvusemiAddNewActivity.this, Inventory_chooseActivity.class);
+                        invIntent.putExtra("location",fromstoreroomTextView.getText().toString());
+                        invIntent.putExtra("showCheckBox",true);
+                        startActivityForResult(invIntent,0);
                         break;
                 }
 //                    normalListDialog.dismiss();
@@ -688,48 +701,50 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
                 break;
             case 130:
                 Bundle invre = data.getExtras();
-                INVRESERVE invreserve = (INVRESERVE) invre.get("INVRESERVE");
-                if (invreserve!=null){
-                    INVUSELINE invuseline1 =   new INVUSELINE();
-                    invuseline1.setITEMNUM(invreserve.getITEMNUM());
-                    invuseline1 .setASSETNUM(invreserve.getASSETNUM());
-                    invuseline1.setDESCRIPTION(invreserve.getDESCRIPTION());
-                    invuseline1.setWONUM(invreserve.getWONUM());
-                    invuseline1.setISS(invreserve.getISSUETO());
-                    invuseline1.setFROMBIN(invreserve.getMRLINENUM());
-                    invuseline1.setFROMLOT(invreserve.getTOSTORELOC());
-                    invuseline1.setLOCATION(invreserve.getOPLOCATION());
-                    invuseline1.setREQUESTNUM(invreserve.getREQUESTNUM());
-                    double  reservedqty = Double.parseDouble(invreserve.getRESERVEDQTY());
-                    double pendingqty = Double.parseDouble(invreserve.getPENDINGQTY());
-                    double j = 0;
-                    for (int i = 0;i < itemAdaper.getItemCount();i++) {
-                        INVUSELINE invuseline2 = itemAdaper.getItem(i);
-                        if (invuseline2.getREQUESTNUM()!=null&&invuseline2.getREQUESTNUM().equals(invreserve.getREQUESTNUM())){
-                            double k =0;
-                            String a = invuseline2.getQUANTITY();
-                            if (invuseline2.getQUANTITY()!=null&&!invuseline2.getQUANTITY().equals("")){
-                                k = Double.parseDouble(invuseline2.getQUANTITY());
+                ArrayList<INVRESERVE> invreserve = (ArrayList<INVRESERVE>) invre.get("INVRESERVE");
+                if (invreserve!=null && !invreserve.isEmpty()){
+                    for (int i = 0;i<invreserve.size();i++){
+                        INVUSELINE invuseline1 =   new INVUSELINE();
+                        invuseline1.setITEMNUM(invreserve.get(i).getITEMNUM());
+                        invuseline1 .setASSETNUM(invreserve.get(i).getASSETNUM());
+                        invuseline1.setDESCRIPTION(invreserve.get(i).getDESCRIPTION());
+                        invuseline1.setWONUM(invreserve.get(i).getWONUM());
+                        invuseline1.setISS(invreserve.get(i).getISSUETO());
+                        invuseline1.setFROMBIN(invreserve.get(i).getMRLINENUM());
+                        invuseline1.setFROMLOT(invreserve.get(i).getTOSTORELOC());
+                        invuseline1.setLOCATION(invreserve.get(i).getOPLOCATION());
+                        invuseline1.setREQUESTNUM(invreserve.get(i).getREQUESTNUM());
+                        double  reservedqty = Double.parseDouble(invreserve.get(i).getRESERVEDQTY());
+                        double pendingqty = Double.parseDouble(invreserve.get(i).getPENDINGQTY());
+                        double j = 0;
+                        for (int m = 0;m < itemAdaper.getItemCount();m++) {
+                            INVUSELINE invuseline2 = itemAdaper.getItem(m);
+                            if (invuseline2.getREQUESTNUM()!=null&&invuseline2.getREQUESTNUM().equals(invreserve.get(i).getREQUESTNUM())){
+                                double k =0;
+                                String a = invuseline2.getQUANTITY();
+                                if (invuseline2.getQUANTITY()!=null&&!invuseline2.getQUANTITY().equals("")){
+                                    k = Double.parseDouble(invuseline2.getQUANTITY());
+                                }
+                                j+=k;
                             }
-                            j+=k;
                         }
+                        if ((reservedqty-pendingqty-j)<0){
+                            invuseline1.setQUANTITY("0");
+                        }else {
+                            invuseline1.setQUANTITY((reservedqty-pendingqty-j) + "");
+                        }
+                        invuseline1.setUSETYPE("ISSUE");
+                        invuseline1.setENTERBY(AccountUtils.getpersonId(InvusemiAddNewActivity.this));
+                        invuseline1.setFlag("I");
+                        invuseline1.setFROMSTORELOC(fromstoreroomTextView.getText().toString());
+                        if (itemAdaper.getData().isEmpty()){
+                            invuseline1.setINDEX(0);
+                        }else {
+                            invuseline1.setINDEX(itemAdaper.getData().size());
+                        }
+                        itemAdaper.add(invuseline1);
+                        getFromBin(invuseline1);
                     }
-                    if ((reservedqty-pendingqty-j)<0){
-                        invuseline1.setQUANTITY("0");
-                    }else {
-                        invuseline1.setQUANTITY((reservedqty-pendingqty-j) + "");
-                    }
-                    invuseline1.setUSETYPE("ISSUE");
-                    invuseline1.setENTERBY(AccountUtils.getpersonId(InvusemiAddNewActivity.this));
-                    invuseline1.setFlag("I");
-                    invuseline1.setFROMSTORELOC(fromstoreroomTextView.getText().toString());
-                    if (itemAdaper.getData().isEmpty()){
-                        invuseline1.setINDEX(0);
-                    }else {
-                        invuseline1.setINDEX(itemAdaper.getData().size());
-                    }
-                    showProgressDialog("......");
-                                    getFromBin(invuseline1);
                 }
 
                 break;
@@ -760,37 +775,64 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
             case 105:
                 Bundle invuselineDate = data.getExtras();
                 INVUSELINE invuseline1 = new INVUSELINE();
-                MATUSETRANS matusetrans = (MATUSETRANS) invuselineDate.get("MATUSETRANS");
-                if (invuseline1!= null){
-                    invuseline1.setFROMSTORELOC(invuseEntity.getFROMSTORELOC());
-                    invuseline1.setUSETYPE("RETURN");
-                    invuseline1.setTYPE("add");
-                    invuseline1.setFLAG("I");
-                    Double quanty = Double.parseDouble(matusetrans.getQUANTITY());
-                    invuseline1.setQUANTITY(Math.abs(quanty)+ "");
-                    invuseline1.setINVUSENUM(invuseEntity.getINVUSENUM());
-                    invuseline1.setITEMNUM(matusetrans.getITEMNUM());
-                    invuseline1.setDESCRIPTION(matusetrans.getDESCRIPTION());
-                    invuseline1.setFROMBIN(matusetrans.getBINNUM());
-                    invuseline1.setFROMLOT(matusetrans.getLOTNUM());
-                    invuseline1.setLOCATION(matusetrans.getLOCATION());
-                    invuseline1.setENTERBY(matusetrans.getENTERBY());
-                    invuseline1.setASSETNUM(matusetrans.getASSETNUM());
-                    invuseline1.setACTUALDATE(matusetrans.getACTUALDATE());
-                    invuseline1.setREFWO(matusetrans.getREFWO());
-                    invuseline1.setISSUETO(matusetrans.getISSUETO());
-                    invuseline1.setINDEX(itemAdaper.getItemCount());
-                    invuseline1.setUSETYPE("RETURN");
-                    invuseline1.setENTERBY(AccountUtils.getpersonId(InvusemiAddNewActivity.this));
-                    invuseline1.setFlag("I");
-                    invuseline1.setFROMSTORELOC(fromstoreroomTextView.getText().toString());
-                    if (itemAdaper.getData().isEmpty()){
-                        invuseline1.setINDEX(0);
-                    }else {
-                        invuseline1.setINDEX(itemAdaper.getData().size());
+                ArrayList<MATUSETRANS> matusetrans = (ArrayList<MATUSETRANS>) invuselineDate.get("MATUSETRANS");
+                if (invuseline1!= null && !matusetrans.isEmpty() ){
+                    for (int i=0;i<matusetrans.size();i++){
+                        invuseline1.setFROMSTORELOC(invuseEntity.getFROMSTORELOC());
+                        invuseline1.setUSETYPE("RETURN");
+                        invuseline1.setTYPE("add");
+                        invuseline1.setFLAG("I");
+                        Double quanty = Double.parseDouble(matusetrans.get(i).getQUANTITY());
+                        invuseline1.setQUANTITY(Math.abs(quanty)+ "");
+                        invuseline1.setINVUSENUM(invuseEntity.getINVUSENUM());
+                        invuseline1.setITEMNUM(matusetrans.get(i).getITEMNUM());
+                        invuseline1.setDESCRIPTION(matusetrans.get(i).getDESCRIPTION());
+                        invuseline1.setFROMBIN(matusetrans.get(i).getBINNUM());
+                        invuseline1.setFROMLOT(matusetrans.get(i).getLOTNUM());
+                        invuseline1.setLOCATION(matusetrans.get(i).getLOCATION());
+                        invuseline1.setENTERBY(AccountUtils.getpersonId(this));
+                        invuseline1.setASSETNUM(matusetrans.get(i).getASSETNUM());
+                        invuseline1.setACTUALDATE(matusetrans.get(i).getACTUALDATE());
+                        invuseline1.setREFWO(matusetrans.get(i).getREFWO());
+                        invuseline1.setISSUETO(matusetrans.get(i).getISSUETO());
+                        invuseline1.setINDEX(itemAdaper.getItemCount());
+                        invuseline1.setUSETYPE("RETURN");
+                        invuseline1.setENTERBY(AccountUtils.getpersonId(InvusemiAddNewActivity.this));
+                        invuseline1.setFlag("I");
+                        invuseline1.setFROMSTORELOC(fromstoreroomTextView.getText().toString());
+                        if (itemAdaper.getData().isEmpty()){
+                            invuseline1.setINDEX(0);
+                        }else {
+                            invuseline1.setINDEX(itemAdaper.getData().size());
+                        }
+                        itemAdaper.add(invuseline1);
+                        getFromBin(invuseline1);
                     }
-                    showProgressDialog("waiting...");
-                    getFromBin(invuseline1);
+                }
+                break;
+            case 1:
+                Bundle bundle = data.getExtras();
+                ArrayList<INVENTORY> inventories = (ArrayList<INVENTORY>) bundle.get("itemlist");
+                if (inventories!=null && !inventories.isEmpty()){
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    String date = simpleDateFormat.format(new Date());
+                    for(int i = 0;i<inventories.size();i++){
+                        INVUSELINE invuseline2 = new INVUSELINE();
+                        invuseline2.setTYPE("add");
+                        invuseline2.setFLAG("I");
+                        invuseline2.setITEMNUM(inventories.get(i).getITEMNUM());
+                        invuseline2.setDESCRIPTION(inventories.get(i).getITEMNUM_DEC());
+                        invuseline2.setINVUSENUM(invuseEntity.getINVUSENUM());
+                        invuseline2.setFROMSTORELOC(fromstoreroomTextView.getText().toString());
+                        invuseline2.setUSETYPE(usetype);
+                        invuseline2.setACTUALDATE(date);
+                        invuseline2.setQUANTITY("1");
+                        invuseline2.setCONVERSION("1");
+                        invuseline2.setENTERBY(AccountUtils.getpersonId(this));
+                        invuseline2.setINDEX(itemAdaper.getItemCount());
+                        itemAdaper.add(invuseline2);
+                        getFromBin(invuseline2);
+                    }
                 }
                 break;
         }
@@ -800,23 +842,28 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
         HttpManager.getDataPagingInfo(InvusemiAddNewActivity.this, HttpManager.getLocationUrl(person,"STOREROOM", 1, 20,1), new HttpRequestHandler<Results>() {
             @Override
             public void onSuccess(Results data) {
-
+                Log.e("默认库房", "成功");
             }
             @Override
             public void onSuccess(Results data, int totalPages, int currentPage) {
                 ArrayList<LOCATIONS> locations = JsonUtils.parsingLOCATIONS(InvusemiAddNewActivity.this,data.getResultlist());
                 if (!locations.isEmpty()){
                     for (LOCATIONS locations1 : locations){
-                       if (locations1.getINVOWNER().equalsIgnoreCase(person)){
-                           invownerTextView.setText(person);
-                           fromstoreroomTextView.setText(locations1.getLOCATION());
+                       if (person.equalsIgnoreCase(locations1.getINVOWNER())){
+                           if (type.equals("MT")){
+                               udtowarehouse.setText(locations1.getLOCATION());
+                               udinvowner.setText(person);
+                           }else {
+                               fromstoreroomTextView.setText(locations1.getLOCATION());
+                               invownerTextView.setText(person);
+                           }
                        }
                     }
                 }
             }
             @Override
             public void onFailure(String error) {
-
+                Log.e("默认库房", "失败" );
             }
         });
     }
@@ -903,8 +950,8 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
             }
         }.execute();
     }
-    public void getFromBin(final INVUSELINE invuseline1){
-        HttpManager.getDataPagingInfo(InvusemiAddNewActivity.this, HttpManager.getInvbalancesUrl(invuseline1.getITEMNUM(),invuseline1.getFROMSTORELOC(),"","ITEMSET",1, 20), new HttpRequestHandler<Results>() {
+    public void getFromBin(final INVUSELINE theInvuseline){
+        HttpManager.getDataPagingInfo(this, HttpManager.getInvbalancesUrl(theInvuseline.getITEMNUM(),theInvuseline.getFROMSTORELOC(),"","ITEMSET",1, 20), new HttpRequestHandler<Results>() {
             @Override
             public void onSuccess(Results results) {
                 Log.i(TAG, "data=" + results);
@@ -912,23 +959,23 @@ public class InvusemiAddNewActivity extends BaseActivity implements SwipeRefresh
 
             @Override
             public void onSuccess(Results results, int totalPages, int currentPage) {
-                invbalances = JsonUtils.parsingINVBALANCES(InvusemiAddNewActivity.this, results.getResultlist());
-                if (invbalances != null && !invbalances.isEmpty()){
-                    invuseline1.setFROMBIN(invbalances.get(0).getBINNUM());
-                    invuseline1.setFROMLOT(invbalances.get(0).getLOTNUM());
-                    itemAdaper.add(invuseline1);
-                }else {
-                    itemAdaper.add(invuseline1);
-                }
-                closeProgressDialog();
-            }
+                ArrayList<INVBALANCES> invbalanceslist = JsonUtils.parsingINVBALANCES(InvusemiAddNewActivity.this, results.getResultlist());
+                if (invbalanceslist == null||invbalanceslist.isEmpty()){
 
+                }else {
+                    String bin = invbalanceslist.get(0).getBINNUM();
+                    String loc = invbalanceslist.get(0).getLOTNUM();
+                    theInvuseline.setFROMLOT(loc);
+                    theInvuseline.setFROMBIN(bin);
+                }
+                itemAdaper.notifyDataSetChanged();
+            }
             @Override
             public void onFailure(String error) {
-                itemAdaper.add(invuseline1);
-                closeProgressDialog();
+
             }
         });
+
     }
     private void submitmain(){
        final NormalDialog normalDialog = new NormalDialog(this);

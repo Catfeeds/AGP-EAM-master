@@ -35,15 +35,24 @@ public class UdstockLineAdapter extends BaseQuickAdapter<UDSTOCKLINE> {
     @Override
     protected  void convert(BaseViewHolder helper, UDSTOCKLINE item) {
         CardView cardView = helper.getView(R.id.card_container);
-            if (item.getISCHECK().equalsIgnoreCase("Y")) {
-                if(Integer.parseInt(item.getDIFFERENCE())!=0){
+/*            if (item.getISCHECK().equalsIgnoreCase("Y")) {
+                if(Double.parseDouble(item.getDIFFERENCE())!=0){
                     cardView.setCardBackgroundColor(Color.YELLOW);
                 }else{
                     cardView.setCardBackgroundColor(Color.GREEN);
                 }
             }else {
                 cardView.setCardBackgroundColor(Color.WHITE);
+            }*/
+        if (item.getDIFFERENCE() == null){
+            cardView.setCardBackgroundColor(Color.WHITE);
+        }else {
+            if(Double.parseDouble(item.getDIFFERENCE())!=0){
+                cardView.setCardBackgroundColor(Color.YELLOW);
+            }else{
+                cardView.setCardBackgroundColor(Color.GREEN);
             }
+        }
 
        //cardView.setCardBackgroundColor(R.color.blue);
         helper.setText(R.id.udstockline_sn_text, item.getSN()+"");

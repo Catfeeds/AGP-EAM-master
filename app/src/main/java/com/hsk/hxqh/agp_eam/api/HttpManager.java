@@ -415,18 +415,9 @@ public class HttpManager {
         if (search.equals("")) {
             return "{'appid':'" + Constants.INVUSE_APPID + "','objectname':'" + Constants.INVUSE_NAME + "'," +
                     "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'INVUSENUM desc','condition':{'INVUSENUM':'"+type +"'}}";
-        } else if (serchType.equalsIgnoreCase("")){
-            return  "{'appid':'" + Constants.INVUSE_APPID + "','objectname':'" + Constants.INVUSE_NAME + "'," +
-                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'INVUSENUM desc','condition':{'INVUSENUM':'"+type +"','INVUSENUM':'"+search+"'}}";
-        }else if (serchType.equalsIgnoreCase("DESC")){
-            return  "{'appid':'" + Constants.INVUSE_APPID + "','objectname':'" + Constants.INVUSE_NAME + "'," +
-                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'INVUSENUM desc','condition':{'INVUSENUM':'"+type +"','DESCRIPTION':'"+search+"'}}";
-        }else if (serchType.equalsIgnoreCase("FROMSTORELOC")){
-            return  "{'appid':'" + Constants.INVUSE_APPID + "','objectname':'" + Constants.INVUSE_NAME + "'," +
-                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'INVUSENUM desc','condition':{'INVUSENUM':'"+type +"','FROMSTORELOC':'"+search+"'}}";
         }else {
             return  "{'appid':'" + Constants.INVUSE_APPID + "','objectname':'" + Constants.INVUSE_NAME + "'," +
-                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'INVUSENUM desc','condition':{'INVUSENUM':'"+type +"','INVUSENUM':'"+search+"'}}";
+                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'INVUSENUM desc','condition':{'INVUSENUM':'"+type +"',\""+serchType+"\":\""+search+"\"}}";
 
         }
     }
@@ -453,10 +444,10 @@ public class HttpManager {
     public static String getDeptUrl(String search, int curpage, int showcount) {
         if (search.equals("")) {
             return "{'appid':'" + Constants.UDDEPT_APPID + "','objectname':'" + Constants.UDDEPT_NAME + "'," +
-                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'DEPTNUM ASC','condition':{'TYPE':'!=01','TYPE':'!=02'}}";
+                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'DEPTNUM ASC'}";
         } else {
             return "{'appid':'" + Constants.PERSON_APPID + "','objectname':'" + Constants.PERSON_NAME + "'," +
-                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'DEPTNUM ASC','condition':{'TYPE':'!=01','TYPE':'!=02'},'sinorsearch':{'LOCATION':' "+ search + "','DESCRIPTION':'" + search + "'}}";
+                    "'curpage':" + curpage + ",'showcount':" + showcount + ",'option':'read','orderby':'DEPTNUM ASC','sinorsearch':{'LOCATION':' "+ search + "','DESCRIPTION':'" + search + "'}}";
         }
     }
 

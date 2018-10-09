@@ -36,6 +36,7 @@ import com.hsk.hxqh.agp_eam.api.HttpManager;
 import com.hsk.hxqh.agp_eam.api.HttpRequestHandler;
 import com.hsk.hxqh.agp_eam.api.JsonUtils;
 import com.hsk.hxqh.agp_eam.bean.Results;
+import com.hsk.hxqh.agp_eam.model.ASSET;
 import com.hsk.hxqh.agp_eam.model.PROCESSNAME;
 import com.hsk.hxqh.agp_eam.model.WFASSIGNMENT;
 import com.hsk.hxqh.agp_eam.ui.activity.InventoryListActivity;
@@ -96,6 +97,7 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getArguments().get("asset");
     }
 
     @Override

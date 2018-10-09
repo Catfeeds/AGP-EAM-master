@@ -117,7 +117,12 @@ public class UDSTOCKLINE implements Serializable {
     }
 
     public void setDIFFERENCE(String DIFFERENCE) {
-        this.DIFFERENCE = DIFFERENCE;
+        if (DIFFERENCE!= null){
+            this.DIFFERENCE = DIFFERENCE.replace(",","");
+        }else {
+            this.DIFFERENCE = DIFFERENCE;
+        }
+
     }
 
     public String getREASON() {

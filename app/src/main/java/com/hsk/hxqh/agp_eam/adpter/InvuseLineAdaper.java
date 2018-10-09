@@ -46,7 +46,7 @@ public class InvuseLineAdaper extends BaseQuickAdapter<INVUSELINE> {
         helper.setText(R.id.usage_type_id,item.getUSETYPE());
         helper.setText(R.id.invuseline_quantity_id,item.getQUANTITY());
         helper.setText(R.id.invuseline_iss_id,item.getINVMEASUREMENT());
-        helper.setText(R.id.invuseline_unitdes_id,item.getINVMEASUREMENT());
+        helper.setText(R.id.invuseline_unitdes_id,item.getUNITDESC());
         helper.setText(R.id.invuseline_displayunitcost_id,item.getDISPLAYUNITCOST());
         helper.setText(R.id.invuseline_displaylinecost_id,item.getDISPLAYLINECOST());
         helper.setText(R.id.invuseline_wonum_id,item.getWONUM());

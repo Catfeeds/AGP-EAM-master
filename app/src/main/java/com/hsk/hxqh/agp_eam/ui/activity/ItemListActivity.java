@@ -276,7 +276,6 @@ public class ItemListActivity extends BaseActivity implements SwipeRefreshLayout
                 if (item == null || item.isEmpty()) {
                     nodatalayout.setVisibility(View.VISIBLE);
                 } else {
-
                     if (item != null || item.size() != 0) {
                         if (page == 1) {
                             items = new ArrayList<ITEM>();
@@ -288,7 +287,7 @@ public class ItemListActivity extends BaseActivity implements SwipeRefreshLayout
                         int postion = itemAdapter.getItemCount();
                         addData(item);
                         BaseViewHolder baseViewHolder = new BaseViewHolder(ItemListActivity.this, recyclerView);
-                        itemAdapter.onBindViewHolder(baseViewHolder,1);
+                        itemAdapter.onBindViewHolder(baseViewHolder,postion);
                     }
                     nodatalayout.setVisibility(View.GONE);
 
@@ -370,7 +369,7 @@ public class ItemListActivity extends BaseActivity implements SwipeRefreshLayout
                 ArrayList<ITEM> item = JsonUtils.parsingITEM(ItemListActivity.this,results.getResultlist());
                 if (item == null || item.isEmpty()) {
                     isExistItem = false;
-                    Toast.makeText(ItemListActivity.this,"There is no such item",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ItemListActivity.this,getString(R.string.have_not_data_txt),Toast.LENGTH_SHORT).show();
                 } else {
                     itemscan = item.get(0);
                     boolean flag = false;

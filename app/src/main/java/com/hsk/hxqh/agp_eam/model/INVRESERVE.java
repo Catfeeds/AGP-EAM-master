@@ -40,6 +40,15 @@ public class INVRESERVE implements Serializable {
     private String TOSTORELOC;
     private String WONUM;
     private String REQUESTNUM;
+    private boolean CheckBox;
+
+    public boolean isCheckBox() {
+        return CheckBox;
+    }
+
+    public void setCheckBox(boolean checkBox) {
+        CheckBox = checkBox;
+    }
 
     public String getREQUESTNUM() {
         return REQUESTNUM;

@@ -19,6 +19,15 @@ public class INVBALANCES implements Serializable {
     private String ITEMNUM;//
     private String DESCRIPTION;//
     private String ITEMNUM_DEC;
+    private String LOCATION;
+
+    public String getLOCATION() {
+        return LOCATION;
+    }
+
+    public void setLOCATION(String LOCATION) {
+        this.LOCATION = LOCATION;
+    }
 
     public String getITEMNUM_DEC() {
         return ITEMNUM_DEC;

@@ -148,6 +148,29 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:maxLines="1" />
+            <TextView
+                android:id="@+id/item_createdate_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/INVUSELOCATIONSDES"
+                android:layout_marginTop="5dp"
+                android:text="@string/createdate_text"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/invuse_createdate_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/INVUSELOCATIONSDES"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/item_createdate_title"
+                android:ellipsize="end"
+                android:ems="14"
+                android:hint="@string/have_not_data"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:maxLines="1" />
 
         </RelativeLayout>
 

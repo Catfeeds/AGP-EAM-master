@@ -19,7 +19,7 @@ public class DateSelect {
     Context context;
 
     private DatePickerDialog datePickerDialog;
-    StringBuffer sb = new StringBuffer();
+    public StringBuffer sb = new StringBuffer();
 
     public DateSelect(Context context, TextView textView) {
         this.textView = textView;
@@ -60,7 +60,7 @@ public class DateSelect {
     }
 
     //更新页面TextView的方法
-    private void updateLabel(View view) {
+    public void updateLabel(View view) {
         ((TextView)view).setText(sb);
 //        ((EditText)view).clearFocus();
 //        ((EditText)view).setError(null);
